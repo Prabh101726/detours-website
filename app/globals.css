@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand colors */
+  --color-brand-orange: #ff7a1a;
+  --color-brand-orange-light: #ffa14d;
+  --color-brand-bg: #060c18;
+  --color-brand-card: rgba(255, 255, 255, 0.05);
+  --color-brand-surface: #0a1224;
+
+  /* Text colors */
+  --color-text-primary: #f1f5f9;
+  --color-text-muted: #64748b;
+  --color-text-subtle: #94a3b8;
+
+  /* Border colors */
+  --color-border-subtle: rgba(255, 255, 255, 0.10);
+  --color-border-dim: rgba(255, 255, 255, 0.06);
+
+  /* Semantic colors */
+  --color-success: #22c55e;
+  --color-whatsapp: #25d366;
+
+  /* Typography */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Backdrop blur */
+  --blur-glass: 12px;
+
+  /* Background images */
+  --background-image-dot-grid: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  --background-image-orange-glow: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(255, 122, 26, 0.12) 0%, transparent 70%);
+  --background-image-hero-glow: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 122, 26, 0.10) 0%, transparent 70%);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-inter: "Inter", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #060c18;
+  color: #f1f5f9;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glass card utility */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+}
+
+.glass-sm {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+/* Dot grid background helper */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
