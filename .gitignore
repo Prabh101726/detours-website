@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Secrets
+.env.local
+
+# Superpowers brainstorm sessions
+.superpowers/
+
+# OS
+.DS_Store
