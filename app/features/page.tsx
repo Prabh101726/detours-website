@@ -65,7 +65,7 @@ const features = [
 
 export default function FeaturesPage() {
   return (
-    <div className="max-w-6xl mx-auto px-6 py-24">
+    <div className="max-w-5xl mx-auto px-8 lg:px-16 pt-20 pb-28">
       <AnimatedSection className="text-center mb-16">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-4"

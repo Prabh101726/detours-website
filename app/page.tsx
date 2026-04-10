@@ -142,7 +142,7 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative max-w-6xl mx-auto px-6 py-28 w-full flex flex-col md:flex-row items-center gap-12 md:gap-8">
+        <div className="relative max-w-5xl mx-auto px-8 lg:px-16 py-28 w-full flex flex-col md:flex-row items-center gap-12 md:gap-8">
           {/* Left copy */}
           <div className="flex-1 max-w-xl">
             {/* Badge */}
@@ -258,7 +258,7 @@ export default function Home() {
       </div>
 
       {/* ── Features grid ── */}
-      <section className="max-w-6xl mx-auto px-6 py-28">
+      <section className="max-w-5xl mx-auto px-8 lg:px-16 py-28">
         <AnimatedSection className="text-center mb-16">
           <p
             className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
@@ -293,7 +293,7 @@ export default function Home() {
           background: "rgba(180,200,255,0.012)",
         }}
       >
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-8 lg:px-16">
           <AnimatedSection className="text-center mb-16">
             <p
               className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
@@ -331,7 +331,7 @@ export default function Home() {
       </section>
 
       {/* ── Social proof ── */}
-      <section className="max-w-6xl mx-auto px-6 py-28">
+      <section className="max-w-5xl mx-auto px-8 lg:px-16 py-28">
         <AnimatedSection className="text-center mb-16">
           <p
             className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
@@ -373,7 +373,7 @@ export default function Home() {
 
       {/* ── Bottom CTA ── */}
       <AnimatedSection>
-        <section className="max-w-6xl mx-auto px-6 pb-28">
+        <section className="max-w-5xl mx-auto px-8 lg:px-16 pb-28">
           <div
             className="relative rounded-2xl p-14 text-center overflow-hidden"
             style={{

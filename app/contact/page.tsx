@@ -13,7 +13,7 @@ const WHATSAPP_NUMBER = "1XXXXXXXXXX";
 
 export default function ContactPage() {
   return (
-    <div className="max-w-2xl mx-auto px-6 py-24">
+    <div className="max-w-xl mx-auto px-8 pt-20 pb-28">
       <AnimatedSection className="text-center mb-12">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
