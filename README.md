@@ -18,6 +18,19 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Contact form (Gmail SMTP)
+
+The **Get in touch** form sends email via Gmail. Set these in `.env.local` (local) and in **Vercel → Project → Settings → Environment Variables** (production):
+
+| Variable | Description |
+|----------|-------------|
+| `GMAIL_USER` | Gmail address used to sign in to SMTP (e.g. `you@gmail.com`). |
+| `GMAIL_APP_PASSWORD` | [Google App Password](https://support.google.com/accounts/answer/185833) (16 characters). **Not** your normal Gmail password—turn on 2-Step Verification, then create an app password for Mail. |
+| `GMAIL_PASSWORD` | Optional alias for `GMAIL_APP_PASSWORD` if you prefer that name. |
+| `CONTACT_TO_EMAIL` | Inbox that receives submissions (often the same as `GMAIL_USER`). |
+
+Never commit real credentials to git.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

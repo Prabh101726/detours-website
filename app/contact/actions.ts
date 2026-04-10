@@ -1,6 +1,7 @@
 // app/contact/actions.ts
 "use server";
-import { resend } from "@/lib/resend";
+
+import { getGmailTransport } from "@/lib/gmail";
 
 interface ContactFormData {
   name: string;
@@ -19,13 +20,19 @@ export async function sendContactEmail(
   }
 
   const toEmail = process.env.CONTACT_TO_EMAIL;
-  if (!toEmail) {
+  const fromEmail = process.env.GMAIL_USER;
+  if (!toEmail || !fromEmail) {
+    return { success: false, error: "Contact email not configured." };
+  }
+
+  if (!process.env.GMAIL_APP_PASSWORD && !process.env.GMAIL_PASSWORD) {
     return { success: false, error: "Contact email not configured." };
   }
 
   try {
-    await resend.emails.send({
-      from: "Detours Website <onboarding@resend.dev>",
+    const transport = getGmailTransport();
+    await transport.sendMail({
+      from: fromEmail,
       to: toEmail,
       subject: `Demo request from ${name} — ${company}`,
       text: `
