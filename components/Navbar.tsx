@@ -19,10 +19,11 @@ export default function Navbar() {
     <header
       className="fixed top-0 left-0 right-0 z-50 border-b"
       style={{
-        borderColor: "rgba(180,200,255,0.06)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        background: "rgba(1,1,8,0.88)",
+        borderColor: "rgba(180,200,255,0.10)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+        background: "rgba(1,1,8,0.92)",
+        boxShadow: "0 1px 0 rgba(180,200,255,0.06), 0 4px 24px rgba(1,1,8,0.60)",
       }}
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
