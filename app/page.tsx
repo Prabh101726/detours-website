@@ -1,6 +1,6 @@
 "use client";
+import React, { useEffect, useRef } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import {
   ClipboardList,
@@ -10,6 +10,7 @@ import {
   FileText,
   ClipboardCheck,
   CheckCircle,
+  ChevronRight,
 } from "lucide-react";
 import HeroWidgets from "@/components/HeroWidgets";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -151,6 +152,12 @@ function StatCounter({ target, suffix }: { target: number; suffix: string }) {
 }
 
 export default function Home() {
+  const prefersReduced = useRef(false);
+  useEffect(() => {
+    prefersReduced.current =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
+
   return (
     <>
       {/* ── Hero ── */}
@@ -386,22 +393,35 @@ export default function Home() {
             </h2>
             <p className="text-text-muted">From job assigned to invoice sent.</p>
           </AnimatedSection>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
             {steps.map((s, i) => (
-              <AnimatedSection key={s.num} delay={i * 0.1}>
-                <GlassCard className="p-8 h-full">
-                  <span
-                    className="font-display text-6xl block mb-5 leading-none"
-                    style={{ color: "rgba(255,122,26,0.22)" }}
-                  >
-                    {s.num}
-                  </span>
-                  <h3 className="text-lg font-bold text-text-primary mb-3">
-                    {s.title}
-                  </h3>
-                  <p className="text-sm text-text-muted leading-relaxed">{s.desc}</p>
-                </GlassCard>
-              </AnimatedSection>
+              <React.Fragment key={s.num}>
+                <AnimatedSection delay={i * 0.1} className="md:col-span-1">
+                  <GlassCard className="p-8 h-full">
+                    <motion.div
+                      animate={prefersReduced.current ? undefined : { scale: [1, 1.04, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-12 h-12 rounded-full flex items-center justify-center mb-5 font-display text-xl"
+                      style={{
+                        background: "rgba(255,122,26,0.12)",
+                        border: "1px solid rgba(255,122,26,0.25)",
+                        color: "#ff7a1a",
+                      }}
+                    >
+                      {s.num}
+                    </motion.div>
+                    <h3 className="text-lg font-bold text-text-primary mb-3">
+                      {s.title}
+                    </h3>
+                    <p className="text-sm text-text-muted leading-relaxed">{s.desc}</p>
+                  </GlassCard>
+                </AnimatedSection>
+                {i < steps.length - 1 && (
+                  <div className="hidden md:flex items-center justify-center self-center" aria-hidden="true">
+                    <ChevronRight className="w-6 h-6" style={{ color: "rgba(255,122,26,0.30)" }} />
+                  </div>
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>
