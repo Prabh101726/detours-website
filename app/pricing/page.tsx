@@ -47,7 +47,7 @@ const plans = [
 
 export default function PricingPage() {
   return (
-    <div className="max-w-4xl mx-auto px-8 lg:px-12 pt-20 pb-28">
+    <div className="max-w-4xl mx-auto px-8 lg:px-12 pt-6 pb-28">
       <AnimatedSection className="text-center mb-16">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-4"

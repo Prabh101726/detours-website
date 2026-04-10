@@ -32,7 +32,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-8 lg:px-12 pt-20 pb-28">
+    <div className="max-w-3xl mx-auto px-8 lg:px-12 pt-6 pb-28">
       <AnimatedSection className="mb-16">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
