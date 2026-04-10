@@ -46,6 +46,6 @@ ${message}
     });
     return { success: true };
   } catch {
-    return { success: false, error: "Failed to send message. Please try WhatsApp instead." };
+    return { success: false, error: "Failed to send message. Please try again or email us directly." };
   }
 }
