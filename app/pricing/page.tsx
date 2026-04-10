@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CheckCircle } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import GlassCard from "@/components/GlassCard";
 
@@ -48,7 +49,16 @@ export default function PricingPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-24">
       <AnimatedSection className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-black text-text-primary mb-4">
+        <p
+          className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
+          style={{ color: "#ff7a1a" }}
+        >
+          Pricing
+        </p>
+        <h1
+          className="font-display leading-none mb-4"
+          style={{ fontSize: "clamp(2.8rem, 6vw, 4.5rem)" }}
+        >
           Simple pricing
         </h1>
         <p className="text-lg text-text-muted max-w-lg mx-auto">
@@ -60,39 +70,57 @@ export default function PricingPage() {
         {plans.map((plan, i) => (
           <AnimatedSection key={plan.name} delay={i * 0.1}>
             <GlassCard
-              className={`p-8 h-full flex flex-col ${
-                plan.highlight ? "border-brand-orange/40 shadow-[0_0_32px_rgba(255,122,26,0.08)]" : ""
+              className={`p-8 h-full flex flex-col relative overflow-hidden ${
+                plan.highlight ? "border-[rgba(255,122,26,0.28)] shadow-[0_0_48px_rgba(255,122,26,0.08),0_0_96px_rgba(100,149,237,0.04)]" : ""
               }`}
             >
-              {plan.highlight ? (
-                <span className="inline-block bg-brand-orange/15 border border-brand-orange/30 text-brand-orange text-xs font-bold px-3 py-1 rounded-full mb-4 self-start">
-                  Recommended
-                </span>
-              ) : null}
-              <h2 className="text-2xl font-black text-text-primary mb-1">{plan.name}</h2>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-4xl font-black text-brand-orange">{plan.price}</span>
-                <span className="text-text-muted text-sm">/ {plan.period}</span>
+              {/* Cosmic glow for highlighted plan */}
+              {plan.highlight && (
+                <>
+                  <div
+                    className="absolute inset-0 pointer-events-none star-field opacity-30"
+                  />
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255,122,26,0.10) 0%, transparent 70%)",
+                    }}
+                  />
+                </>
+              )}
+
+              <div className="relative">
+                {plan.highlight ? (
+                  <span className="inline-block bg-brand-orange/15 border border-brand-orange/30 text-brand-orange text-xs font-bold px-3 py-1 rounded-full mb-4 self-start">
+                    Recommended
+                  </span>
+                ) : null}
+                <h2 className="font-display text-4xl text-text-primary mb-1">{plan.name}</h2>
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="font-display text-5xl" style={{ color: "#ff7a1a" }}>{plan.price}</span>
+                  <span className="text-text-muted text-sm">/ {plan.period}</span>
+                </div>
+                <p className="text-sm text-text-muted mb-6">{plan.description}</p>
+                <ul className="flex flex-col gap-2.5 mb-8 flex-1">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-center gap-2.5 text-sm text-text-subtle">
+                      <CheckCircle className="w-4 h-4 flex-shrink-0 text-success" aria-hidden="true" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={plan.ctaHref}
+                  className={`text-center font-bold py-3 rounded-xl transition-all duration-200 cursor-pointer ${
+                    plan.highlight
+                      ? "btn-primary"
+                      : "bg-white/5 border border-white/10 text-text-primary hover:bg-white/10 hover:border-white/20"
+                  }`}
+                >
+                  {plan.cta}
+                </Link>
               </div>
-              <p className="text-sm text-text-muted mb-6">{plan.description}</p>
-              <ul className="flex flex-col gap-2.5 mb-8 flex-1">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-text-subtle">
-                    <span className="text-success font-bold">✓</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={plan.ctaHref}
-                className={`text-center font-bold py-3 rounded-xl transition-colors ${
-                  plan.highlight
-                    ? "bg-brand-orange text-white hover:bg-brand-orange-light"
-                    : "bg-white/5 border border-white/10 text-text-primary hover:bg-white/10"
-                }`}
-              >
-                {plan.cta}
-              </Link>
             </GlassCard>
           </AnimatedSection>
         ))}
@@ -101,7 +129,7 @@ export default function PricingPage() {
       <AnimatedSection className="text-center">
         <p className="text-text-muted text-sm">
           Not sure which plan fits?{" "}
-          <Link href="/contact" className="text-brand-orange hover:underline font-semibold">
+          <Link href="/contact" className="text-brand-orange hover:underline font-semibold cursor-pointer">
             Book a demo
           </Link>{" "}
           and we&apos;ll walk you through it.

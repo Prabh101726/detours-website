@@ -15,7 +15,18 @@ export default function ContactPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-24">
       <AnimatedSection className="text-center mb-12">
-        <h1 className="text-4xl font-black text-text-primary mb-3">Get in touch</h1>
+        <p
+          className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
+          style={{ color: "#ff7a1a" }}
+        >
+          Contact
+        </p>
+        <h1
+          className="font-display leading-none mb-4"
+          style={{ fontSize: "clamp(2.8rem, 6vw, 4rem)" }}
+        >
+          Get in touch
+        </h1>
         <p className="text-text-muted">
           Book a demo, ask a question, or just say hi. We&apos;re quick to respond.
         </p>
@@ -38,9 +49,9 @@ export default function ContactPage() {
 
       {/* Divider */}
       <AnimatedSection className="flex items-center gap-4 mb-8">
-        <div className="flex-1 h-px bg-white/10" />
+        <div className="flex-1 h-px" style={{ background: "rgba(180,200,255,0.08)" }} />
         <span className="text-xs text-text-muted font-semibold uppercase tracking-wider">or send a message</span>
-        <div className="flex-1 h-px bg-white/10" />
+        <div className="flex-1 h-px" style={{ background: "rgba(180,200,255,0.08)" }} />
       </AnimatedSection>
 
       {/* Email form */}

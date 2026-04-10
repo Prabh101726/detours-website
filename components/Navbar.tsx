@@ -1,7 +1,9 @@
 // components/Navbar.tsx
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { href: "/features", label: "Features" },
@@ -11,12 +13,25 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 backdrop-blur-glass bg-[#060c18]/80">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 border-b"
+      style={{
+        borderColor: "rgba(180,200,255,0.06)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        background: "rgba(1,1,8,0.88)",
+      }}
+    >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="text-xl font-black text-brand-orange tracking-tight">
+        <Link
+          href="/"
+          className="font-display text-2xl tracking-wider transition-colors duration-150"
+          style={{ color: "#ff7a1a" }}
+        >
           DETOURS
         </Link>
 
@@ -26,18 +41,26 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-text-muted hover:text-text-primary transition-colors"
+              className={`nav-link text-sm font-medium relative pb-0.5 ${
+                pathname === l.href ? "active" : ""
+              }`}
             >
               {l.label}
+              {pathname === l.href && (
+                <span
+                  className="absolute -bottom-0.5 left-0 right-0 h-px rounded-full"
+                  style={{ background: "#ff7a1a" }}
+                />
+              )}
             </Link>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Desktop CTA */}
+        <div className="hidden md:flex items-center">
           <Link
             href="/contact"
-            className="bg-brand-orange text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-brand-orange-light transition-colors"
+            className="btn-primary text-sm px-5 py-2 inline-flex items-center"
           >
             Book a Demo →
           </Link>
@@ -45,11 +68,20 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-text-muted"
+          className="md:hidden cursor-pointer nav-link p-1 rounded-lg"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
             {open ? (
               <path d="M18 6L6 18M6 6l12 12" />
             ) : (
@@ -59,28 +91,43 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
-      {open ? (
-        <div className="md:hidden border-t border-white/5 bg-[#060c18] px-6 py-4 flex flex-col gap-4">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="text-sm text-text-muted hover:text-text-primary transition-colors"
-            >
-              {l.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            onClick={() => setOpen(false)}
-            className="bg-brand-orange text-white text-sm font-bold px-5 py-2.5 rounded-lg text-center"
+      {/* Mobile menu — animated */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="md:hidden border-t px-6 py-5 flex flex-col gap-5"
+            style={{
+              borderColor: "rgba(180,200,255,0.06)",
+              background: "#010108",
+            }}
           >
-            Book a Demo →
-          </Link>
-        </div>
-      ) : null}
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`nav-link text-sm font-medium ${
+                  pathname === l.href ? "active" : ""
+                }`}
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="btn-primary text-sm px-5 py-2.5 text-center"
+            >
+              Book a Demo →
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

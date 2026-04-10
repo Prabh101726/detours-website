@@ -10,10 +10,21 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-[#040810] mt-24">
+    <footer
+      className="border-t mt-24"
+      style={{
+        borderColor: "rgba(180,200,255,0.06)",
+        background: "rgba(1,1,8,0.7)",
+      }}
+    >
       <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div>
-          <span className="text-lg font-black text-brand-orange tracking-tight">DETOURS</span>
+          <span
+            className="font-display text-2xl tracking-wider"
+            style={{ color: "#ff7a1a" }}
+          >
+            DETOURS
+          </span>
           <p className="text-sm text-text-muted mt-1 max-w-xs">
             Fleet management built for growing Ontario fleets.
           </p>
@@ -24,14 +35,14 @@ export default function Footer() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-text-muted hover:text-text-primary transition-colors"
+              className="text-sm nav-link"
             >
               {l.label}
             </Link>
           ))}
         </nav>
 
-        <p className="text-xs text-text-muted">
+        <p className="font-mono text-xs text-text-muted">
           © {new Date().getFullYear()} Detours. All rights reserved.
         </p>
       </div>
