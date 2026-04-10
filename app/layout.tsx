@@ -47,12 +47,13 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="bg-[#010108] text-text-primary antialiased overflow-x-hidden">
+      <body className="bg-[#010108] text-text-primary antialiased">
+        {/* Sticky nav sits in normal flow (no overlap). overflow-x-hidden lives below the header so it cannot break sticky. */}
         <Navbar />
-        <main className="relative z-10 pt-[max(5.5rem,calc(4rem+env(safe-area-inset-top,0px)+1.5rem))]">
-          {children}
-        </main>
-        <Footer />
+        <div className="overflow-x-hidden">
+          <main className="relative z-10">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

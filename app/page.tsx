@@ -162,7 +162,10 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section
+        className="relative flex items-center overflow-hidden"
+        style={{ minHeight: "calc(100dvh - env(safe-area-inset-top, 0px) - 4rem)" }}
+      >
         {/* Star field */}
         <div className="animate-star-pulse absolute inset-0 star-field opacity-60 pointer-events-none" />
 

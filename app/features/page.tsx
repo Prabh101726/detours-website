@@ -65,8 +65,8 @@ const features = [
 
 export default function FeaturesPage() {
   return (
-    <div className="relative isolate max-w-5xl mx-auto px-8 lg:px-16 pt-6 pb-28">
-      <AnimatedSection className="text-center mb-16 pt-1">
+    <div className="relative isolate max-w-5xl mx-auto px-8 lg:px-16 pt-10 pb-28">
+      <AnimatedSection instant className="text-center mb-16 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
           style={{ color: "#ff7a1a" }}
