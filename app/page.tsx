@@ -11,6 +11,7 @@ import {
   ClipboardCheck,
   CheckCircle,
   ChevronRight,
+  Star,
 } from "lucide-react";
 import HeroWidgets from "@/components/HeroWidgets";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -446,14 +447,34 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {testimonials.map((t, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <GlassCard className="p-8">
+              <GlassCard className="p-8 relative overflow-hidden">
+                <svg
+                  className="absolute top-4 right-5 opacity-[0.07]"
+                  width="48"
+                  height="36"
+                  viewBox="0 0 53 36"
+                  fill="currentColor"
+                  style={{ color: "#ff7a1a" }}
+                  aria-hidden="true"
+                >
+                  <path d="M0 36V22.5C0 10.1 7.7 2.9 23 0l2.8 4.5C17.2 6.5 12.8 11 12 18h9V36H0zm27 0V22.5C27 10.1 34.7 2.9 50 0l2.8 4.5C44.2 6.5 39.8 11 39 18h9V36H27z"/>
+                </svg>
+                <div className="flex gap-1 mb-4" aria-label="5 out of 5 stars">
+                  {[...Array(5)].map((_, starIdx) => (
+                    <Star key={starIdx} className="w-4 h-4 fill-current" style={{ color: "#ff7a1a" }} aria-hidden="true" />
+                  ))}
+                </div>
                 <p className="text-base text-text-primary leading-relaxed mb-6 italic">
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
                   <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
-                    style={{ background: "rgba(255,122,26,0.14)", color: "#ff7a1a" }}
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(255,122,26,0.30), rgba(255,122,26,0.10))",
+                      border: "1px solid rgba(255,122,26,0.25)",
+                      color: "#ff7a1a",
+                    }}
                   >
                     {t.name[0]}
                   </div>
