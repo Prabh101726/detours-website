@@ -49,7 +49,9 @@ export default function RootLayout({
     >
       <body className="bg-[#010108] text-text-primary antialiased overflow-x-hidden">
         <Navbar />
-        <main className="pt-20">{children}</main>
+        <main className="relative z-10 pt-[max(5.5rem,calc(4rem+env(safe-area-inset-top,0px)+1.5rem))]">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

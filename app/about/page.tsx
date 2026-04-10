@@ -32,8 +32,8 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-8 lg:px-12 pt-6 pb-28">
-      <AnimatedSection className="mb-16">
+    <div className="relative isolate max-w-3xl mx-auto px-8 lg:px-12 pt-6 pb-28">
+      <AnimatedSection className="mb-16 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
           style={{ color: "#ff7a1a" }}
@@ -41,7 +41,7 @@ export default function AboutPage() {
           Our story
         </p>
         <h1
-          className="font-display leading-none mb-6"
+          className="font-display leading-[1.08] mb-6"
           style={{ fontSize: "clamp(2.8rem, 6vw, 4.5rem)" }}
         >
           Built in Ontario,{" "}

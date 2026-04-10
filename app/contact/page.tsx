@@ -13,16 +13,16 @@ const WHATSAPP_NUMBER = "1XXXXXXXXXX";
 
 export default function ContactPage() {
   return (
-    <div className="max-w-xl mx-auto px-8 pt-6 pb-28">
-      <AnimatedSection className="text-center mb-12">
+    <div className="relative isolate max-w-xl mx-auto px-8 pt-6 pb-28">
+      <AnimatedSection className="text-center mb-12 pt-1">
         <p
-          className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
+          className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
           style={{ color: "#ff7a1a" }}
         >
           Contact
         </p>
         <h1
-          className="font-display leading-none mb-4"
+          className="font-display leading-[1.08] mb-6"
           style={{ fontSize: "clamp(2.8rem, 6vw, 4rem)" }}
         >
           Get in touch

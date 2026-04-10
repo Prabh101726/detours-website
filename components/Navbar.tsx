@@ -20,9 +20,8 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 border-b"
       style={{
         borderColor: "rgba(180,200,255,0.08)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-        background: "rgba(1,1,8,0.97)",
+        /* Solid bar — backdrop-filter caused a dark band/bleed on content below in some browsers */
+        background: "#010108",
         boxShadow: "0 1px 0 rgba(180,200,255,0.08)",
       }}
     >
