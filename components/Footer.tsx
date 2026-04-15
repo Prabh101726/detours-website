@@ -5,6 +5,7 @@ import { CopyrightYear } from "@/components/CopyrightYear";
 
 const navLinks = [
   { href: "/features", label: "Features" },
+  { href: "/screens", label: "Screens" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },

@@ -121,6 +121,43 @@ body::before {
   background-size: 28px 28px;
 }
 
+/* ─── Data flow animation (driver -> owner) ─── */
+.data-flow-rail {
+  position: relative;
+  width: 160px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 122, 26, 0.18), rgba(180, 200, 255, 0.25));
+}
+
+.data-flow-packet {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  transform: translateY(-50%);
+  background: #ff7a1a;
+  box-shadow: 0 0 16px rgba(255, 122, 26, 0.55);
+}
+
+.data-flow-packet--one {
+  animation: data-flow 2s linear infinite;
+}
+
+.data-flow-packet--two {
+  animation: data-flow 2s linear infinite;
+  animation-delay: 1s;
+}
+
+.data-flow-icon {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 122, 26, 0.65);
+}
+
 /* ─── Orange glow utility ─── */
 .glow-orange {
   box-shadow: 0 0 20px rgba(255, 122, 26, 0.30), 0 0 60px rgba(255, 122, 26, 0.12);
@@ -193,6 +230,23 @@ body::before {
   to   { opacity: 1; }
 }
 
+@keyframes data-flow {
+  from {
+    left: -6px;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    left: calc(100% - 6px);
+    opacity: 0;
+  }
+}
+
 /* ─── All motion-sensitive animations fire only when motion is OK ─── */
 @media (prefers-reduced-motion: no-preference) {
   .marquee-track {
@@ -227,7 +281,9 @@ body::before {
   .animate-float-orb,
   .animate-spin-slow,
   .animate-spin-slow-reverse,
-  .animate-star-pulse {
+  .animate-star-pulse,
+  .data-flow-packet--one,
+  .data-flow-packet--two {
     animation: none !important;
   }
 }
