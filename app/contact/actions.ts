@@ -6,6 +6,7 @@ import { getGmailTransport } from "@/lib/gmail";
 interface ContactFormData {
   name: string;
   company: string;
+  email: string;
   phone: string;
   message: string;
 }
@@ -13,9 +14,9 @@ interface ContactFormData {
 export async function sendContactEmail(
   data: ContactFormData
 ): Promise<{ success: boolean; error?: string }> {
-  const { name, company, phone, message } = data;
+  const { name, company, email, phone, message } = data;
 
-  if (!name || !company || !phone || !message) {
+  if (!name || !company || !email || !phone || !message) {
     return { success: false, error: "All fields are required." };
   }
 
@@ -38,6 +39,7 @@ export async function sendContactEmail(
       text: `
 Name: ${name}
 Company: ${company}
+Email: ${email}
 Phone: ${phone}
 
 Message:

@@ -8,7 +8,13 @@ type FormState = "idle" | "loading" | "success" | "error";
 export default function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const [form, setForm] = useState({ name: "", company: "", phone: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -61,6 +67,18 @@ export default function ContactForm() {
             className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-text-primary placeholder-text-muted/50 text-sm focus:outline-none focus:border-brand-orange/50 transition-colors"
           />
         </div>
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <label className="text-xs font-bold uppercase tracking-wider text-text-muted">Email</label>
+        <input
+          name="email"
+          type="email"
+          value={form.email}
+          onChange={handleChange}
+          placeholder="you@company.com"
+          required
+          className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-text-primary placeholder-text-muted/50 text-sm focus:outline-none focus:border-brand-orange/50 transition-colors"
+        />
       </div>
       <div className="flex flex-col gap-1.5">
         <label className="text-xs font-bold uppercase tracking-wider text-text-muted">Phone</label>
