@@ -1,7 +1,5 @@
-// components/HeroWidgets.tsx
 "use client";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect } from "react";
+import { useCountUp } from "@/lib/useCountUp";
 
 const widgets = [
   {
@@ -45,34 +43,21 @@ function AnimatedNumber({
   display: (v: number) => string;
   delay: number;
 }) {
-  const v = useMotionValue(0);
-  const rounded = useTransform(v, display);
-
-  useEffect(() => {
-    const controls = animate(v, target, {
-      duration: 1.2,
-      delay,
-      ease: "easeOut",
-    });
-    return controls.stop;
-  }, [v, target, delay]);
-
-  return <motion.span>{rounded}</motion.span>;
+  const [value] = useCountUp({ target, duration: 1200, delay });
+  return <>{display(value)}</>;
 }
 
 export default function HeroWidgets() {
   return (
     <div className="flex flex-col gap-3.5 w-full md:w-52">
       {widgets.map((w, i) => (
-        <motion.div
+        <div
           key={w.label}
-          initial={{ opacity: 0, x: 28 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.55, delay: 0.55 + i * 0.15, ease: "easeOut" }}
-          className="glass-cosmic rounded-2xl p-4"
+          className="glass-cosmic rounded-2xl p-4 hero-slide-in"
           style={{
             background: `linear-gradient(135deg, ${w.accent}, rgba(1,1,8,0.6))`,
             borderColor: w.accentBorder,
+            animationDelay: `${0.55 + i * 0.15}s`,
           }}
         >
           <p
@@ -83,7 +68,11 @@ export default function HeroWidgets() {
           </p>
           <div className="flex items-baseline gap-1.5 mb-1">
             <p className="text-2xl font-bold text-text-primary">
-              <AnimatedNumber target={w.value} display={w.display} delay={0.6 + i * 0.15} />
+              <AnimatedNumber
+                target={w.value}
+                display={w.display}
+                delay={(0.6 + i * 0.15) * 1000}
+              />
             </p>
             {w.unit ? (
               <span className="font-mono text-xs" style={{ color: "#64748b" }}>
@@ -94,7 +83,7 @@ export default function HeroWidgets() {
           <p className="font-mono text-[11px]" style={{ color: w.subColor }}>
             {w.sub}
           </p>
-        </motion.div>
+        </div>
       ))}
     </div>
   );

@@ -1,7 +1,6 @@
 // components/Footer.tsx
 import Link from "next/link";
 import { MapPin } from "lucide-react";
-import { CopyrightYear } from "@/components/CopyrightYear";
 
 const navLinks = [
   { href: "/features", label: "Features" },
@@ -66,7 +65,7 @@ export default function Footer() {
             Legal
           </p>
           <p className="text-sm text-text-muted leading-relaxed">
-            © <CopyrightYear /> Detours. All rights reserved.
+            © {new Date().getFullYear()} Detours. All rights reserved.
           </p>
           <Link href="/contact" className="text-sm nav-link mt-3 inline-block">
             Contact us →

@@ -1,9 +1,7 @@
-// components/Navbar.tsx
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { href: "/features", label: "Features" },
@@ -19,12 +17,9 @@ export default function Navbar() {
   return (
     <header
       className="sticky top-0 z-50 w-full pt-[env(safe-area-inset-top,0px)]"
-      style={{
-        background: "#010108",
-      }}
+      style={{ background: "#010108" }}
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
         <Link
           href="/"
           className="font-display text-2xl tracking-wider transition-colors duration-150"
@@ -33,7 +28,6 @@ export default function Navbar() {
           DETOURS
         </Link>
 
-        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <Link
@@ -54,7 +48,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
         <div className="hidden md:flex items-center">
           <Link
             href="/contact"
@@ -64,12 +57,12 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           className="md:hidden cursor-pointer nav-link p-1 rounded-lg"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           <svg
             width="22"
@@ -89,43 +82,41 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu — animated */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="md:hidden border-t px-6 py-5 flex flex-col gap-5"
-            style={{
-              borderColor: "rgba(180,200,255,0.06)",
-              background: "#010108",
-            }}
-          >
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className={`nav-link text-sm font-medium ${
-                  pathname === l.href ? "active" : ""
-                }`}
-              >
-                {l.label}
-              </Link>
-            ))}
+      <div
+        id="mobile-menu"
+        className={`md:hidden mobile-menu ${open ? "mobile-menu-open" : ""}`}
+        aria-hidden={!open}
+      >
+        <div
+          className="border-t px-6 py-5 flex flex-col gap-5"
+          style={{
+            borderColor: "rgba(180,200,255,0.06)",
+            background: "#010108",
+          }}
+        >
+          {links.map((l) => (
             <Link
-              href="/contact"
+              key={l.href}
+              href={l.href}
               onClick={() => setOpen(false)}
-              className="btn-primary text-sm px-5 py-2.5 text-center"
+              tabIndex={open ? 0 : -1}
+              className={`nav-link text-sm font-medium ${
+                pathname === l.href ? "active" : ""
+              }`}
             >
-              Book a Demo →
+              {l.label}
             </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ))}
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            tabIndex={open ? 0 : -1}
+            className="btn-primary text-sm px-5 py-2.5 text-center"
+          >
+            Book a Demo →
+          </Link>
+        </div>
+      </div>
     </header>
   );
 }

@@ -1,5 +1,3 @@
-"use client";
-
 /**
  * Tesseract — a rotating 4D hypercube wireframe projection.
  *

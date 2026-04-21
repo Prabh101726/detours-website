@@ -1,6 +1,4 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import React from "react";
 import Link from "next/link";
 import {
   ClipboardList,
@@ -9,14 +7,16 @@ import {
   DollarSign,
   FileText,
   ClipboardCheck,
-  CheckCircle,
   ChevronRight,
   Star,
 } from "lucide-react";
 import HeroWidgets from "@/components/HeroWidgets";
+import HeroCopy from "@/components/HeroCopy";
 import AnimatedSection from "@/components/AnimatedSection";
 import GlassCard from "@/components/GlassCard";
 import FeatureCard from "@/components/FeatureCard";
+import StatCounter from "@/components/StatCounter";
+import StepNumber from "@/components/StepNumber";
 import Tesseract from "@/components/Tesseract";
 
 const featureStrip = [
@@ -32,37 +32,43 @@ const features = [
   {
     icon: <ClipboardList className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
     title: "Dispatch Jobs",
-    description: "Assign jobs to drivers in seconds. Track status from dispatch to delivery in real time.",
+    description:
+      "Assign jobs to drivers in seconds. Track status from dispatch to delivery in real time.",
     benefit: "Zero missed jobs",
   },
   {
     icon: <Package className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
     title: "Proof of Delivery",
-    description: "Drivers capture photos and signatures on their phone. PDF ready instantly.",
+    description:
+      "Drivers capture photos and signatures on their phone. PDF ready instantly.",
     benefit: "Dispute-proof records",
   },
   {
     icon: <Fuel className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
     title: "Fuel Tracking",
-    description: "Log fuel receipts on the road. Track cost per kilometre across your whole fleet.",
+    description:
+      "Log fuel receipts on the road. Track cost per kilometre across your whole fleet.",
     benefit: "Cut fuel waste",
   },
   {
     icon: <DollarSign className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
     title: "Driver Payroll",
-    description: "Hourly, per-load, or per-tonne — auto-calculated every pay period.",
+    description:
+      "Hourly, per-load, or per-tonne — auto-calculated every pay period.",
     benefit: "Pay faster, argue less",
   },
   {
     icon: <FileText className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
     title: "HST Invoicing",
-    description: "Generate professional CAD invoices with HST included. One click, PDF ready.",
+    description:
+      "Generate professional CAD invoices with HST included. One click, PDF ready.",
     benefit: "Get paid faster",
   },
   {
     icon: <ClipboardCheck className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
     title: "Pre-Trip Inspections",
-    description: "MTO-compliant pre-trip checklist logged per vehicle, per driver, every day.",
+    description:
+      "MTO-compliant pre-trip checklist logged per vehicle, per driver, every day.",
     benefit: "Stay MTO-compliant",
   },
 ];
@@ -100,59 +106,18 @@ const testimonials = [
   },
 ];
 
-const stats = [
-  { value: 12, suffix: "+", label: "Fleets Running", numeric: true },
-  { value: 85, suffix: "+", label: "Trucks Tracked", numeric: true },
-  { value: null, display: "100%", label: "Ontario-Built", numeric: false },
-  { value: null, display: "MTO", label: "Compliance Ready", numeric: false },
+type Stat =
+  | { numeric: true; value: number; suffix: string; label: string }
+  | { numeric: false; display: string; label: string };
+
+const stats: Stat[] = [
+  { numeric: true, value: 12, suffix: "+", label: "Fleets Running" },
+  { numeric: true, value: 85, suffix: "+", label: "Trucks Tracked" },
+  { numeric: false, display: "100%", label: "Ontario-Built" },
+  { numeric: false, display: "MTO", label: "Compliance Ready" },
 ];
 
-function StatCounter({ target, suffix }: { target: number; suffix: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const hasAnimated = useRef(false);
-  const controlsRef = useRef<ReturnType<typeof animate> | null>(null);
-  const v = useMotionValue(0);
-  const rounded = useTransform(v, (latest) => `${Math.round(latest)}${suffix}`);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          if (prefersReduced) {
-            v.set(target);
-          } else {
-            controlsRef.current = animate(v, target, { duration: 1.4, ease: "easeOut" });
-          }
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-      controlsRef.current?.stop();
-    };
-  }, [v, target]);
-
-  return <motion.span ref={ref}>{rounded}</motion.span>;
-}
-
 export default function Home() {
-  const prefersReduced = useRef(false);
-  useEffect(() => {
-    prefersReduced.current =
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }, []);
-
   return (
     <>
       {/* ── Hero ── */}
@@ -160,13 +125,8 @@ export default function Home() {
         className="relative flex items-center overflow-hidden"
         style={{ minHeight: "calc(100dvh - env(safe-area-inset-top, 0px) - 4rem)" }}
       >
-        {/* Star field */}
         <div className="animate-star-pulse absolute inset-0 star-field opacity-60 pointer-events-none" />
-
-        {/* Dot grid */}
         <div className="grid-lines-fade absolute inset-0 dot-grid opacity-20 pointer-events-none" />
-
-        {/* Ambient cosmic glow */}
         <div
           className="absolute pointer-events-none"
           style={{
@@ -180,84 +140,15 @@ export default function Home() {
             borderRadius: "50%",
           }}
         />
-
-        {/* Tesseract — desktop only */}
         <div
           className="absolute hidden md:block pointer-events-none"
-          style={{
-            right: "2%",
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
+          style={{ right: "2%", top: "50%", transform: "translateY(-50%)" }}
         >
           <Tesseract />
         </div>
 
-        {/* Content */}
         <div className="relative max-w-5xl mx-auto px-8 lg:px-16 py-28 w-full flex flex-col md:flex-row items-center gap-12 md:gap-8">
-          {/* Left copy */}
-          <div className="flex-1 max-w-xl">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 mb-7"
-            >
-              <span
-                className="inline-flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase px-3 py-1.5 rounded-full"
-                style={{
-                  background: "rgba(34,197,94,0.08)",
-                  border: "1px solid rgba(34,197,94,0.20)",
-                  color: "#22c55e",
-                }}
-              >
-                <CheckCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                Ontario fleet-ready
-              </span>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1 }}
-              className="font-display leading-none mb-6"
-              style={{ fontSize: "clamp(3.5rem, 8vw, 6.5rem)" }}
-            >
-              Run Your Fleet.{" "}
-              <span style={{ color: "#ff7a1a" }}>Not Paperwork.</span>
-            </motion.h1>
-
-            {/* Subheadline */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.22 }}
-              className="text-lg leading-relaxed mb-9 max-w-md"
-              style={{ color: "#64748b" }}
-            >
-              Dispatch, POD, fuel logs, driver payroll, and HST invoices —
-              built for growing Ontario fleets.
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.34 }}
-              className="flex flex-col sm:flex-row gap-3"
-            >
-              <Link
-                href="/contact"
-                className="btn-primary inline-flex items-center justify-center px-7 py-3.5 text-base font-bold"
-              >
-                Book a Demo →
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* Right — widgets */}
+          <HeroCopy />
           <div className="w-full md:w-auto md:flex-shrink-0 relative z-10">
             <HeroWidgets />
           </div>
@@ -278,14 +169,12 @@ export default function Home() {
                   style={{ color: "#ff7a1a" }}
                 >
                   {stat.numeric ? (
-                    <StatCounter target={stat.value!} suffix={stat.suffix!} />
+                    <StatCounter target={stat.value} suffix={stat.suffix} />
                   ) : (
                     stat.display
                   )}
                 </p>
-                <p
-                  className="font-mono text-xs uppercase tracking-[0.18em] text-text-muted mt-2"
-                >
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-text-muted mt-2">
                   {stat.label}
                 </p>
               </div>
@@ -309,14 +198,20 @@ export default function Home() {
                 key={i}
                 className="flex items-center gap-3 whitespace-nowrap px-10"
               >
-                <Icon className="w-4 h-4 flex-shrink-0" style={{ color: "#ff7a1a" }} />
+                <Icon
+                  className="w-4 h-4 flex-shrink-0"
+                  style={{ color: "#ff7a1a" }}
+                />
                 <span
                   className="font-mono text-xs uppercase tracking-[0.18em] font-medium"
                   style={{ color: "#64748b" }}
                 >
                   {label}
                 </span>
-                <span style={{ color: "rgba(180,200,255,0.10)" }} className="ml-6">
+                <span
+                  style={{ color: "rgba(180,200,255,0.10)" }}
+                  className="ml-6"
+                >
                   ◆
                 </span>
               </div>
@@ -341,7 +236,8 @@ export default function Home() {
             Everything your fleet needs
           </h2>
           <p className="text-text-muted max-w-xl mx-auto">
-            One app. Every workflow. No more spreadsheets, WhatsApp chains, or paper logs.
+            One app. Every workflow. No more spreadsheets, WhatsApp chains, or
+            paper logs.
           </p>
         </AnimatedSection>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -375,34 +271,33 @@ export default function Home() {
             >
               Three steps. That&apos;s it.
             </h2>
-            <p className="text-text-muted">From job assigned to invoice sent.</p>
+            <p className="text-text-muted">
+              From job assigned to invoice sent.
+            </p>
           </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
             {steps.map((s, i) => (
               <React.Fragment key={s.num}>
                 <AnimatedSection delay={i * 0.1} className="md:col-span-1">
                   <GlassCard className="p-8 h-full">
-                    <motion.div
-                      animate={prefersReduced.current ? undefined : { scale: [1, 1.04, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                      className="w-12 h-12 rounded-full flex items-center justify-center mb-5 font-display text-xl"
-                      style={{
-                        background: "rgba(255,122,26,0.12)",
-                        border: "1px solid rgba(255,122,26,0.25)",
-                        color: "#ff7a1a",
-                      }}
-                    >
-                      {s.num}
-                    </motion.div>
+                    <StepNumber num={s.num} />
                     <h3 className="text-lg font-bold text-text-primary mb-3">
                       {s.title}
                     </h3>
-                    <p className="text-sm text-text-muted leading-relaxed">{s.desc}</p>
+                    <p className="text-sm text-text-muted leading-relaxed">
+                      {s.desc}
+                    </p>
                   </GlassCard>
                 </AnimatedSection>
                 {i < steps.length - 1 && (
-                  <div className="hidden md:flex items-center justify-center self-center" aria-hidden="true">
-                    <ChevronRight className="w-6 h-6" style={{ color: "rgba(255,122,26,0.30)" }} />
+                  <div
+                    className="hidden md:flex items-center justify-center self-center"
+                    aria-hidden="true"
+                  >
+                    <ChevronRight
+                      className="w-6 h-6"
+                      style={{ color: "rgba(255,122,26,0.30)" }}
+                    />
                   </div>
                 )}
               </React.Fragment>
@@ -440,11 +335,16 @@ export default function Home() {
                   style={{ color: "#ff7a1a" }}
                   aria-hidden="true"
                 >
-                  <path d="M0 36V22.5C0 10.1 7.7 2.9 23 0l2.8 4.5C17.2 6.5 12.8 11 12 18h9V36H0zm27 0V22.5C27 10.1 34.7 2.9 50 0l2.8 4.5C44.2 6.5 39.8 11 39 18h9V36H27z"/>
+                  <path d="M0 36V22.5C0 10.1 7.7 2.9 23 0l2.8 4.5C17.2 6.5 12.8 11 12 18h9V36H0zm27 0V22.5C27 10.1 34.7 2.9 50 0l2.8 4.5C44.2 6.5 39.8 11 39 18h9V36H27z" />
                 </svg>
                 <div className="flex gap-1 mb-4" aria-label="5 out of 5 stars">
                   {[...Array(5)].map((_, starIdx) => (
-                    <Star key={starIdx} className="w-4 h-4 fill-current" style={{ color: "#ff7a1a" }} aria-hidden="true" />
+                    <Star
+                      key={starIdx}
+                      className="w-4 h-4 fill-current"
+                      style={{ color: "#ff7a1a" }}
+                      aria-hidden="true"
+                    />
                   ))}
                 </div>
                 <p className="text-base text-text-primary leading-relaxed mb-6 italic">
@@ -454,7 +354,8 @@ export default function Home() {
                   <div
                     className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
                     style={{
-                      background: "linear-gradient(135deg, rgba(255,122,26,0.30), rgba(255,122,26,0.10))",
+                      background:
+                        "linear-gradient(135deg, rgba(255,122,26,0.30), rgba(255,122,26,0.10))",
                       border: "1px solid rgba(255,122,26,0.25)",
                       color: "#ff7a1a",
                     }}
@@ -462,7 +363,9 @@ export default function Home() {
                     {t.name[0]}
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-text-primary">{t.name}</p>
+                    <p className="text-sm font-bold text-text-primary">
+                      {t.name}
+                    </p>
                     <p className="text-xs text-text-muted">{t.company}</p>
                   </div>
                 </div>
@@ -482,9 +385,7 @@ export default function Home() {
               border: "1px solid rgba(180,200,255,0.08)",
             }}
           >
-            {/* Star field inside CTA */}
             <div className="absolute inset-0 star-field opacity-40 pointer-events-none rounded-2xl" />
-            {/* Glow backdrop */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
@@ -506,7 +407,8 @@ export default function Home() {
                 Ready to simplify your fleet?
               </h2>
               <p className="text-text-muted mb-10 max-w-md mx-auto">
-                Book a demo and we&apos;ll show you how Detours fits your operation.
+                Book a demo and we&apos;ll show you how Detours fits your
+                operation.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link

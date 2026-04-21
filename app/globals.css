@@ -247,6 +247,36 @@ body::before {
   }
 }
 
+/* ─── Entrance animations (replaces framer-motion) ─── */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+/* IntersectionObserver-driven reveal (AnimatedSection). Uses transition rather
+ * than keyframes so we can stagger via inline transition-delay. */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 550ms ease-out, transform 550ms ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ─── All motion-sensitive animations fire only when motion is OK ─── */
 @media (prefers-reduced-motion: no-preference) {
   .marquee-track {
@@ -272,9 +302,23 @@ body::before {
   .animate-star-pulse {
     animation: star-pulse 6s ease-in-out infinite;
   }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+
+  .hero-rise {
+    opacity: 0;
+    animation: rise-in 0.55s ease-out forwards;
+  }
+
+  .hero-slide-in {
+    opacity: 0;
+    animation: slide-in-right 0.55s ease-out forwards;
+  }
 }
 
-/* ─── Reduce motion: stop all decorative animations ─── */
+/* ─── Reduce motion: stop all decorative animations + reveal with no transform ─── */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
   .grid-lines-fade,
@@ -282,9 +326,42 @@ body::before {
   .animate-spin-slow,
   .animate-spin-slow-reverse,
   .animate-star-pulse,
+  .animate-pulse-soft,
+  .hero-rise,
+  .hero-slide-in,
   .data-flow-packet--one,
   .data-flow-packet--two {
     animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ─── Mobile menu (replaces framer-motion AnimatePresence) ─── */
+.mobile-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  transition: grid-template-rows 180ms ease-out, opacity 150ms ease-out;
+}
+
+.mobile-menu > * {
+  min-height: 0;
+}
+
+.mobile-menu-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu {
+    transition: none;
   }
 }
 

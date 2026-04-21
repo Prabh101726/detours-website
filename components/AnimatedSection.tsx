@@ -1,12 +1,11 @@
 "use client";
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  /** No enter animation — use for above-the-fold heroes so large display type isn’t shifted/clipped under the fixed nav */
+  /** No enter animation — use for above-the-fold heroes */
   instant?: boolean;
 }
 
@@ -16,19 +15,44 @@ export default function AnimatedSection({
   delay = 0,
   instant = false,
 }: AnimatedSectionProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(instant);
+
+  useEffect(() => {
+    if (instant) return;
+    const el = ref.current;
+    if (!el) return;
+
+    // If IntersectionObserver is unavailable, just show.
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [instant]);
+
   if (instant) {
     return <div className={className}>{children}</div>;
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15, margin: "0px 0px -40px 0px" }}
-      transition={{ duration: 0.55, ease: "easeOut", delay }}
-      className={className}
+    <div
+      ref={ref}
+      className={`reveal ${visible ? "reveal-in" : ""} ${className}`}
+      style={{ transitionDelay: `${delay}s` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
