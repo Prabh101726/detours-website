@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Simple, transparent pricing for growing Ontario fleets.",
 };
 
+const stripeLink = process.env.NEXT_PUBLIC_STRIPE_PRO_LINK || "";
+
 const plans = [
   {
     name: "Free Trial",
@@ -25,6 +27,7 @@ const plans = [
     ],
     cta: "Start Free Trial",
     ctaHref: "/contact",
+    external: false,
     highlight: false,
   },
   {
@@ -39,8 +42,9 @@ const plans = [
       "Priority support",
       "Ontario compliance updates",
     ],
-    cta: "Book a Demo",
-    ctaHref: "/contact",
+    cta: stripeLink ? "Subscribe Now" : "Book a Demo",
+    ctaHref: stripeLink || "/contact",
+    external: !!stripeLink,
     highlight: true,
   },
 ];
@@ -74,12 +78,9 @@ export default function PricingPage() {
                 plan.highlight ? "border-[rgba(255,122,26,0.28)] shadow-[0_0_48px_rgba(255,122,26,0.08),0_0_96px_rgba(100,149,237,0.04)]" : ""
               }`}
             >
-              {/* Cosmic glow for highlighted plan */}
               {plan.highlight && (
                 <>
-                  <div
-                    className="absolute inset-0 pointer-events-none star-field opacity-30"
-                  />
+                  <div className="absolute inset-0 pointer-events-none star-field opacity-30" />
                   <div
                     className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
                     style={{
@@ -110,16 +111,27 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={plan.ctaHref}
-                  className={`text-center font-bold py-3 rounded-xl transition-all duration-200 cursor-pointer ${
-                    plan.highlight
-                      ? "btn-primary"
-                      : "bg-white/5 border border-white/10 text-text-primary hover:bg-white/10 hover:border-white/20"
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
+                {plan.external ? (
+                  <a
+                    href={plan.ctaHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center font-bold py-3 rounded-xl transition-all duration-200 btn-primary"
+                  >
+                    {plan.cta}
+                  </a>
+                ) : (
+                  <Link
+                    href={plan.ctaHref}
+                    className={`text-center font-bold py-3 rounded-xl transition-all duration-200 cursor-pointer ${
+                      plan.highlight
+                        ? "btn-primary"
+                        : "bg-white/5 border border-white/10 text-text-primary hover:bg-white/10 hover:border-white/20"
+                    }`}
+                  >
+                    {plan.cta}
+                  </Link>
+                )}
               </div>
             </GlassCard>
           </AnimatedSection>
