@@ -10,6 +10,13 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+const legalLinks = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
+  { href: "/account-agreement", label: "Account Agreement" },
+  { href: "/driver-disclosure", label: "Driver Disclosure" },
+];
+
 export default function Footer() {
   return (
     <footer
@@ -20,9 +27,9 @@ export default function Footer() {
         background: "rgba(1,1,8,0.7)",
       }}
     >
-      <div className="max-w-5xl mx-auto px-8 lg:px-16 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="max-w-5xl mx-auto px-8 lg:px-16 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Column 1 — Brand */}
-        <div>
+        <div className="md:col-span-1">
           <span
             className="font-display text-2xl tracking-wider"
             style={{ color: "#ff7a1a" }}
@@ -64,12 +71,28 @@ export default function Footer() {
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-muted mb-4">
             Legal
           </p>
-          <p className="text-sm text-text-muted leading-relaxed">
-            © {new Date().getFullYear()} Detours. All rights reserved.
+          <nav aria-label="Legal" className="flex flex-col gap-3">
+            {legalLinks.map((l) => (
+              <Link key={l.href} href={l.href} className="text-sm nav-link">
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Column 4 — Contact */}
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-muted mb-4">
+            Contact
           </p>
-          <Link href="/contact" className="text-sm nav-link mt-3 inline-block">
-            Contact us →
+          <Link href="/contact" className="text-sm nav-link">
+            Book a demo →
           </Link>
+          <p className="text-sm text-text-muted mt-6 leading-relaxed">
+            © {new Date().getFullYear()} Detours.
+            <br />
+            All rights reserved.
+          </p>
         </div>
       </div>
 
