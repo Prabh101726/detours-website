@@ -391,26 +391,23 @@ body::before {
 }
 
 /* ─── Legal pages (privacy / terms) ─── */
-.privacy-body,
-.privacy-body span,
-.privacy-body div,
-.privacy-body p,
-.privacy-body li,
-.terms-body,
-.terms-body span,
-.terms-body div,
-.terms-body p,
-.terms-body li {
+/* Termly exports light-theme inline colors on every element.
+   The * selector + !important is the only reliable override. */
+.privacy-body *,
+.terms-body * {
   color: #f1f5f9 !important;
+  background: transparent !important;
 }
 .privacy-body a,
-.terms-body a {
+.privacy-body a *,
+.terms-body a,
+.terms-body a * {
   color: #ff7a1a !important;
   word-break: break-word;
 }
 .privacy-body h1,
 .terms-body h1 {
-  display: none;
+  display: none !important;
 }
 .privacy-body h2,
 .terms-body h2 {
