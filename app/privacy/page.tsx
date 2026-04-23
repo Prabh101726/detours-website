@@ -199,38 +199,12 @@ export default function PrivacyPage() {
   return (
     <>
       <style>{`
-        .prose-legal, .prose-legal * {
-          color: #cbd5e1 !important;
-          background: transparent !important;
-          font-family: inherit !important;
-        }
-        .prose-legal h1, .prose-legal h2 {
-          color: #f1f5f9 !important;
-          font-size: 1.05rem !important;
-          margin-top: 2rem;
-          margin-bottom: 0.5rem;
-        }
-        .prose-legal h3 {
-          color: #e2e8f0 !important;
-          font-size: 0.95rem !important;
-          margin-top: 1.5rem;
-          margin-bottom: 0.25rem;
-        }
-        .prose-legal h1:first-child {
-          display: none;
-        }
-        .prose-legal a, .prose-legal a * {
-          color: #ff7a1a !important;
-          word-break: break-word !important;
-        }
-        .prose-legal ul {
-          list-style-type: square;
-          padding-left: 1.5rem;
-          margin: 0.5rem 0;
-        }
-        .prose-legal li {
-          margin-bottom: 0.25rem;
-        }
+        .privacy-body a { color: #ff7a1a; word-break: break-word; }
+        .privacy-body h2 { color: #ffffff; font-size: 1rem; font-weight: 700; margin: 2rem 0 0.5rem; }
+        .privacy-body h3 { color: #e2e8f0; font-size: 0.9rem; font-weight: 600; margin: 1.5rem 0 0.25rem; }
+        .privacy-body h1 { display: none; }
+        .privacy-body ul { list-style-type: square; padding-left: 1.5rem; margin: 0.5rem 0; }
+        .privacy-body li { margin-bottom: 0.25rem; }
       `}</style>
       <div className="relative isolate max-w-3xl mx-auto px-8 lg:px-12 pt-10 pb-28">
         <AnimatedSection instant className="mb-12 pt-1">
@@ -254,8 +228,17 @@ export default function PrivacyPage() {
         <AnimatedSection>
           <GlassCard hover={false} className="p-8">
             <div
-              className="prose-legal"
-              dangerouslySetInnerHTML={{ __html: privacyHtml }}
+              className="privacy-body"
+              style={{
+                color: "#ffffff",
+                lineHeight: 1.7,
+                fontSize: 14,
+              }}
+              dangerouslySetInnerHTML={{
+                __html: privacyHtml
+                  .replace(/color:\s*rgb\([^)]+\)\s*;?/gi, "")
+                  .replace(/color:\s*#[0-9a-fA-F]+\s*;?/gi, ""),
+              }}
             />
           </GlassCard>
         </AnimatedSection>
