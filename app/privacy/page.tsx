@@ -178,8 +178,7 @@ const privacyHtml = `
 <p>If you have questions or comments about this notice, you may email us at <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a> or contact us by post at:</p>
 <p>
   Detours<br>
-  52 Bearberry<br>
-  Minesing, Ontario L9X2E1<br>
+  Barrie, Ontario<br>
   Canada
 </p>
 
