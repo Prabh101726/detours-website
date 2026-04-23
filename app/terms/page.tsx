@@ -8,45 +8,55 @@ export const metadata: Metadata = {
   description: "Terms governing your use of the Detours fleet management platform.",
 };
 
-export default function TermsPage() {
-  return (
-    <div className="relative isolate max-w-3xl mx-auto px-8 lg:px-12 pt-10 pb-28">
-      <AnimatedSection instant className="mb-12 pt-1">
-        <p
-          className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-          style={{ color: "#ff7a1a" }}
-        >
-          Legal
-        </p>
-        <h1
-          className="font-display leading-[1.08] mb-4"
-          style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)" }}
-        >
-          Terms of Service
-        </h1>
-        <p className="text-text-muted text-sm">
-          Last updated: April 22, 2026 · Governing law: Ontario, Canada
-        </p>
-      </AnimatedSection>
+// Paste Termly-generated Terms of Service HTML here
+const termsHtml = `
+<p style="color: rgb(89,89,89);">Terms of Service coming soon.</p>
+`;
 
-      <AnimatedSection>
-        <GlassCard hover={false} className="p-8">
-          <div className="prose-legal">
-            {/* REPLACE THIS BLOCK with your generated Terms of Service */}
-            {/* Required clauses — verify all are present after generating: */}
-            {/* ✓ Not liable for accuracy of driver-entered data (PODs, fuel) */}
-            {/* ✓ Subscription terms (fill in once Stripe is live) */}
-            {/* ✓ Ontario jurisdiction: "governed by the laws of Ontario, Canada" */}
-            {/* ✓ User must not use app for illegal purposes */}
-            {/* ✓ You may terminate accounts for abuse */}
-            {/* ✓ Data ownership: customer owns data, you process it on their behalf */}
-            <p className="text-text-muted leading-relaxed">
-              [Paste your generated Terms of Service here. Use GetTerms.io or PrivacyPolicies.com.
-              See <code>docs/pre-production-legal-privacy.md</code> Step 2 for the required clause checklist.]
-            </p>
-          </div>
-        </GlassCard>
-      </AnimatedSection>
-    </div>
+export default function TermsPage() {
+  const cleanedHtml = termsHtml
+    .replace(/color\s*:\s*rgb\([^)]+\)\s*;?/gi, "")
+    .replace(/color\s*:\s*#[0-9a-fA-F]{3,6}\s*;?/gi, "");
+
+  return (
+    <>
+      <style>{`
+        .terms-body a { color: #ff7a1a; word-break: break-word; }
+        .terms-body h2 { color: #ffffff; font-size: 1rem; font-weight: 700; margin: 2rem 0 0.5rem; }
+        .terms-body h3 { color: #e2e8f0; font-size: 0.9rem; font-weight: 600; margin: 1.5rem 0 0.25rem; }
+        .terms-body h1 { display: none; }
+        .terms-body ul { list-style-type: square; padding-left: 1.5rem; margin: 0.5rem 0; }
+        .terms-body li { margin-bottom: 0.25rem; }
+      `}</style>
+      <div className="relative isolate max-w-3xl mx-auto px-8 lg:px-12 pt-10 pb-28">
+        <AnimatedSection instant className="mb-12 pt-1">
+          <p
+            className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
+            style={{ color: "#ff7a1a" }}
+          >
+            Legal
+          </p>
+          <h1
+            className="font-display leading-[1.08] mb-4"
+            style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)" }}
+          >
+            Terms of Service
+          </h1>
+          <p className="text-text-muted text-sm">
+            Last updated: April 22, 2026 &middot; Governing law: Ontario, Canada
+          </p>
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <GlassCard hover={false} className="p-8">
+            <div
+              className="terms-body"
+              style={{ color: "#f1f5f9" }}
+              dangerouslySetInnerHTML={{ __html: cleanedHtml }}
+            />
+          </GlassCard>
+        </AnimatedSection>
+      </div>
+    </>
   );
 }
