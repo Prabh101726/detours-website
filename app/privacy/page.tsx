@@ -1,7 +1,5 @@
 // app/privacy/page.tsx
 import type { Metadata } from "next";
-import AnimatedSection from "@/components/AnimatedSection";
-import GlassCard from "@/components/GlassCard";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Detours Fleet Management",
@@ -193,36 +191,30 @@ const privacyHtml = `
 
 export default function PrivacyPage() {
   return (
-    <>
-      <div className="relative isolate max-w-3xl mx-auto px-8 lg:px-12 pt-10 pb-28">
-        <AnimatedSection instant className="mb-12 pt-1">
-          <p
-            className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-            style={{ color: "#ff7a1a" }}
-          >
-            Legal
-          </p>
-          <h1
-            className="font-display leading-[1.08] mb-4"
-            style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)" }}
-          >
-            Privacy Policy
-          </h1>
-          <p className="text-text-muted text-sm">
-            Last updated: April 22, 2026 &middot; Governing law: Ontario, Canada (PIPEDA)
-          </p>
-        </AnimatedSection>
-
-        <AnimatedSection>
-          <GlassCard hover={false} className="p-8">
-            <div
-              className="privacy-body"
-              style={{ color: "#f1f5f9", lineHeight: 1.7, fontSize: 14 }}
-              dangerouslySetInnerHTML={{ __html: privacyHtml }}
-            />
-          </GlassCard>
-        </AnimatedSection>
+    <div className="max-w-3xl mx-auto px-8 lg:px-12 pt-10 pb-28">
+      <div className="mb-12 pt-1">
+        <p
+          className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
+          style={{ color: "#ff7a1a" }}
+        >
+          Legal
+        </p>
+        <h1
+          className="font-display leading-[1.08] mb-4"
+          style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)", color: "#eef2ff" }}
+        >
+          Privacy Policy
+        </h1>
+        <p style={{ color: "#64748b", fontSize: 14 }}>
+          Last updated: April 22, 2026 &middot; Governing law: Ontario, Canada (PIPEDA)
+        </p>
       </div>
-    </>
+
+      <div
+        className="glass p-8 privacy-body"
+        style={{ color: "#f1f5f9", lineHeight: 1.7, fontSize: 14 }}
+        dangerouslySetInnerHTML={{ __html: privacyHtml }}
+      />
+    </div>
   );
 }

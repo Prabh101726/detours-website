@@ -1,7 +1,5 @@
 // app/terms/page.tsx
 import type { Metadata } from "next";
-import AnimatedSection from "@/components/AnimatedSection";
-import GlassCard from "@/components/GlassCard";
 
 export const metadata: Metadata = {
   title: "Terms of Service — Detours Fleet Management",
@@ -172,36 +170,30 @@ const termsHtml = `
 
 export default function TermsPage() {
   return (
-    <>
-      <div className="relative isolate max-w-3xl mx-auto px-8 lg:px-12 pt-10 pb-28">
-        <AnimatedSection instant className="mb-12 pt-1">
-          <p
-            className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-            style={{ color: "#ff7a1a" }}
-          >
-            Legal
-          </p>
-          <h1
-            className="font-display leading-[1.08] mb-4"
-            style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)" }}
-          >
-            Terms of Service
-          </h1>
-          <p className="text-text-muted text-sm">
-            Last updated: April 22, 2026 &middot; Governing law: Ontario, Canada
-          </p>
-        </AnimatedSection>
-
-        <AnimatedSection>
-          <GlassCard hover={false} className="p-8">
-            <div
-              className="terms-body"
-              style={{ color: "#f1f5f9", lineHeight: 1.7, fontSize: 14 }}
-              dangerouslySetInnerHTML={{ __html: termsHtml }}
-            />
-          </GlassCard>
-        </AnimatedSection>
+    <div className="max-w-3xl mx-auto px-8 lg:px-12 pt-10 pb-28">
+      <div className="mb-12 pt-1">
+        <p
+          className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
+          style={{ color: "#ff7a1a" }}
+        >
+          Legal
+        </p>
+        <h1
+          className="font-display leading-[1.08] mb-4"
+          style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)", color: "#eef2ff" }}
+        >
+          Terms of Service
+        </h1>
+        <p style={{ color: "#64748b", fontSize: 14 }}>
+          Last updated: April 22, 2026 &middot; Governing law: Ontario, Canada
+        </p>
       </div>
-    </>
+
+      <div
+        className="glass p-8 terms-body"
+        style={{ color: "#f1f5f9", lineHeight: 1.7, fontSize: 14 }}
+        dangerouslySetInnerHTML={{ __html: termsHtml }}
+      />
+    </div>
   );
 }
