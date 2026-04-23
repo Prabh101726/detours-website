@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 const termsHtml = `
+<div style="color:#f1f5f9">
 <h2>AGREEMENT TO OUR LEGAL TERMS</h2>
 <p>We are <strong>Detours</strong> ("Detours," "we," "us," "our"). We operate the Detours fleet management platform, as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").</p>
 <p>You can contact us by email at <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a> or by mail to: 52 Bearberry, Minesing, Ontario L9X2E1, Canada.</p>
@@ -166,6 +167,7 @@ const termsHtml = `
   Canada<br>
   <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a>
 </p>
+</div>
 `;
 
 export default function TermsPage() {

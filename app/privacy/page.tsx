@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 const privacyHtml = `
+<div style="color:#f1f5f9">
 <p><strong>Last updated: April 22, 2026</strong></p>
 
 <p>This Privacy Policy describes how Detours (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects, uses, and protects your personal information when you use our services (&ldquo;Services&rdquo;), including when you:</p>
@@ -187,6 +188,7 @@ const privacyHtml = `
 <h2 id="request">14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
 <p>Based on applicable laws, you may have the right to request access to the personal information we collect from you, request corrections, or request deletion. You may also have the right to withdraw your consent to our processing of your personal information.</p>
 <p>To submit a data access, correction, or deletion request, please email us at <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a> with the subject line &ldquo;Data Request&rdquo; and a description of your request. We will respond within 30 days in accordance with applicable data protection laws.</p>
+</div>
 `;
 
 export default function PrivacyPage() {
