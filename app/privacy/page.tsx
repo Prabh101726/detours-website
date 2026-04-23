@@ -199,53 +199,37 @@ export default function PrivacyPage() {
   return (
     <>
       <style>{`
-        [data-custom-class='body'], [data-custom-class='body'] * {
+        .prose-legal, .prose-legal * {
+          color: #cbd5e1 !important;
           background: transparent !important;
           font-family: inherit !important;
         }
-        [data-custom-class='title'] {
-          display: none;
-        }
-        [data-custom-class='subtitle'], [data-custom-class='subtitle'] * {
-          display: none;
-        }
-        [data-custom-class='heading_1'] h2 {
-          font-size: 1.05rem !important;
+        .prose-legal h1, .prose-legal h2 {
           color: #f1f5f9 !important;
+          font-size: 1.05rem !important;
           margin-top: 2rem;
           margin-bottom: 0.5rem;
-          font-family: inherit !important;
         }
-        [data-custom-class='heading_2'] h3 {
-          font-size: 0.95rem !important;
+        .prose-legal h3 {
           color: #e2e8f0 !important;
+          font-size: 0.95rem !important;
           margin-top: 1.5rem;
           margin-bottom: 0.25rem;
-          font-family: inherit !important;
         }
-        [data-custom-class='body_text'], [data-custom-class='body_text'] * {
-          color: #cbd5e1 !important;
-          font-size: 14px !important;
-          font-family: inherit !important;
+        .prose-legal h1:first-child {
+          display: none;
         }
-        [data-custom-class='link'], [data-custom-class='link'] * {
+        .prose-legal a, .prose-legal a * {
           color: #ff7a1a !important;
-          font-size: 14px !important;
-          font-family: inherit !important;
           word-break: break-word !important;
         }
         .prose-legal ul {
-          color: #cbd5e1;
           list-style-type: square;
           padding-left: 1.5rem;
           margin: 0.5rem 0;
         }
         .prose-legal li {
-          color: #cbd5e1;
           margin-bottom: 0.25rem;
-        }
-        .prose-legal a {
-          color: #ff7a1a;
         }
       `}</style>
       <div className="relative isolate max-w-3xl mx-auto px-8 lg:px-12 pt-10 pb-28">
