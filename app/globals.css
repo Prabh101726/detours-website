@@ -389,3 +389,50 @@ body::before {
   outline: none;
   box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.40);
 }
+
+/* ─── Legal pages (privacy / terms) ─── */
+.privacy-body,
+.privacy-body span,
+.privacy-body div,
+.privacy-body p,
+.privacy-body li,
+.terms-body,
+.terms-body span,
+.terms-body div,
+.terms-body p,
+.terms-body li {
+  color: #f1f5f9 !important;
+}
+.privacy-body a,
+.terms-body a {
+  color: #ff7a1a !important;
+  word-break: break-word;
+}
+.privacy-body h1,
+.terms-body h1 {
+  display: none;
+}
+.privacy-body h2,
+.terms-body h2 {
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 2rem 0 0.5rem;
+}
+.privacy-body h3,
+.terms-body h3 {
+  color: #e2e8f0 !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.25rem;
+}
+.privacy-body ul,
+.terms-body ul {
+  list-style-type: square;
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+.privacy-body li,
+.terms-body li {
+  margin-bottom: 0.25rem;
+}

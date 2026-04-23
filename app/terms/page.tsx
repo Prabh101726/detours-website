@@ -20,14 +20,6 @@ export default function TermsPage() {
 
   return (
     <>
-      <style>{`
-        .terms-body a { color: #ff7a1a; word-break: break-word; }
-        .terms-body h2 { color: #ffffff; font-size: 1rem; font-weight: 700; margin: 2rem 0 0.5rem; }
-        .terms-body h3 { color: #e2e8f0; font-size: 0.9rem; font-weight: 600; margin: 1.5rem 0 0.25rem; }
-        .terms-body h1 { display: none; }
-        .terms-body ul { list-style-type: square; padding-left: 1.5rem; margin: 0.5rem 0; }
-        .terms-body li { margin-bottom: 0.25rem; }
-      `}</style>
       <div className="relative isolate max-w-3xl mx-auto px-8 lg:px-12 pt-10 pb-28">
         <AnimatedSection instant className="mb-12 pt-1">
           <p
