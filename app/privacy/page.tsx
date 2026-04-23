@@ -196,6 +196,10 @@ const privacyHtml = `
 `;
 
 export default function PrivacyPage() {
+  const cleanedHtml = privacyHtml
+    .replace(/color\s*:\s*rgb\([^)]+\)\s*;?/gi, "")
+    .replace(/color\s*:\s*#[0-9a-fA-F]{3,6}\s*;?/gi, "");
+
   return (
     <>
       <style>{`
@@ -229,16 +233,8 @@ export default function PrivacyPage() {
           <GlassCard hover={false} className="p-8">
             <div
               className="privacy-body"
-              style={{
-                color: "#ffffff",
-                lineHeight: 1.7,
-                fontSize: 14,
-              }}
-              dangerouslySetInnerHTML={{
-                __html: privacyHtml
-                  .replace(/color:\s*rgb\([^)]+\)\s*;?/gi, "")
-                  .replace(/color:\s*#[0-9a-fA-F]+\s*;?/gi, ""),
-              }}
+              style={{ color: "#f1f5f9" }}
+              dangerouslySetInnerHTML={{ __html: cleanedHtml }}
             />
           </GlassCard>
         </AnimatedSection>
