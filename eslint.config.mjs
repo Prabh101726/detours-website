@@ -6,6 +6,7 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   // Override default ignores of eslint-config-next.
+  // NOTE: `globalIgnores(...)` replaces defaults, so keep core entries here.
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".git/**",
