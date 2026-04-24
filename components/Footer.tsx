@@ -5,6 +5,7 @@ import { MapPin } from "lucide-react";
 const navLinks = [
   { href: "/features", label: "Features" },
   { href: "/screens", label: "Screens" },
+  { href: "/ai-automation", label: "AI Automation" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
