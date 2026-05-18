@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Detours Fleet Management",
-  description: "How Detours collects, uses, and protects your data. PIPEDA compliant.",
+  description: "How Detours collects, uses, and protects your data. PIPEDA compliant. Ontario, Canada.",
 };
 
 const privacyHtml = `
 <div style="color:#f1f5f9">
-<p><strong>Last updated: April 22, 2026</strong></p>
+<p><strong>Last updated: May 18, 2026</strong></p>
 
 <p>This Privacy Policy describes how Detours (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects, uses, and protects your personal information when you use our services (&ldquo;Services&rdquo;), including when you:</p>
 <ul>
@@ -17,7 +17,7 @@ const privacyHtml = `
   <li>Engage with us in other related ways, including marketing or events</li>
 </ul>
 
-<p><strong>Questions or concerns?</strong> If you do not agree with our policies and practices, please do not use our Services. For questions, contact us at <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a>.</p>
+<p><strong>Questions or concerns?</strong> If you do not agree with our policies and practices, please do not use our Services. For questions, contact us at <a href="mailto:contact@detours-app.com">contact@detours-app.com</a>.</p>
 
 <h2>TABLE OF CONTENTS</h2>
 <ol>
@@ -73,7 +73,7 @@ const privacyHtml = `
 
 <h3>Information automatically collected</h3>
 <p><em>Some information is collected automatically when you visit our Services.</em></p>
-<p>We automatically collect certain information when you visit, use, or navigate the Services, including IP address, browser and device characteristics, operating system, language preferences, referring URLs, and other technical information. We also collect:</p>
+<p>We automatically collect certain information when you visit, use, or navigate the Services, including IP address, browser and device characteristics, operating system, language preferences, referring URLs, device model, operating system version, app crash reports, app usage data, and other technical information. We also collect:</p>
 <ul>
   <li><em>Log and Usage Data.</em> Service-related, diagnostic, usage, and performance information our servers automatically collect, including IP address, device information, browser type, date/time stamps, pages viewed, and features used.</li>
   <li><em>Device Data.</em> Information about your computer, phone, tablet, or other device used to access the Services.</li>
@@ -117,7 +117,7 @@ const privacyHtml = `
 <ul>
   <li><strong>Business Transfers.</strong> We may share your information in connection with a merger, sale, financing, or acquisition of all or part of our business.</li>
   <li><strong>Google Maps Platform APIs.</strong> We may share your information with Google Maps Platform APIs. We cache your location on your device for up to one (1) month. You may revoke consent by contacting us.</li>
-  <li><strong>Business Partners.</strong> We may share your information with business partners to offer certain products, services, or promotions.</li>
+  <li><strong>Supabase Inc.</strong> We use Supabase as our database and authentication infrastructure provider. All user data — including phone numbers, GPS locations, delivery photos, and company data — is stored and processed by Supabase. See their privacy policy at <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a>.</li>
 </ul>
 
 <h2 id="cookies">5. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h2>
@@ -136,7 +136,7 @@ const privacyHtml = `
 
 <h2 id="infominors">8. DO WE COLLECT INFORMATION FROM MINORS?</h2>
 <p><em>We do not knowingly collect data from or market to children under 18 years of age.</em></p>
-<p>We do not knowingly collect, solicit data from, or market to children under 18 years of age. By using the Services, you represent that you are at least 18, or that you are the parent or guardian of a minor and consent to such minor&rsquo;s use of the Services. If we learn that personal information from users under 18 has been collected, we will deactivate the account and promptly delete such data. If you become aware of any such data, please contact us at <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a>.</p>
+<p>This application is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. We do not knowingly collect, solicit data from, or market to children under 18 years of age. By using the Services, you represent that you are at least 18, or that you are the parent or guardian of a minor and consent to such minor&rsquo;s use of the Services. If we learn that personal information from users under 18 has been collected, we will deactivate the account and promptly delete such data. If you become aware of any such data, please contact us at <a href="mailto:contact@detours-app.com">contact@detours-app.com</a>.</p>
 
 <h2 id="privacyrights">9. WHAT ARE YOUR PRIVACY RIGHTS?</h2>
 <p><em>In Canada, you have rights that allow you greater access to and control over your personal information.</em></p>
@@ -162,7 +162,7 @@ const privacyHtml = `
 <p>Upon your request to terminate your account, we will deactivate or delete your account from our active databases. We may retain some information to prevent fraud, troubleshoot problems, or comply with legal requirements.</p>
 
 <p><strong>Cookies and similar technologies:</strong> Most web browsers accept cookies by default. You can usually set your browser to remove or reject cookies, though this may affect certain features of our Services.</p>
-<p>For questions about your privacy rights, email us at <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a>.</p>
+<p>For questions about your privacy rights, email us at <a href="mailto:contact@detours-app.com">contact@detours-app.com</a>.</p>
 
 <h2 id="DNT">10. CONTROLS FOR DO-NOT-TRACK FEATURES</h2>
 <p>Most web browsers and some mobile operating systems include a Do-Not-Track (&ldquo;DNT&rdquo;) feature. At this stage, no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals. If a standard is adopted that we must follow, we will inform you in a revised version of this Privacy Policy.</p>
@@ -175,7 +175,7 @@ const privacyHtml = `
 <p>We may update this Privacy Policy from time to time. The updated version will be indicated by an updated date at the top of this page. If we make material changes, we may notify you by posting a prominent notice or sending you a notification directly. We encourage you to review this Privacy Policy frequently.</p>
 
 <h2 id="contact">13. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
-<p>If you have questions or comments about this notice, you may email us at <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a> or contact us by post at:</p>
+<p>If you have questions or comments about this notice, you may email us at <a href="mailto:contact@detours-app.com">contact@detours-app.com</a> or contact us by post at:</p>
 <p>
   Detours<br>
   Barrie, Ontario<br>
@@ -184,7 +184,7 @@ const privacyHtml = `
 
 <h2 id="request">14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
 <p>Based on applicable laws, you may have the right to request access to the personal information we collect from you, request corrections, or request deletion. You may also have the right to withdraw your consent to our processing of your personal information.</p>
-<p>To submit a data access, correction, or deletion request, please email us at <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a> with the subject line &ldquo;Data Request&rdquo; and a description of your request. We will respond within 30 days in accordance with applicable data protection laws.</p>
+<p>To submit a data access, correction, or deletion request, please email us at <a href="mailto:contact@detours-app.com">contact@detours-app.com</a> with the subject line &ldquo;Data Request&rdquo; and a description of your request. We will respond within 30 days in accordance with applicable data protection laws.</p>
 </div>
 `;
 
@@ -205,7 +205,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
         <p style={{ color: "#64748b", fontSize: 14 }}>
-          Last updated: April 22, 2026 &middot; Governing law: Ontario, Canada (PIPEDA)
+          Last updated: May 18, 2026 &middot; Governing law: Ontario, Canada (PIPEDA)
         </p>
       </div>
 
