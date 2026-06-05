@@ -27,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
   variable: "--font-jetbrains",
   weight: ["400", "500"],
-  preload: false,
+  preload: true,
 });
 
 const SITE_URL =

@@ -123,7 +123,7 @@ export default function Home() {
       {/* ── Hero ── */}
       <section
         className="relative flex items-center overflow-hidden"
-        style={{ minHeight: "calc(100dvh - env(safe-area-inset-top, 0px) - 4rem)" }}
+        style={{ minHeight: "calc(100svh - env(safe-area-inset-top, 0px) - 4rem)" }}
       >
         <div className="animate-star-pulse absolute inset-0 star-field opacity-60 pointer-events-none" />
         <div className="grid-lines-fade absolute inset-0 dot-grid opacity-20 pointer-events-none" />
