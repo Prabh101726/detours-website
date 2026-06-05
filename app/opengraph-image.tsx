@@ -86,7 +86,7 @@ export default async function OpengraphImage() {
           }}
         >
           <span>Dispatch • POD • Payroll • HST</span>
-          <span>detoursfleet.com</span>
+          <span>detours-app.com</span>
         </div>
       </div>
     ),

@@ -31,7 +31,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://detoursfleet.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://detours-app.com";
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
