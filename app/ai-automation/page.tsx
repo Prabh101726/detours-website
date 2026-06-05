@@ -230,10 +230,10 @@ export default function AiAutomationPage() {
               gates at the end.
             </p>
           </AnimatedSection>
-          <div className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] gap-8 md:gap-3 md:items-stretch">
             {workflowSteps.map((step, i) => (
               <Fragment key={step.title}>
-                <AnimatedSection delay={i * 0.09} className="md:col-span-1">
+                <AnimatedSection delay={i * 0.09}>
                   <GlassCard className="p-6 md:p-7 h-full" hover={false}>
                     <p
                       className="font-mono text-[0.65rem] uppercase tracking-[0.2em] mb-3"
@@ -251,7 +251,7 @@ export default function AiAutomationPage() {
                 </AnimatedSection>
                 {i < workflowSteps.length - 1 && (
                   <div
-                    className="hidden md:flex items-center justify-center self-center md:col-span-1"
+                    className="hidden md:flex items-center justify-center self-center"
                     aria-hidden="true"
                   >
                     <ChevronRight

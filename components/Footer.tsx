@@ -106,7 +106,7 @@ export default function Footer() {
         style={{ borderColor: "rgba(20,18,14,0.05)" }}
       >
         <p className="font-mono text-xs text-text-muted">
-          Built for Ontario trucking operators — 5 to 50 trucks.
+          Built for Ontario trucking operators — 5 to 500 trucks.
         </p>
       </div>
     </footer>

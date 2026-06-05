@@ -141,8 +141,13 @@ export default function Home() {
           }}
         />
         <div
-          className="absolute hidden md:block pointer-events-none"
-          style={{ right: "2%", top: "50%", transform: "translateY(-50%)" }}
+          className="absolute hidden lg:block pointer-events-none z-0 opacity-70"
+          style={{
+            right: "-9%",
+            top: "50%",
+            transform: "translateY(-50%) scale(0.68)",
+            transformOrigin: "right center",
+          }}
         >
           <Tesseract />
         </div>
