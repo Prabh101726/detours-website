@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "AI-powered POD processing, invoice building, and maintenance reporting — live in Detours. Less manual work, clearer records, owner approval at every step.",
 };
 
-const iconSm = { className: "w-5 h-5 flex-shrink-0", style: { color: "#ff7a1a" } };
+const iconSm = { className: "w-5 h-5 flex-shrink-0", style: { color: "#ff6a00" } };
 
 const pillars = [
   {
@@ -103,7 +103,7 @@ export default function AiAutomationPage() {
       {/* Hero */}
       <section
         className="relative overflow-hidden border-b"
-        style={{ borderColor: "rgba(180,200,255,0.05)" }}
+        style={{ borderColor: "rgba(20,18,14,0.05)" }}
       >
         <div className="animate-star-pulse absolute inset-0 star-field opacity-50 pointer-events-none" />
         <div className="grid-lines-fade absolute inset-0 dot-grid opacity-15 pointer-events-none" />
@@ -116,14 +116,14 @@ export default function AiAutomationPage() {
             width: "min(900px, 100vw)",
             height: 480,
             background:
-              "radial-gradient(ellipse at 50% 0%, rgba(255,122,26,0.12) 0%, rgba(100,149,237,0.06) 45%, transparent 70%)",
+              "radial-gradient(ellipse at 50% 0%, rgba(255,106,0,0.12) 0%, rgba(255,168,72,0.06) 45%, transparent 70%)",
           }}
         />
         <div className="relative max-w-5xl mx-auto px-8 lg:px-16 pt-14 pb-20 md:pt-20 md:pb-24">
           <AnimatedSection instant className="max-w-3xl">
             <p
               className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-              style={{ color: "#ff7a1a" }}
+              style={{ color: "#ff6a00" }}
             >
               AI Automation
             </p>
@@ -162,7 +162,7 @@ export default function AiAutomationPage() {
         <AnimatedSection className="text-center mb-14 md:mb-16">
           <p
             className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
-            style={{ color: "#ff7a1a" }}
+            style={{ color: "#ff6a00" }}
           >
             What AI does today
           </p>
@@ -185,7 +185,7 @@ export default function AiAutomationPage() {
                   className="absolute inset-0 pointer-events-none opacity-[0.35]"
                   style={{
                     background:
-                      "linear-gradient(165deg, rgba(255,122,26,0.06) 0%, transparent 55%)",
+                      "linear-gradient(165deg, rgba(255,106,0,0.06) 0%, transparent 55%)",
                   }}
                 />
                 <div className="relative flex items-start gap-3 mb-4">
@@ -207,15 +207,15 @@ export default function AiAutomationPage() {
       <section
         className="py-20 md:py-28 border-y"
         style={{
-          borderColor: "rgba(180,200,255,0.05)",
-          background: "rgba(180,200,255,0.012)",
+          borderColor: "rgba(20,18,14,0.05)",
+          background: "rgba(20,18,14,0.012)",
         }}
       >
         <div className="max-w-5xl mx-auto px-8 lg:px-16">
           <AnimatedSection className="text-center mb-14 md:mb-16">
             <p
               className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
-              style={{ color: "#ff7a1a" }}
+              style={{ color: "#ff6a00" }}
             >
               End-to-end flow
             </p>
@@ -237,7 +237,7 @@ export default function AiAutomationPage() {
                   <GlassCard className="p-6 md:p-7 h-full" hover={false}>
                     <p
                       className="font-mono text-[0.65rem] uppercase tracking-[0.2em] mb-3"
-                      style={{ color: "rgba(255,122,26,0.85)" }}
+                      style={{ color: "rgba(255,106,0,0.85)" }}
                     >
                       Step {String(i + 1).padStart(2, "0")}
                     </p>
@@ -256,7 +256,7 @@ export default function AiAutomationPage() {
                   >
                     <ChevronRight
                       className="w-6 h-6"
-                      style={{ color: "rgba(255,122,26,0.35)" }}
+                      style={{ color: "rgba(255,106,0,0.35)" }}
                     />
                   </div>
                 )}
@@ -271,7 +271,7 @@ export default function AiAutomationPage() {
         <AnimatedSection className="text-center mb-14 md:mb-16">
           <p
             className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
-            style={{ color: "#ff7a1a" }}
+            style={{ color: "#ff6a00" }}
           >
             Business outcomes
           </p>
@@ -307,15 +307,15 @@ export default function AiAutomationPage() {
       <section
         className="py-20 md:py-28 border-t"
         style={{
-          borderColor: "rgba(180,200,255,0.05)",
-          background: "rgba(180,200,255,0.008)",
+          borderColor: "rgba(20,18,14,0.05)",
+          background: "rgba(20,18,14,0.008)",
         }}
       >
         <div className="max-w-5xl mx-auto px-8 lg:px-16">
           <AnimatedSection className="text-center mb-14 md:mb-16">
             <p
               className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
-              style={{ color: "#ff7a1a" }}
+              style={{ color: "#ff6a00" }}
             >
               Trust & controls
             </p>
@@ -357,7 +357,7 @@ export default function AiAutomationPage() {
             className="relative rounded-2xl p-12 md:p-14 text-center overflow-hidden glass"
             style={{
               boxShadow:
-                "0 0 0 1px rgba(180,200,255,0.06) inset, 0 24px 80px rgba(0,0,0,0.25)",
+                "0 0 0 1px rgba(20,18,14,0.06) inset, 0 24px 80px rgba(0,0,0,0.25)",
             }}
           >
             <div className="absolute inset-0 star-field opacity-35 pointer-events-none rounded-2xl" />
@@ -365,13 +365,13 @@ export default function AiAutomationPage() {
               className="absolute inset-0 pointer-events-none rounded-2xl"
               style={{
                 background:
-                  "radial-gradient(ellipse 70% 55% at 50% 100%, rgba(255,122,26,0.11) 0%, transparent 65%)",
+                  "radial-gradient(ellipse 70% 55% at 50% 100%, rgba(255,106,0,0.11) 0%, transparent 65%)",
               }}
             />
             <div className="relative">
               <p
                 className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-                style={{ color: "#ff7a1a" }}
+                style={{ color: "#ff6a00" }}
               >
                 See it live
               </p>

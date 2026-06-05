@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Dispatch, POD, fuel tracking, driver payroll, HST invoicing, and MTO pre-trip inspections — all in one app.",
 };
 
-const iconProps = { className: "w-5 h-5", style: { color: "#ff7a1a" } };
+const iconProps = { className: "w-5 h-5", style: { color: "#ff6a00" } };
 
 const features = [
   {
@@ -69,7 +69,7 @@ export default function FeaturesPage() {
       <AnimatedSection instant className="text-center mb-16 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-          style={{ color: "#ff7a1a" }}
+          style={{ color: "#ff6a00" }}
         >
           Full feature set
         </p>

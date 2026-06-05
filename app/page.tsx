@@ -30,42 +30,42 @@ const featureStrip = [
 
 const features = [
   {
-    icon: <ClipboardList className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
+    icon: <ClipboardList className="w-5 h-5" style={{ color: "#ff6a00" }} />,
     title: "Dispatch Jobs",
     description:
       "Assign jobs to drivers in seconds. Track status from dispatch to delivery in real time.",
     benefit: "Zero missed jobs",
   },
   {
-    icon: <Package className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
+    icon: <Package className="w-5 h-5" style={{ color: "#ff6a00" }} />,
     title: "Proof of Delivery",
     description:
       "Drivers capture photos and signatures on their phone. PDF ready instantly.",
     benefit: "Dispute-proof records",
   },
   {
-    icon: <Fuel className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
+    icon: <Fuel className="w-5 h-5" style={{ color: "#ff6a00" }} />,
     title: "Fuel Tracking",
     description:
       "Log fuel receipts on the road. Track cost per kilometre across your whole fleet.",
     benefit: "Cut fuel waste",
   },
   {
-    icon: <DollarSign className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
+    icon: <DollarSign className="w-5 h-5" style={{ color: "#ff6a00" }} />,
     title: "Driver Payroll",
     description:
       "Hourly, per-load, or per-tonne — auto-calculated every pay period.",
     benefit: "Pay faster, argue less",
   },
   {
-    icon: <FileText className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
+    icon: <FileText className="w-5 h-5" style={{ color: "#ff6a00" }} />,
     title: "HST Invoicing",
     description:
       "Generate professional CAD invoices with HST included. One click, PDF ready.",
     benefit: "Get paid faster",
   },
   {
-    icon: <ClipboardCheck className="w-5 h-5" style={{ color: "#ff7a1a" }} />,
+    icon: <ClipboardCheck className="w-5 h-5" style={{ color: "#ff6a00" }} />,
     title: "Pre-Trip Inspections",
     description:
       "MTO-compliant pre-trip checklist logged per vehicle, per driver, every day.",
@@ -136,7 +136,7 @@ export default function Home() {
             width: 760,
             height: 760,
             background:
-              "radial-gradient(circle, rgba(255,122,26,0.08) 0%, rgba(100,149,237,0.04) 40%, transparent 68%)",
+              "radial-gradient(circle, rgba(255,106,0,0.08) 0%, rgba(255,168,72,0.04) 40%, transparent 68%)",
             borderRadius: "50%",
           }}
         />
@@ -158,7 +158,7 @@ export default function Home() {
       {/* ── Stats strip ── */}
       <div
         className="py-16 border-b"
-        style={{ borderColor: "rgba(180,200,255,0.05)" }}
+        style={{ borderColor: "rgba(20,18,14,0.05)" }}
       >
         <div className="max-w-5xl mx-auto px-8 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
@@ -166,7 +166,7 @@ export default function Home() {
               <div className="glass p-6 text-center rounded-2xl">
                 <p
                   className="font-display text-5xl"
-                  style={{ color: "#ff7a1a" }}
+                  style={{ color: "#ff6a00" }}
                 >
                   {stat.numeric ? (
                     <StatCounter target={stat.value} suffix={stat.suffix} />
@@ -187,8 +187,8 @@ export default function Home() {
       <div
         className="border-y overflow-hidden"
         style={{
-          borderColor: "rgba(180,200,255,0.05)",
-          background: "rgba(180,200,255,0.015)",
+          borderColor: "rgba(20,18,14,0.05)",
+          background: "rgba(20,18,14,0.015)",
         }}
       >
         <div className="marquee-track py-5">
@@ -200,7 +200,7 @@ export default function Home() {
               >
                 <Icon
                   className="w-4 h-4 flex-shrink-0"
-                  style={{ color: "#ff7a1a" }}
+                  style={{ color: "#ff6a00" }}
                 />
                 <span
                   className="font-mono text-xs uppercase tracking-[0.18em] font-medium"
@@ -209,7 +209,7 @@ export default function Home() {
                   {label}
                 </span>
                 <span
-                  style={{ color: "rgba(180,200,255,0.10)" }}
+                  style={{ color: "rgba(20,18,14,0.10)" }}
                   className="ml-6"
                 >
                   ◆
@@ -225,7 +225,7 @@ export default function Home() {
         <AnimatedSection className="text-center mb-16">
           <p
             className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
-            style={{ color: "#ff7a1a" }}
+            style={{ color: "#ff6a00" }}
           >
             Features
           </p>
@@ -253,15 +253,15 @@ export default function Home() {
       <section
         className="py-28 border-y"
         style={{
-          borderColor: "rgba(180,200,255,0.05)",
-          background: "rgba(180,200,255,0.012)",
+          borderColor: "rgba(20,18,14,0.05)",
+          background: "rgba(20,18,14,0.012)",
         }}
       >
         <div className="max-w-5xl mx-auto px-8 lg:px-16">
           <AnimatedSection className="text-center mb-16">
             <p
               className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
-              style={{ color: "#ff7a1a" }}
+              style={{ color: "#ff6a00" }}
             >
               How It Works
             </p>
@@ -296,7 +296,7 @@ export default function Home() {
                   >
                     <ChevronRight
                       className="w-6 h-6"
-                      style={{ color: "rgba(255,122,26,0.30)" }}
+                      style={{ color: "rgba(255,106,0,0.30)" }}
                     />
                   </div>
                 )}
@@ -311,7 +311,7 @@ export default function Home() {
         <AnimatedSection className="text-center mb-16">
           <p
             className="font-mono text-xs uppercase tracking-[0.2em] mb-4"
-            style={{ color: "#ff7a1a" }}
+            style={{ color: "#ff6a00" }}
           >
             Testimonials
           </p>
@@ -332,7 +332,7 @@ export default function Home() {
                   height="36"
                   viewBox="0 0 53 36"
                   fill="currentColor"
-                  style={{ color: "#ff7a1a" }}
+                  style={{ color: "#ff6a00" }}
                   aria-hidden="true"
                 >
                   <path d="M0 36V22.5C0 10.1 7.7 2.9 23 0l2.8 4.5C17.2 6.5 12.8 11 12 18h9V36H0zm27 0V22.5C27 10.1 34.7 2.9 50 0l2.8 4.5C44.2 6.5 39.8 11 39 18h9V36H27z" />
@@ -342,7 +342,7 @@ export default function Home() {
                     <Star
                       key={starIdx}
                       className="w-4 h-4 fill-current"
-                      style={{ color: "#ff7a1a" }}
+                      style={{ color: "#ff6a00" }}
                       aria-hidden="true"
                     />
                   ))}
@@ -355,9 +355,9 @@ export default function Home() {
                     className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(255,122,26,0.30), rgba(255,122,26,0.10))",
-                      border: "1px solid rgba(255,122,26,0.25)",
-                      color: "#ff7a1a",
+                        "linear-gradient(135deg, rgba(255,106,0,0.30), rgba(255,106,0,0.10))",
+                      border: "1px solid rgba(255,106,0,0.25)",
+                      color: "#ff6a00",
                     }}
                   >
                     {t.name[0]}
@@ -381,8 +381,8 @@ export default function Home() {
           <div
             className="relative rounded-2xl p-14 text-center overflow-hidden"
             style={{
-              background: "rgba(180,200,255,0.025)",
-              border: "1px solid rgba(180,200,255,0.08)",
+              background: "rgba(20,18,14,0.025)",
+              border: "1px solid rgba(20,18,14,0.08)",
             }}
           >
             <div className="absolute inset-0 star-field opacity-40 pointer-events-none rounded-2xl" />
@@ -390,13 +390,13 @@ export default function Home() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(ellipse 70% 60% at 50% 100%, rgba(255,122,26,0.10) 0%, transparent 70%)",
+                  "radial-gradient(ellipse 70% 60% at 50% 100%, rgba(255,106,0,0.10) 0%, transparent 70%)",
               }}
             />
             <div className="relative">
               <p
                 className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-                style={{ color: "#ff7a1a" }}
+                style={{ color: "#ff6a00" }}
               >
                 Get Started
               </p>

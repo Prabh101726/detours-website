@@ -8,7 +8,7 @@ const widgets = [
     display: (v: number) => `$${Math.round(v).toLocaleString("en-CA")}`,
     unit: "CAD",
     sub: "↑ 18% vs last month",
-    subColor: "#22c55e",
+    subColor: "#15803d",
     accent: "rgba(34,197,94,0.08)",
     accentBorder: "rgba(34,197,94,0.18)",
   },
@@ -18,9 +18,9 @@ const widgets = [
     display: (v: number) => `${Math.round(v)} / 14`,
     unit: "",
     sub: "2 scheduled off",
-    subColor: "#ff7a1a",
-    accent: "rgba(255,122,26,0.07)",
-    accentBorder: "rgba(255,122,26,0.18)",
+    subColor: "#ff6a00",
+    accent: "rgba(255,106,0,0.07)",
+    accentBorder: "rgba(255,106,0,0.18)",
   },
   {
     label: "Open PODs",
@@ -28,9 +28,9 @@ const widgets = [
     display: (v: number) => `${Math.round(v)}`,
     unit: "",
     sub: "Ready to invoice",
-    subColor: "#94a3b8",
-    accent: "rgba(180,200,255,0.04)",
-    accentBorder: "rgba(180,200,255,0.10)",
+    subColor: "#74747e",
+    accent: "rgba(20,18,14,0.04)",
+    accentBorder: "rgba(20,18,14,0.10)",
   },
 ];
 
@@ -55,7 +55,7 @@ export default function HeroWidgets() {
           key={w.label}
           className="glass-cosmic rounded-2xl p-4 hero-slide-in"
           style={{
-            background: `linear-gradient(135deg, ${w.accent}, rgba(1,1,8,0.6))`,
+            background: `linear-gradient(135deg, ${w.accent}, rgba(255,255,255,0.5))`,
             borderColor: w.accentBorder,
             animationDelay: `${0.55 + i * 0.15}s`,
           }}

@@ -194,13 +194,13 @@ export default function PrivacyPage() {
       <div className="mb-12 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-          style={{ color: "#ff7a1a" }}
+          style={{ color: "#ff6a00" }}
         >
           Legal
         </p>
         <h1
           className="font-display leading-[1.08] mb-4"
-          style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)", color: "#eef2ff" }}
+          style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)", color: "#16161a" }}
         >
           Privacy Policy
         </h1>

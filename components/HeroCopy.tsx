@@ -10,7 +10,7 @@ export default function HeroCopy() {
           style={{
             background: "rgba(34,197,94,0.08)",
             border: "1px solid rgba(34,197,94,0.20)",
-            color: "#22c55e",
+            color: "#15803d",
           }}
         >
           <CheckCircle className="w-3.5 h-3.5" aria-hidden="true" />
@@ -23,7 +23,7 @@ export default function HeroCopy() {
         style={{ fontSize: "clamp(3.5rem, 8vw, 6.5rem)", animationDelay: "0.1s" }}
       >
         Run Your Fleet.{" "}
-        <span style={{ color: "#ff7a1a" }}>Not Paperwork.</span>
+        <span style={{ color: "#ff6a00" }}>Not Paperwork.</span>
       </h1>
 
       <p

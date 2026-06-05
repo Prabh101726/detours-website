@@ -17,8 +17,8 @@ export default async function OpengraphImage() {
           justifyContent: "space-between",
           padding: "80px",
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,122,26,0.20) 0%, transparent 70%), #010108",
-          color: "#eef2ff",
+            "radial-gradient(ellipse 70% 60% at 88% 8%, rgba(255,168,72,0.32) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 8% 96%, rgba(255,106,0,0.16) 0%, transparent 65%), #fcfbf9",
+          color: "#16161a",
           fontFamily: "system-ui, sans-serif",
         }}
       >
@@ -29,7 +29,7 @@ export default async function OpengraphImage() {
             gap: 12,
             fontSize: 28,
             letterSpacing: 6,
-            color: "#ff7a1a",
+            color: "#ff6a00",
             fontWeight: 700,
           }}
         >
@@ -45,7 +45,7 @@ export default async function OpengraphImage() {
               padding: "8px 18px",
               border: "1px solid rgba(34,197,94,0.4)",
               background: "rgba(34,197,94,0.10)",
-              color: "#22c55e",
+              color: "#15803d",
               borderRadius: 999,
               fontSize: 22,
               fontWeight: 500,
@@ -67,9 +67,9 @@ export default async function OpengraphImage() {
             }}
           >
             Run Your Fleet.&nbsp;
-            <span style={{ color: "#ff7a1a" }}>Not Paperwork.</span>
+            <span style={{ color: "#ff6a00" }}>Not Paperwork.</span>
           </div>
-          <div style={{ fontSize: 32, color: "#94a3b8", maxWidth: 960 }}>
+          <div style={{ fontSize: 32, color: "#6f6f78", maxWidth: 960 }}>
             Dispatch, POD, fuel logs, driver payroll, and HST invoices — built
             for growing Ontario fleets.
           </div>

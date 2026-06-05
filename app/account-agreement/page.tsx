@@ -23,7 +23,7 @@ export default function AccountAgreementPage() {
       <AnimatedSection instant className="mb-12 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-          style={{ color: "#ff7a1a" }}
+          style={{ color: "#ff6a00" }}
         >
           Legal
         </p>
@@ -101,7 +101,7 @@ export default function AccountAgreementPage() {
             </p>
           </Section>
 
-          <div className="mt-8 pt-6 border-t" style={{ borderColor: "rgba(180,200,255,0.06)" }}>
+          <div className="mt-8 pt-6 border-t" style={{ borderColor: "rgba(20,18,14,0.06)" }}>
             <p className="text-text-muted text-xs">
               Questions about this Agreement?{" "}
               <a href="/contact" className="text-brand-orange hover:underline">

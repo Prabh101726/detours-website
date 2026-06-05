@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Built in Ontario for Ontario trucking fleets.",
 };
 
-const iconProps = { className: "w-6 h-6", style: { color: "#ff7a1a" }, "aria-hidden": true as const };
+const iconProps = { className: "w-6 h-6", style: { color: "#ff6a00" }, "aria-hidden": true as const };
 
 const values = [
   {
@@ -36,7 +36,7 @@ export default function AboutPage() {
       <AnimatedSection instant className="mb-16 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-          style={{ color: "#ff7a1a" }}
+          style={{ color: "#ff6a00" }}
         >
           Our story
         </p>
@@ -45,7 +45,7 @@ export default function AboutPage() {
           style={{ fontSize: "clamp(2.8rem, 6vw, 4.5rem)" }}
         >
           Built in Ontario,{" "}
-          <span style={{ color: "#ff7a1a" }}>for Ontario.</span>
+          <span style={{ color: "#ff6a00" }}>for Ontario.</span>
         </h1>
         <p className="text-lg text-text-muted leading-relaxed max-w-2xl">
           Detours was built by someone who watched Ontario fleet owners manage their entire
@@ -74,8 +74,8 @@ export default function AboutPage() {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
                   style={{
-                    background: "rgba(255,122,26,0.10)",
-                    border: "1px solid rgba(255,122,26,0.18)",
+                    background: "rgba(255,106,0,0.10)",
+                    border: "1px solid rgba(255,106,0,0.18)",
                   }}
                 >
                   {v.icon}

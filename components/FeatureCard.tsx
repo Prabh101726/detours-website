@@ -15,8 +15,8 @@ export default function FeatureCard({ icon, title, description, benefit }: Featu
       <div
         className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 flex-shrink-0"
         style={{
-          background: "rgba(255,122,26,0.10)",
-          border: "1px solid rgba(255,122,26,0.18)",
+          background: "rgba(255,106,0,0.10)",
+          border: "1px solid rgba(255,106,0,0.18)",
         }}
       >
         {icon}
@@ -25,7 +25,7 @@ export default function FeatureCard({ icon, title, description, benefit }: Featu
       <p className="text-sm text-text-muted leading-relaxed flex-1">{description}</p>
       <span
         className="font-mono text-xs uppercase tracking-[0.12em] mt-4 pt-4 border-t"
-        style={{ color: "#ff7a1a", borderColor: "rgba(255,122,26,0.12)" }}
+        style={{ color: "#ff6a00", borderColor: "rgba(255,106,0,0.12)" }}
       >
         {benefit}
       </span>
