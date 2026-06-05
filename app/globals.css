@@ -54,10 +54,20 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+}
+
+/* Kill any horizontal overflow at the root so every page stays centered.
+   overflow-x: clip (vs hidden) does not break the sticky navbar and does
+   not create a scroll container. */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body {
+  position: relative;
+  width: 100%;
   background-color: #fcfbf9;
   /* soft orange-tinted gradient backdrop so the glass reads on white */
   background-image:
