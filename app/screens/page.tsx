@@ -61,7 +61,7 @@ export default function ScreensPage() {
                   Driver screen
                 </p>
               </div>
-              <div className="rounded-xl border border-[rgba(20,18,14,0.10)] bg-[rgba(8,8,16,0.85)] p-4">
+              <div className="rounded-xl border border-[rgba(20,18,14,0.12)] bg-[rgba(255,255,255,0.8)] p-4 shadow-[0_6px_20px_rgba(60,45,20,0.06)]">
                 <p className="text-sm text-text-primary font-semibold mb-3">Load #ON-2481</p>
                 <div className="space-y-2.5 text-sm">
                   <div className="rounded-lg bg-[rgba(255,106,0,0.12)] border border-[rgba(255,106,0,0.25)] px-3 py-2">
@@ -92,7 +92,7 @@ export default function ScreensPage() {
                   Owner dashboard
                 </p>
               </div>
-              <div className="rounded-xl border border-[rgba(20,18,14,0.10)] bg-[rgba(8,8,16,0.85)] p-4">
+              <div className="rounded-xl border border-[rgba(20,18,14,0.12)] bg-[rgba(255,255,255,0.8)] p-4 shadow-[0_6px_20px_rgba(60,45,20,0.06)]">
                 <p className="text-sm text-text-primary font-semibold mb-3">Live operations feed</p>
                 <ul className="space-y-2.5 text-sm text-text-muted">
                   <li className="rounded-lg bg-[rgba(20,18,14,0.05)] border border-[rgba(20,18,14,0.10)] px-3 py-2">
@@ -101,7 +101,7 @@ export default function ScreensPage() {
                   <li className="rounded-lg bg-[rgba(20,18,14,0.05)] border border-[rgba(20,18,14,0.10)] px-3 py-2">
                     Invoice draft auto-created
                   </li>
-                  <li className="rounded-lg bg-[rgba(34,197,94,0.10)] border border-[rgba(34,197,94,0.30)] px-3 py-2 text-[#86efac]">
+                  <li className="rounded-lg bg-[rgba(34,197,94,0.12)] border border-[rgba(34,197,94,0.35)] px-3 py-2 text-[#15803d] font-medium">
                     Dispatch cycle complete
                   </li>
                 </ul>
