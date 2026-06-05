@@ -46,10 +46,15 @@
   --background-image-hero-glow: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 106, 0, 0.10) 0%, transparent 70%);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Reset lives in @layer base so Tailwind's utilities (mx-auto, px-*, py-*)
+   still win — an UNLAYERED `* { margin:0; padding:0 }` beats every layered
+   utility regardless of specificity and silently kills centering/padding. */
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 html {
