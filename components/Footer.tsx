@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MapPin } from "lucide-react";
 
 const navLinks = [
+  { href: "/fleet-owners", label: "For Owners" },
   { href: "/features", label: "Features" },
   { href: "/screens", label: "Screens" },
   { href: "/ai-automation", label: "AI Automation" },
