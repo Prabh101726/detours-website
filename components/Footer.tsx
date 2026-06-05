@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MapPin } from "lucide-react";
 
 const navLinks = [
+  { href: "/fleet-owners", label: "For Owners" },
   { href: "/features", label: "Features" },
   { href: "/screens", label: "Screens" },
   { href: "/ai-automation", label: "AI Automation" },
@@ -24,8 +25,10 @@ export default function Footer() {
       aria-label="Site footer"
       className="border-t"
       style={{
-        borderColor: "rgba(180,200,255,0.06)",
-        background: "rgba(1,1,8,0.7)",
+        borderColor: "rgba(20,18,14,0.08)",
+        background: "rgba(255,255,255,0.5)",
+        backdropFilter: "blur(18px) saturate(1.3)",
+        WebkitBackdropFilter: "blur(18px) saturate(1.3)",
       }}
     >
       <div className="max-w-5xl mx-auto px-8 lg:px-16 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -33,7 +36,7 @@ export default function Footer() {
         <div className="md:col-span-1">
           <span
             className="font-display text-2xl tracking-wider"
-            style={{ color: "#ff7a1a" }}
+            style={{ color: "#ff6a00" }}
           >
             DETOURS
           </span>
@@ -43,9 +46,9 @@ export default function Footer() {
           <div
             className="inline-flex items-center gap-1.5 mt-4 font-mono text-[10px] uppercase tracking-[0.18em] px-2.5 py-1 rounded-full"
             style={{
-              background: "rgba(255,122,26,0.08)",
-              border: "1px solid rgba(255,122,26,0.18)",
-              color: "#ff7a1a",
+              background: "rgba(255,106,0,0.08)",
+              border: "1px solid rgba(255,106,0,0.18)",
+              color: "#ff6a00",
             }}
           >
             <MapPin className="w-3 h-3" aria-hidden="true" />
@@ -100,7 +103,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div
         className="max-w-5xl mx-auto px-8 lg:px-16 border-t pt-6 pb-8 text-center"
-        style={{ borderColor: "rgba(180,200,255,0.05)" }}
+        style={{ borderColor: "rgba(20,18,14,0.05)" }}
       >
         <p className="font-mono text-xs text-text-muted">
           Built for Ontario trucking operators — 5 to 50 trucks.

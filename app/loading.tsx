@@ -10,8 +10,8 @@ export default function Loading() {
         <div
           className="w-10 h-10 rounded-full animate-spin-slow"
           style={{
-            border: "2px solid rgba(255,122,26,0.15)",
-            borderTopColor: "#ff7a1a",
+            border: "2px solid rgba(255,106,0,0.15)",
+            borderTopColor: "#ff6a00",
           }}
         />
         <p

@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const links = [
+  { href: "/fleet-owners", label: "For Owners" },
   { href: "/features", label: "Features" },
   { href: "/screens", label: "Screens" },
   { href: "/ai-automation", label: "AI Automation" },
@@ -18,13 +19,18 @@ export default function Navbar() {
   return (
     <header
       className="sticky top-0 z-50 w-full pt-[env(safe-area-inset-top,0px)]"
-      style={{ background: "#010108" }}
+      style={{
+        background: "rgba(252,251,249,0.72)",
+        backdropFilter: "blur(16px) saturate(1.4)",
+        WebkitBackdropFilter: "blur(16px) saturate(1.4)",
+        borderBottom: "1px solid rgba(20,18,14,0.07)",
+      }}
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
           className="font-display text-2xl tracking-wider transition-colors duration-150"
-          style={{ color: "#ff7a1a" }}
+          style={{ color: "#ff6a00" }}
         >
           DETOURS
         </Link>
@@ -42,7 +48,7 @@ export default function Navbar() {
               {pathname === l.href && (
                 <span
                   className="absolute -bottom-0.5 left-0 right-0 h-px rounded-full"
-                  style={{ background: "#ff7a1a" }}
+                  style={{ background: "#ff6a00" }}
                 />
               )}
             </Link>
@@ -91,8 +97,8 @@ export default function Navbar() {
         <div
           className="border-t px-6 py-5 flex flex-col gap-5"
           style={{
-            borderColor: "rgba(180,200,255,0.06)",
-            background: "#010108",
+            borderColor: "rgba(20,18,14,0.06)",
+            background: "#ffffff",
           }}
         >
           {links.map((l) => (

@@ -58,7 +58,7 @@ export default function Tesseract() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(255,122,26,0.13) 0%, rgba(100,149,237,0.05) 40%, transparent 70%)",
+            "radial-gradient(circle at 50% 50%, rgba(255,106,0,0.12) 0%, rgba(255,168,72,0.06) 40%, transparent 70%)",
           borderRadius: "50%",
         }}
       />
@@ -93,7 +93,7 @@ export default function Tesseract() {
               <path
                 key={`conn-${oi}`}
                 d={edgePath(outerV[oi], innerV[oi])}
-                stroke="rgba(100,149,237,0.22)"
+                stroke="rgba(20,18,14,0.18)"
                 strokeWidth="1"
               />
             ))}
@@ -103,7 +103,7 @@ export default function Tesseract() {
               <path
                 key={`inner-${i}`}
                 d={edgePath(innerV[a], innerV[b])}
-                stroke="rgba(255,122,26,0.18)"
+                stroke="rgba(255,106,0,0.32)"
                 strokeWidth="1"
               />
             ))}
@@ -113,8 +113,8 @@ export default function Tesseract() {
               <path
                 key={`outer-${i}`}
                 d={edgePath(outerV[a], outerV[b])}
-                stroke="rgba(255,122,26,0.32)"
-                strokeWidth="1"
+                stroke="rgba(255,106,0,0.55)"
+                strokeWidth="1.2"
               />
             ))}
 
@@ -125,7 +125,7 @@ export default function Tesseract() {
                 cx={x}
                 cy={y}
                 r="2"
-                fill="rgba(255,122,26,0.45)"
+                fill="rgba(255,106,0,0.7)"
               />
             ))}
 
@@ -136,7 +136,7 @@ export default function Tesseract() {
                 cx={x}
                 cy={y}
                 r="1.5"
-                fill="rgba(100,149,237,0.50)"
+                fill="rgba(20,18,14,0.35)"
               />
             ))}
           </svg>
@@ -146,7 +146,6 @@ export default function Tesseract() {
       {/* Bobbing wrapper — sits above rotation */}
       <div
         className="animate-float-orb absolute inset-0 pointer-events-none"
-        style={{ mixBlendMode: "screen" }}
       >
         {/* Core glow in centre */}
         <div
@@ -157,7 +156,7 @@ export default function Tesseract() {
             width: "20%",
             height: "20%",
             background:
-              "radial-gradient(circle, rgba(255,122,26,0.28) 0%, rgba(255,122,26,0.08) 50%, transparent 80%)",
+              "radial-gradient(circle, rgba(255,106,0,0.22) 0%, rgba(255,106,0,0.06) 50%, transparent 80%)",
             borderRadius: "50%",
             filter: "blur(6px)",
           }}

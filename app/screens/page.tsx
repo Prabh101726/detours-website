@@ -33,7 +33,7 @@ export default function ScreensPage() {
       <AnimatedSection instant className="text-center mb-14 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-          style={{ color: "#ff7a1a" }}
+          style={{ color: "#ff6a00" }}
         >
           Product screens
         </p>
@@ -43,7 +43,7 @@ export default function ScreensPage() {
         >
           Driver to owner.
           <br />
-          <span style={{ color: "#ff7a1a" }}>One live workflow.</span>
+          <span style={{ color: "#ff6a00" }}>One live workflow.</span>
         </h1>
         <p className="text-lg text-text-muted max-w-2xl mx-auto">
           A clean interface for drivers on mobile and a real-time operations view for owners.
@@ -56,21 +56,21 @@ export default function ScreensPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-8">
             <article className="glass-sm p-5">
               <div className="flex items-center gap-2 mb-4">
-                <Smartphone className="w-4 h-4" style={{ color: "#ff7a1a" }} aria-hidden="true" />
+                <Smartphone className="w-4 h-4" style={{ color: "#ff6a00" }} aria-hidden="true" />
                 <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted">
                   Driver screen
                 </p>
               </div>
-              <div className="rounded-xl border border-[rgba(180,200,255,0.10)] bg-[rgba(8,8,16,0.85)] p-4">
+              <div className="rounded-xl border border-[rgba(20,18,14,0.10)] bg-[rgba(8,8,16,0.85)] p-4">
                 <p className="text-sm text-text-primary font-semibold mb-3">Load #ON-2481</p>
                 <div className="space-y-2.5 text-sm">
-                  <div className="rounded-lg bg-[rgba(255,122,26,0.12)] border border-[rgba(255,122,26,0.25)] px-3 py-2">
+                  <div className="rounded-lg bg-[rgba(255,106,0,0.12)] border border-[rgba(255,106,0,0.25)] px-3 py-2">
                     POD photo attached
                   </div>
-                  <div className="rounded-lg bg-[rgba(180,200,255,0.05)] border border-[rgba(180,200,255,0.10)] px-3 py-2">
+                  <div className="rounded-lg bg-[rgba(20,18,14,0.05)] border border-[rgba(20,18,14,0.10)] px-3 py-2">
                     Signature captured
                   </div>
-                  <div className="rounded-lg bg-[rgba(180,200,255,0.05)] border border-[rgba(180,200,255,0.10)] px-3 py-2">
+                  <div className="rounded-lg bg-[rgba(20,18,14,0.05)] border border-[rgba(20,18,14,0.10)] px-3 py-2">
                     Delivered at 3:42 PM
                   </div>
                 </div>
@@ -87,18 +87,18 @@ export default function ScreensPage() {
 
             <article className="glass-sm p-5">
               <div className="flex items-center gap-2 mb-4">
-                <BellRing className="w-4 h-4" style={{ color: "#ff7a1a" }} aria-hidden="true" />
+                <BellRing className="w-4 h-4" style={{ color: "#ff6a00" }} aria-hidden="true" />
                 <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted">
                   Owner dashboard
                 </p>
               </div>
-              <div className="rounded-xl border border-[rgba(180,200,255,0.10)] bg-[rgba(8,8,16,0.85)] p-4">
+              <div className="rounded-xl border border-[rgba(20,18,14,0.10)] bg-[rgba(8,8,16,0.85)] p-4">
                 <p className="text-sm text-text-primary font-semibold mb-3">Live operations feed</p>
                 <ul className="space-y-2.5 text-sm text-text-muted">
-                  <li className="rounded-lg bg-[rgba(180,200,255,0.05)] border border-[rgba(180,200,255,0.10)] px-3 py-2">
+                  <li className="rounded-lg bg-[rgba(20,18,14,0.05)] border border-[rgba(20,18,14,0.10)] px-3 py-2">
                     POD received - ready for review
                   </li>
-                  <li className="rounded-lg bg-[rgba(180,200,255,0.05)] border border-[rgba(180,200,255,0.10)] px-3 py-2">
+                  <li className="rounded-lg bg-[rgba(20,18,14,0.05)] border border-[rgba(20,18,14,0.10)] px-3 py-2">
                     Invoice draft auto-created
                   </li>
                   <li className="rounded-lg bg-[rgba(34,197,94,0.10)] border border-[rgba(34,197,94,0.30)] px-3 py-2 text-[#86efac]">
@@ -119,9 +119,9 @@ export default function ScreensPage() {
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
                   style={{
-                    background: "rgba(255,122,26,0.10)",
-                    border: "1px solid rgba(255,122,26,0.22)",
-                    color: "#ff7a1a",
+                    background: "rgba(255,106,0,0.10)",
+                    border: "1px solid rgba(255,106,0,0.22)",
+                    color: "#ff6a00",
                   }}
                 >
                   {event.icon}

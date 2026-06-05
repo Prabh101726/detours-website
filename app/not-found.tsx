@@ -11,7 +11,7 @@ export default function NotFound() {
     <div className="max-w-xl mx-auto px-8 py-28 text-center">
       <p
         className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-        style={{ color: "#ff7a1a" }}
+        style={{ color: "#ff6a00" }}
       >
         404 — Page not found
       </p>
@@ -36,8 +36,8 @@ export default function NotFound() {
           className="inline-flex items-center justify-center px-7 py-3.5 text-base font-bold rounded-xl"
           style={{
             background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(180,200,255,0.10)",
-            color: "#eef2ff",
+            border: "1px solid rgba(20,18,14,0.10)",
+            color: "#16161a",
           }}
         >
           Contact us

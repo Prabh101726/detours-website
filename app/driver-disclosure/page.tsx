@@ -13,7 +13,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
     <div className="mb-8">
       <h2
         className="font-mono text-xs uppercase tracking-[0.18em] mb-3"
-        style={{ color: "#ff7a1a" }}
+        style={{ color: "#ff6a00" }}
       >
         {title}
       </h2>
@@ -28,7 +28,7 @@ export default function DriverDisclosurePage() {
       <AnimatedSection instant className="mb-12 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-          style={{ color: "#ff7a1a" }}
+          style={{ color: "#ff6a00" }}
         >
           Legal
         </p>

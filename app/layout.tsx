@@ -34,8 +34,8 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://detoursfleet.com";
 
 export const viewport: Viewport = {
-  themeColor: "#010108",
-  colorScheme: "dark",
+  themeColor: "#ffffff",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
@@ -126,7 +126,7 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="bg-[#010108] text-text-primary antialiased">
+      <body className="bg-[#ffffff] text-text-primary antialiased">
         <script
           type="application/ld+json"
           suppressHydrationWarning

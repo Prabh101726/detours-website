@@ -14,7 +14,7 @@ export default function ContactPage() {
       <AnimatedSection instant className="text-center mb-12 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-          style={{ color: "#ff7a1a" }}
+          style={{ color: "#ff6a00" }}
         >
           Contact
         </p>

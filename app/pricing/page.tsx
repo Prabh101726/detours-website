@@ -55,7 +55,7 @@ export default function PricingPage() {
       <AnimatedSection instant className="text-center mb-16 pt-1">
         <p
           className="font-mono text-xs uppercase tracking-[0.2em] mb-5"
-          style={{ color: "#ff7a1a" }}
+          style={{ color: "#ff6a00" }}
         >
           Pricing
         </p>
@@ -75,7 +75,7 @@ export default function PricingPage() {
           <AnimatedSection key={plan.name} delay={i * 0.1}>
             <GlassCard
               className={`p-8 h-full flex flex-col relative overflow-hidden ${
-                plan.highlight ? "border-[rgba(255,122,26,0.28)] shadow-[0_0_48px_rgba(255,122,26,0.08),0_0_96px_rgba(100,149,237,0.04)]" : ""
+                plan.highlight ? "border-[rgba(255,106,0,0.28)] shadow-[0_0_48px_rgba(255,106,0,0.08),0_0_96px_rgba(255,168,72,0.04)]" : ""
               }`}
             >
               {plan.highlight && (
@@ -85,7 +85,7 @@ export default function PricingPage() {
                     className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
                     style={{
                       background:
-                        "radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255,122,26,0.10) 0%, transparent 70%)",
+                        "radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255,106,0,0.10) 0%, transparent 70%)",
                     }}
                   />
                 </>
@@ -99,7 +99,7 @@ export default function PricingPage() {
                 ) : null}
                 <h2 className="font-display text-4xl text-text-primary mb-1">{plan.name}</h2>
                 <div className="flex items-baseline gap-1 mb-2">
-                  <span className="font-display text-5xl" style={{ color: "#ff7a1a" }}>{plan.price}</span>
+                  <span className="font-display text-5xl" style={{ color: "#ff6a00" }}>{plan.price}</span>
                   <span className="text-text-muted text-sm">/ {plan.period}</span>
                 </div>
                 <p className="text-sm text-text-muted mb-6">{plan.description}</p>
