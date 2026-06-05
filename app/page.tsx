@@ -280,10 +280,10 @@ export default function Home() {
               From job assigned to invoice sent.
             </p>
           </AnimatedSection>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] gap-8 md:gap-4 md:items-stretch">
             {steps.map((s, i) => (
               <React.Fragment key={s.num}>
-                <AnimatedSection delay={i * 0.1} className="md:col-span-1">
+                <AnimatedSection delay={i * 0.1}>
                   <GlassCard className="p-8 h-full">
                     <StepNumber num={s.num} />
                     <h3 className="text-lg font-bold text-text-primary mb-3">
