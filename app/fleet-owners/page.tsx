@@ -90,15 +90,6 @@ const maintenance = [
   "Catch a repair in the yard instead of on the shoulder of the 400",
 ];
 
-const pricing = [
-  { fleet: "5 trucks", tier: "Owner-operator / Starter", price: "$299", hi: true },
-  { fleet: "10 trucks", tier: "Small fleet", price: "$550", hi: true },
-  { fleet: "25 trucks", tier: "Growing", price: "$1,050", hi: false },
-  { fleet: "50 trucks", tier: "Mid-size", price: "$1,800", hi: false },
-  { fleet: "100 trucks", tier: "Large", price: "$3,200", hi: false },
-  { fleet: "250 trucks", tier: "Major operator", price: "$7,500", hi: false },
-];
-
 const kicker =
   "font-mono text-xs uppercase tracking-[0.2em] mb-4 text-brand-orange";
 const h2 = "font-display leading-none";
@@ -275,50 +266,37 @@ export default function FleetOwners() {
       {/* ── Pricing ── */}
       <section className="max-w-5xl mx-auto px-8 lg:px-16 py-20">
         <AnimatedSection className="mb-10">
-          <p className={kicker}>Simple pricing</p>
+          <p className={kicker}>Pricing</p>
           <h2 className={h2} style={h2size}>
-            One flat price per fleet.{" "}
+            Priced for your fleet.{" "}
             <span className="text-brand-orange">Less than one admin.</span>
           </h2>
           <p className="text-text-muted max-w-2xl mt-4">
-            No per-seat games, no setup fees. Pick your fleet size — the bigger
-            you run, the better the value.
+            No per-seat games, no setup fees. Pricing scales with your fleet — so
+            it always costs less than the office admin it replaces. Start a free
+            trial or book a demo and we&apos;ll size it to your operation.
           </p>
         </AnimatedSection>
         <AnimatedSection>
-          <div className="glass rounded-2xl overflow-hidden">
-            <div
-              className="grid grid-cols-2 px-7 py-4 font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand-orange-ink font-bold border-b border-border-subtle"
-              style={{ background: "rgba(255,106,0,0.05)" }}
-            >
-              <span>Fleet size</span>
-              <span className="text-right">Per month</span>
-            </div>
-            {pricing.map((r) => (
-              <div
-                key={r.fleet}
-                className="grid grid-cols-2 px-7 py-4 items-center border-b border-border-dim last:border-b-0"
-                style={r.hi ? { background: "rgba(255,106,0,0.06)" } : undefined}
+          <div className="glass rounded-2xl px-7 py-8 md:px-10 md:py-10 text-center">
+            <p className="font-display text-2xl md:text-3xl tracking-wide uppercase leading-tight">
+              Costs less than one office admin —{" "}
+              <span className="text-brand-orange">and never takes a day off.</span>
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+              <Link
+                href="/contact"
+                className="btn-primary inline-flex items-center justify-center px-8 py-3.5"
               >
-                <div>
-                  <p className="font-display text-xl tracking-wide leading-none">
-                    {r.fleet}
-                  </p>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-text-muted mt-1">
-                    {r.tier}
-                  </p>
-                </div>
-                <p className="font-mono text-2xl font-bold text-right tabular-nums">
-                  {r.price}
-                </p>
-              </div>
-            ))}
-          </div>
-        </AnimatedSection>
-        <AnimatedSection delay={0.08}>
-          <div className="glass rounded-2xl mt-4 px-7 py-6 font-display text-2xl md:text-3xl tracking-wide uppercase leading-tight">
-            Costs less than one office admin —{" "}
-            <span className="text-brand-orange">and never takes a day off.</span>
+                Start a Free Trial →
+              </Link>
+              <Link
+                href="/contact"
+                className="btn-ghost inline-flex items-center justify-center px-8 py-3.5"
+              >
+                Book a Demo
+              </Link>
+            </div>
           </div>
         </AnimatedSection>
       </section>
