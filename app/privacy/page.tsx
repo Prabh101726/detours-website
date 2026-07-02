@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const privacyHtml = `
 <div style="color:#f1f5f9">
-<p><strong>Last updated: May 18, 2026</strong></p>
+<p><strong>Last updated: July 2, 2026</strong></p>
 
 <p>This Privacy Policy describes how Detours (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects, uses, and protects your personal information when you use our services (&ldquo;Services&rdquo;), including when you:</p>
 <ul>
@@ -67,6 +67,7 @@ const privacyHtml = `
   <li><em>Mobile Device Access.</em> We may request access to your mobile device&rsquo;s camera, storage, and other features. You may revoke access in your device&rsquo;s settings.</li>
   <li><em>Mobile Device Data.</em> We automatically collect device information such as device ID, model, manufacturer, operating system, browser type, and IP address.</li>
   <li><em>Push Notifications.</em> We may request to send push notifications about your account. You may opt out in your device&rsquo;s settings.</li>
+  <li><em>Crash and Diagnostic Data.</em> We automatically collect crash reports and diagnostic information (such as device model, operating system version, and technical stack traces) when the application encounters an error. This data is used solely to identify and fix problems and improve app stability. It is not linked to your identity, and personal identifiers such as phone numbers are removed before crash reports are sent.</li>
 </ul>
 
 <p>All personal information you provide must be true, complete, and accurate.</p>
@@ -118,6 +119,7 @@ const privacyHtml = `
   <li><strong>Business Transfers.</strong> We may share your information in connection with a merger, sale, financing, or acquisition of all or part of our business.</li>
   <li><strong>Google Maps Platform APIs.</strong> We may share your information with Google Maps Platform APIs. We cache your location on your device for up to one (1) month. You may revoke consent by contacting us.</li>
   <li><strong>Supabase Inc.</strong> We use Supabase as our database and authentication infrastructure provider. All user data — including phone numbers, GPS locations, delivery photos, and company data — is stored and processed by Supabase. See their privacy policy at <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a>.</li>
+  <li><strong>Functional Software, Inc. (Sentry).</strong> We use Sentry for crash and error reporting in our mobile application to help us maintain app stability. Crash reports contain technical diagnostic information only; they are not linked to your identity, are not used for tracking or advertising, and personal identifiers are scrubbed before transmission. See their privacy policy at <a href="https://sentry.io/privacy/" target="_blank">https://sentry.io/privacy/</a>.</li>
 </ul>
 
 <h2 id="cookies">5. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h2>

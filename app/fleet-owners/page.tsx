@@ -405,7 +405,7 @@ export default function FleetOwners() {
                 href="https://apps.apple.com/app/id6769499953"
                 className="btn-ghost inline-flex items-center justify-center px-8 py-3.5"
               >
-                Get Detours Fleet
+                Get Detours Fleet Ops
               </a>
             </div>
           </div>
