@@ -34,7 +34,7 @@ export default function AccountAgreementPage() {
           Account Agreement
         </h1>
         <p className="text-text-muted text-sm">
-          Last updated: April 22, 2026 · Governing law: Ontario, Canada
+          Last updated: July 2, 2026 · Governing law: Ontario, Canada
         </p>
       </AnimatedSection>
 
@@ -62,12 +62,36 @@ export default function AccountAgreementPage() {
             <p>
               The Customer owns all data they enter into Detours (drivers, vehicles, POD records,
               invoices, settlements). The Provider processes this data solely to deliver the contracted
-              services. The Provider will not sell, share, or use Customer data for any other purpose.
-              Upon account termination, data is available for export for 30 days, then permanently deleted.
+              services and as described in Section 4 (Aggregated and De-identified Data). The Provider
+              will not sell or share Customer data in identifiable form. Upon account termination,
+              Customer data is available for export for 30 days, then permanently deleted; de-identified
+              data that no longer identifies the Customer is not subject to deletion.
             </p>
           </Section>
 
-          <Section title="4. Customer Responsibilities">
+          <Section title="4. Aggregated and De-identified Data">
+            <p>
+              The Provider may create and use aggregated, de-identified data derived from the
+              Customer&apos;s operational use of Detours — such as haul cycle times, plant wait times,
+              haulage rates, tonnage volumes, routes, and seasonal activity patterns — for the purposes
+              of improving the services, developing industry benchmarks and market insights, and
+              conducting analytics and research.
+            </p>
+            <p className="mt-2">
+              Before any such use, the data is: (a) stripped of all information identifying the
+              Customer, its personnel, its clients, or any individual, in accordance with the Personal
+              Information Protection and Electronic Documents Act (PIPEDA); and (b) combined with data
+              from multiple customers, such that no output reveals or permits inference of any
+              individual customer&apos;s rates, pricing, volumes, or business relationships.
+            </p>
+            <p className="mt-2">
+              The Provider owns the aggregated and de-identified data and any insights derived from it.
+              This section survives termination of this Agreement. The Customer&apos;s identifiable data
+              remains governed exclusively by Section 3 at all times.
+            </p>
+          </Section>
+
+          <Section title="5. Customer Responsibilities">
             <p>The Customer is responsible for:</p>
             <ul className="list-disc list-inside space-y-1 mt-2 ml-2">
               <li>Ensuring all users of their account (drivers, dispatchers) have consented to data collection</li>
@@ -77,7 +101,7 @@ export default function AccountAgreementPage() {
             </ul>
           </Section>
 
-          <Section title="5. Limitation of Liability">
+          <Section title="6. Limitation of Liability">
             <p>
               The Provider is not liable for the accuracy of data entered by users (POD records,
               fuel receipts, odometer readings). The Provider&apos;s total liability is limited to fees paid
@@ -86,14 +110,14 @@ export default function AccountAgreementPage() {
             </p>
           </Section>
 
-          <Section title="6. Governing Law">
+          <Section title="7. Governing Law">
             <p>
               This Agreement is governed by the laws of Ontario, Canada. Any disputes will be resolved
               in the courts of Ontario.
             </p>
           </Section>
 
-          <Section title="7. Termination">
+          <Section title="8. Termination">
             <p>
               Either party may terminate this Agreement with 30 days written notice. The Provider may
               terminate immediately for non-payment or violation of these terms. Upon termination, the
