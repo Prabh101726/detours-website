@@ -75,6 +75,28 @@ Verify: 390px viewport, `doc.scrollWidth === 390`, `overflowing elements: 0`.
 
 ---
 
+## Hydration crash — `useSyncExternalStore` snapshot rule (critical)
+
+Jul 3 incident: homepage rendered fine on the server, then crashed to `app/error.tsx`
+("We hit a bump") after hydration. Fixed in `41b6391`.
+
+**Cause:** `HomeEnhancer`'s `readClientEnv()` built a **new object on every call**.
+`useSyncExternalStore` compares snapshots by reference, so React saw a "changed"
+store every render → infinite re-render loop → error boundary.
+
+**Rule:** any `getSnapshot` passed to `useSyncExternalStore` must return a
+**referentially stable** value. In `HomeEnhancer.tsx` this is done with a
+module-level `clientEnvCache` (computed once, reused) plus a constant
+`SERVER_ENV` object for the server snapshot. Do not inline object literals in
+`getSnapshot`, and keep primitives (like `useIsClient`'s `() => true`) as-is —
+primitives compare by value and are safe.
+
+**Symptom to recognize:** server HTML correct, client shows the error page with a
+`Ref: …` digest, no build error. Check the browser console for
+"maximum update depth" / getSnapshot warnings.
+
+---
+
 ## 3D scene (R3F)
 
 - `SceneCanvas` is `dynamic(..., { ssr: false })`.
@@ -127,6 +149,8 @@ gsap  lenis  lucide-react
 
 | Commit | Date | Summary |
 |--------|------|---------|
+| `41b6391` | Jul 3 | Hydration crash fix: cache `useSyncExternalStore` snapshot |
+| `5c6a9a2` | Jul 3 | react-hooks lint cleanup (introduced the `useSyncExternalStore` switch) |
 | `c8719a7` | Jul 3 | Cinematic 3D scroll homepage rewrite |
 | `c78ce5f` | Jul 3 | Mobile headline wrap fix |
 | `9813fdc` | Jul 3 | CLS fix: SSR split, fonts, drop loading, cleanup |
@@ -155,4 +179,4 @@ curl -s http://localhost:3456/ | grep "Loading"                # expect no match
 
 ---
 
-*Last updated: Jul 3, 2026 — after `9813fdc` CLS fix.*
+*Last updated: Jul 3, 2026 — after `41b6391` hydration-crash fix (verified live).*
