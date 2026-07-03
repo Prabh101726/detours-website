@@ -13,6 +13,8 @@ const bigShoulders = Big_Shoulders({
   variable: "--font-bigshoulders",
   weight: ["600", "700", "800", "900"],
   preload: true,
+  adjustFontFallback: true,
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 const archivo = Archivo({
@@ -21,6 +23,8 @@ const archivo = Archivo({
   variable: "--font-archivo",
   weight: ["400", "500", "600", "700"],
   preload: true,
+  adjustFontFallback: true,
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 const jetbrainsMono = JetBrains_Mono({

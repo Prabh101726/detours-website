@@ -1,12 +1,5 @@
-"use client";
-
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
-import { scrollBus } from "@/components/three/scrollBus";
+import type { ReactNode } from "react";
 import { StaggerHeading, Reveal } from "./Stagger";
 import {
   Apple,
@@ -22,13 +15,7 @@ import {
   Activity,
 } from "lucide-react";
 
-const SceneCanvas = dynamic(() => import("@/components/three/SceneCanvas"), {
-  ssr: false,
-});
-
 const APP_STORE_URL = "https://apps.apple.com/app/id6769499953";
-
-/* ───────────────────────── HUD atoms ───────────────────────── */
 
 function HudChip({
   className = "",
@@ -66,8 +53,6 @@ function ActKicker({ n, label }: { n: string; label: string }) {
     </Reveal>
   );
 }
-
-/* ───────────────────────── Acts ───────────────────────── */
 
 function ActHero() {
   return (
@@ -114,7 +99,6 @@ function ActHero() {
         </Reveal>
       </div>
 
-      {/* floating HUD telemetry */}
       <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
         <HudChip
           className="absolute right-[8%] top-[24%]"
@@ -215,15 +199,11 @@ function ActHaul() {
           <Reveal delay={0.35} className="mt-8 flex flex-wrap gap-3">
             <div className="glass-sm flex items-center gap-3 px-4 py-3">
               <Radio size={15} className="text-brand-orange" />
-              <span className="font-mono text-[13px]">
-                MOVING · 68 KM/H
-              </span>
+              <span className="font-mono text-[13px]">MOVING · 68 KM/H</span>
             </div>
             <div className="glass-sm flex items-center gap-3 px-4 py-3">
               <MapPin size={15} className="text-brand-orange" />
-              <span className="font-mono text-[13px]">
-                PLANT WAIT · 12 MIN
-              </span>
+              <span className="font-mono text-[13px]">PLANT WAIT · 12 MIN</span>
             </div>
             <div className="glass-sm flex items-center gap-3 px-4 py-3">
               <Activity size={15} className="text-brand-orange" />
@@ -266,7 +246,7 @@ function ActPod() {
                   data-decimals="2"
                   data-suffix=" T"
                 >
-                  0 T
+                  39.42 T
                 </p>
                 <p className="hud-label mt-2">TICKET WEIGHT</p>
               </div>
@@ -279,7 +259,7 @@ function ActPod() {
                   data-prefix="$"
                   data-suffix="/T"
                 >
-                  $0/T
+                  $12.00/T
                 </p>
                 <p className="hud-label mt-2">ROUTE RATE</p>
               </div>
@@ -291,7 +271,7 @@ function ActPod() {
                   data-decimals="0"
                   data-suffix="%"
                 >
-                  0%
+                  13%
                 </p>
                 <p className="hud-label mt-2">HST APPLIED</p>
               </div>
@@ -303,7 +283,7 @@ function ActPod() {
                   data-decimals="2"
                   data-prefix="$"
                 >
-                  $0
+                  $555.91
                 </p>
                 <p className="hud-label mt-2">INVOICE TOTAL</p>
               </div>
@@ -413,131 +393,16 @@ function ActFinale() {
   );
 }
 
-/* ───────────────────────── Root experience ───────────────────────── */
-
-export default function HomeExperience() {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-  const [reduced, setReduced] = useState(false);
-  const [webglOk, setWebglOk] = useState(true);
-  const [lowPower, setLowPower] = useState(false);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    setReduced(prefersReduced);
-    setLowPower(window.innerWidth < 768);
-    try {
-      const c = document.createElement("canvas");
-      setWebglOk(!!(c.getContext("webgl2") || c.getContext("webgl")));
-    } catch {
-      setWebglOk(false);
-    }
-    setMounted(true);
-
-    const root = rootRef.current;
-    if (!root) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    if (prefersReduced) {
-      // Static story: everything visible, tickers at final value, no camera ride.
-      root.querySelectorAll<HTMLElement>("[data-ticker]").forEach((el) => {
-        const v = parseFloat(el.dataset.value ?? "0");
-        const d = parseInt(el.dataset.decimals ?? "0", 10);
-        el.textContent = `${el.dataset.prefix ?? ""}${v.toFixed(d)}${el.dataset.suffix ?? ""}`;
-      });
-      return;
-    }
-
-    const lenis = new Lenis({ lerp: 0.09 });
-    lenis.on("scroll", ScrollTrigger.update);
-    const raf = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
-
-    const ctx = gsap.context(() => {
-      // Master progress → 3D camera
-      ScrollTrigger.create({
-        trigger: root,
-        start: "top top",
-        end: "bottom bottom",
-        onUpdate: (self) => {
-          scrollBus.p = self.progress;
-        },
-      });
-
-      // Word-mask headline reveals
-      root.querySelectorAll<HTMLElement>("[data-stagger]").forEach((el) => {
-        gsap.from(el.querySelectorAll(".sw"), {
-          yPercent: 115,
-          duration: 0.95,
-          ease: "power3.out",
-          stagger: 0.055,
-          scrollTrigger: { trigger: el, start: "top 80%" },
-        });
-      });
-
-      // Fade-up reveals
-      root.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
-        gsap.from(el, {
-          y: 34,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          delay: parseFloat(el.dataset.delay ?? "0"),
-          scrollTrigger: { trigger: el, start: "top 85%" },
-        });
-      });
-
-      // Number tickers
-      root.querySelectorAll<HTMLElement>("[data-ticker]").forEach((el) => {
-        const value = parseFloat(el.dataset.value ?? "0");
-        const decimals = parseInt(el.dataset.decimals ?? "0", 10);
-        const prefix = el.dataset.prefix ?? "";
-        const suffix = el.dataset.suffix ?? "";
-        const state = { v: 0 };
-        gsap.to(state, {
-          v: value,
-          duration: 1.7,
-          ease: "power2.out",
-          scrollTrigger: { trigger: el, start: "top 85%" },
-          onUpdate: () => {
-            el.textContent = `${prefix}${state.v.toFixed(decimals)}${suffix}`;
-          },
-        });
-      });
-    }, root);
-
-    return () => {
-      ctx.revert();
-      gsap.ticker.remove(raf);
-      lenis.destroy();
-      scrollBus.p = 0;
-    };
-  }, []);
-
+/** Server-rendered homepage story — visible in initial HTML for SEO and CLS. */
+export default function StorySections() {
   return (
-    <div ref={rootRef} className="relative">
-      {/* 3D world (fixed, behind everything) */}
-      {mounted && webglOk && (
-        <SceneCanvas reduced={reduced} lowPower={lowPower} />
-      )}
-      {/* Static fallback backdrop when WebGL is unavailable */}
-      {mounted && !webglOk && (
-        <div
-          className="blueprint-grid fixed inset-0 z-0 opacity-60"
-          aria-hidden="true"
-        />
-      )}
-
+    <>
       <ActHero />
       <ActDispatch />
       <ActHaul />
       <ActPod />
       <ActAgents />
       <ActFinale />
-    </div>
+    </>
   );
 }

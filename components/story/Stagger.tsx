@@ -1,11 +1,9 @@
-"use client";
-
 import { Fragment, type ReactNode } from "react";
 
 /**
  * Oversized display heading whose words rise out of overflow masks.
  * Words prefixed with ^ render in safety orange.
- * Animation is driven centrally from HomeExperience (targets `.sw` spans
+ * Animation is driven from HomeEnhancer (targets `.sw` spans
  * inside [data-stagger]); with no JS/reduced motion the text is simply visible.
  */
 export function StaggerHeading({
@@ -49,7 +47,7 @@ export function StaggerHeading({
   );
 }
 
-/** Generic fade-up wrapper animated from HomeExperience via [data-reveal]. */
+/** Generic fade-up wrapper animated from HomeEnhancer via [data-reveal]. */
 export function Reveal({
   children,
   className = "",

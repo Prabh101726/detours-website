@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     // lucide-react is optimized by default; listed explicitly for clarity
-    optimizePackageImports: ["lucide-react"],
+    optimizePackageImports: ["lucide-react", "gsap"],
   },
   async headers() {
     return [

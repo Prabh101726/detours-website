@@ -452,26 +452,26 @@ body::before {
 
 /* ─── CTA button — solid orange on white ─── */
 .btn-primary {
-  background: #ff6a00;
+  background: #d35400;
   color: #ffffff;
   font-weight: 700;
-  border: 1px solid #ff6a00;
+  border: 1px solid #d35400;
   border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 10px 26px rgba(255, 106, 0, 0.30);
+  box-shadow: 0 10px 26px rgba(211, 84, 0, 0.30);
   transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: #ff7a1a;
-  border-color: #ff7a1a;
-  box-shadow: 0 14px 34px rgba(255, 106, 0, 0.38);
+  background: #e05a00;
+  border-color: #e05a00;
+  box-shadow: 0 14px 34px rgba(211, 84, 0, 0.38);
   transform: translateY(-1px);
 }
 
 .btn-primary:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.40);
+  box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.40);
 }
 
 /* Secondary / ghost button on white */
