@@ -74,9 +74,9 @@ function ActHero() {
     <section className="relative z-10 flex min-h-svh flex-col justify-center px-6 md:px-12 lg:px-20">
       <div className="mx-auto w-full max-w-7xl">
         <Reveal delay={0.1} className="mb-8">
-          <p className="hud-label flex items-center gap-3">
+          <p className="hud-label flex flex-wrap items-center gap-3">
             <span className="status-dot inline-block" />
-            DETOURS FLEET OPS&nbsp;&nbsp;//&nbsp;&nbsp;ONTARIO · CANADA
+            DETOURS FLEET OPS // ONTARIO · CANADA
           </p>
         </Reveal>
 
@@ -406,7 +406,7 @@ function ActFinale() {
       </Reveal>
       <Reveal delay={0.5} className="mt-12">
         <p className="hud-label">
-          DETOURS FLEET OPS&nbsp;&nbsp;//&nbsp;&nbsp;5–500 TRUCKS&nbsp;&nbsp;//&nbsp;&nbsp;BUILT IN ONTARIO
+          DETOURS FLEET OPS // 5–500 TRUCKS // BUILT IN ONTARIO
         </p>
       </Reveal>
     </section>

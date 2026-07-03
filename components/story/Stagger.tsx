@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 
 /**
  * Oversized display heading whose words rise out of overflow masks.
@@ -19,29 +19,32 @@ export function StaggerHeading({
 }) {
   return (
     <Tag className={`display-heading ${className}`} data-stagger>
-      {lines.map((line, li) => (
-        <span key={li} className="block">
-          {line.split(" ").map((word, wi) => {
-            const accent = word.startsWith("^");
-            const clean = accent ? word.slice(1) : word;
-            return (
-              <span
-                key={wi}
-                className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]"
-              >
-                <span
-                  className={`sw inline-block will-change-transform ${
-                    accent ? "text-brand-orange" : ""
-                  }`}
-                >
-                  {clean}
-                  {wi < line.split(" ").length - 1 ? " " : ""}
-                </span>
-              </span>
-            );
-          })}
-        </span>
-      ))}
+      {lines.map((line, li) => {
+        const words = line.split(" ");
+        return (
+          <span key={li} className="block">
+            {words.map((word, wi) => {
+              const accent = word.startsWith("^");
+              const clean = accent ? word.slice(1) : word;
+              return (
+                <Fragment key={wi}>
+                  <span className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]">
+                    <span
+                      className={`sw inline-block will-change-transform ${
+                        accent ? "text-brand-orange" : ""
+                      }`}
+                    >
+                      {clean}
+                    </span>
+                  </span>
+                  {/* real space BETWEEN mask spans so long lines can wrap on mobile */}
+                  {wi < words.length - 1 ? " " : null}
+                </Fragment>
+              );
+            })}
+          </span>
+        );
+      })}
     </Tag>
   );
 }
