@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Bebas_Neue, JetBrains_Mono } from "next/font/google";
+import { Big_Shoulders, Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,18 +7,19 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import WebVitalsReporter from "@/components/WebVitalsReporter";
 
-const spaceGrotesk = Space_Grotesk({
+const bigShoulders = Big_Shoulders({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-space-grotesk",
+  variable: "--font-bigshoulders",
+  weight: ["600", "700", "800", "900"],
   preload: true,
 });
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
+const archivo = Archivo({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-bebas",
+  variable: "--font-archivo",
+  weight: ["400", "500", "600", "700"],
   preload: true,
 });
 
@@ -34,7 +35,7 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://detours-app.com";
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#fcfbf9",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -124,9 +125,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${jetbrainsMono.variable}`}
+      className={`${bigShoulders.variable} ${archivo.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="bg-[#ffffff] text-text-primary antialiased">
+      <body className="bg-[#fcfbf9] text-text-primary antialiased">
         <script
           type="application/ld+json"
           suppressHydrationWarning

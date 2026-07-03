@@ -23,10 +23,10 @@ export default function Footer() {
   return (
     <footer
       aria-label="Site footer"
-      className="border-t"
+      className="relative z-10 border-t"
       style={{
         borderColor: "rgba(20,18,14,0.08)",
-        background: "rgba(255,255,255,0.5)",
+        background: "rgba(255,255,255,0.7)",
         backdropFilter: "blur(18px) saturate(1.3)",
         WebkitBackdropFilter: "blur(18px) saturate(1.3)",
       }}

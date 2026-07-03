@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* NOTE: --font-space-grotesk / --font-bebas / --font-jetbrains are defined by
+/* NOTE: --font-bigshoulders / --font-archivo / --font-jetbrains are defined by
    next/font on <html> (layout.tsx) and include size-adjusted fallback fonts.
    Do NOT redefine them here with plain sans-serif/monospace fallbacks — that
    throws away the metric-matched fallback and causes font-swap layout shift
@@ -15,7 +15,7 @@
   --color-brand-card: rgba(255, 255, 255, 0.55);
   --color-brand-surface: #ffffff;
 
-  /* Warm depth (replaces cosmic blue) */
+  /* Warm depth */
   --color-cosmic-blue: rgba(255, 168, 72, 0.10);
   --color-cosmic-glow: rgba(255, 106, 0, 0.14);
 
@@ -32,8 +32,8 @@
   --color-success: #16a34a;
 
   /* Typography */
-  --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
-  --font-display: var(--font-bebas), system-ui, sans-serif;
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-display: var(--font-bigshoulders), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 
   /* Backdrop blur */
@@ -61,6 +61,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Lenis smooth-scroll owns scrolling on the homepage; native smooth would fight it */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
 /* Kill any horizontal overflow at the root so every page stays centered.
    overflow-x: clip (vs hidden) does not break the sticky navbar and does
    not create a scroll container. */
@@ -79,10 +88,10 @@ body {
     radial-gradient(38% 42% at 8% 12%, rgba(255, 106, 0, 0.10), transparent 70%),
     radial-gradient(44% 46% at 92% 6%, rgba(255, 168, 72, 0.14), transparent 72%),
     radial-gradient(52% 52% at 82% 84%, rgba(255, 106, 0, 0.07), transparent 70%),
-    radial-gradient(42% 44% at 12% 92%, rgba(120, 150, 255, 0.05), transparent 72%);
+    radial-gradient(42% 44% at 12% 92%, rgba(255, 138, 43, 0.05), transparent 72%);
   background-attachment: fixed;
   color: #16161a;
-  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-family: var(--font-archivo), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -100,6 +109,29 @@ body::before {
   opacity: 0.03;
   pointer-events: none;
   z-index: 0;
+}
+
+/* ─── Display heading helper — condensed industrial signage ─── */
+.display-heading {
+  font-family: var(--font-bigshoulders), system-ui, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.92;
+}
+
+/* ─── HUD label — mono, tracked-out, machine voice ─── */
+.hud-label {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #6f6f78;
+}
+
+.hud-label--orange {
+  color: #d35400;
 }
 
 /* ─── Glass utilities (light, frosted) ─── */
@@ -131,7 +163,7 @@ body::before {
   box-shadow: 0 18px 46px rgba(60, 45, 20, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-/* ─── Sparkle field — faint warm specks on white (replaces star field) ─── */
+/* ─── Sparkle field — faint warm specks on white ─── */
 .star-field {
   background-image:
     radial-gradient(circle, rgba(255, 106, 0, 0.18) 1px, transparent 1px),
@@ -145,6 +177,14 @@ body::before {
 .dot-grid {
   background-image: var(--background-image-dot-grid);
   background-size: 28px 28px;
+}
+
+/* ─── Blueprint grid — faint engineering paper lines ─── */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(20, 18, 14, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 18, 14, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 /* ─── Data flow animation (driver -> owner) ─── */
@@ -244,7 +284,7 @@ body::before {
   to   { transform: rotateY(360deg) rotateX(90deg); }
 }
 
-/* ─── Star pulse ─── */
+/* ─── Sparkle pulse ─── */
 @keyframes star-pulse {
   0%, 100% { opacity: 0.25; }
   50%       { opacity: 0.45; }
@@ -273,7 +313,21 @@ body::before {
   }
 }
 
-/* ─── Entrance animations (replaces framer-motion) ─── */
+/* ─── Status dot pulse (HUD chips) ─── */
+@keyframes status-ping {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.5); }
+  70%  { box-shadow: 0 0 0 9px rgba(255, 106, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0); }
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #ff6a00;
+}
+
+/* ─── Entrance animations ─── */
 @keyframes rise-in {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -333,6 +387,10 @@ body::before {
     animation: pulse-soft 3s ease-in-out infinite;
   }
 
+  .status-dot {
+    animation: status-ping 2.2s ease-out infinite;
+  }
+
   .hero-rise {
     opacity: 0;
     animation: rise-in 0.55s ease-out forwards;
@@ -353,6 +411,7 @@ body::before {
   .animate-spin-slow-reverse,
   .animate-star-pulse,
   .animate-pulse-soft,
+  .status-dot,
   .hero-rise,
   .hero-slide-in,
   .data-flow-packet--one,
@@ -367,7 +426,7 @@ body::before {
   }
 }
 
-/* ─── Mobile menu (replaces framer-motion AnimatePresence) ─── */
+/* ─── Mobile menu ─── */
 .mobile-menu {
   display: grid;
   grid-template-rows: 0fr;
@@ -429,6 +488,10 @@ body::before {
   background: #16161a;
   color: #ffffff;
   transform: translateY(-1px);
+}
+.btn-ghost:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 18, 14, 0.25);
 }
 
 /* ─── Legal pages (privacy / terms) — dark text on white ─── */
