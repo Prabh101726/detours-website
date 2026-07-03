@@ -19,7 +19,17 @@ type ClientEnv = {
   webglOk: boolean;
 };
 
+const SERVER_ENV: ClientEnv = {
+  reduced: false,
+  lowPower: false,
+  webglOk: true,
+};
+
+let clientEnvCache: ClientEnv | null = null;
+
 function readClientEnv(): ClientEnv {
+  if (clientEnvCache) return clientEnvCache;
+
   let webglOk = true;
   try {
     const c = document.createElement("canvas");
@@ -27,18 +37,13 @@ function readClientEnv(): ClientEnv {
   } catch {
     webglOk = false;
   }
-  return {
+  clientEnvCache = {
     reduced: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     lowPower: window.innerWidth < 768,
     webglOk,
   };
+  return clientEnvCache;
 }
-
-const SERVER_ENV: ClientEnv = {
-  reduced: false,
-  lowPower: false,
-  webglOk: true,
-};
 
 function useClientEnv() {
   return useSyncExternalStore(
