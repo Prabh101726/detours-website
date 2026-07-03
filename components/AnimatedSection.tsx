@@ -23,9 +23,9 @@ export default function AnimatedSection({
     const el = ref.current;
     if (!el) return;
 
-    // If IntersectionObserver is unavailable, just show.
+    // If IntersectionObserver is unavailable, show on next microtask (not sync in effect).
     if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
+      queueMicrotask(() => setVisible(true));
       return;
     }
 

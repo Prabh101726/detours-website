@@ -64,7 +64,9 @@ export function DataCluster({
     const arr = new Float32Array(count * 3);
     const v = new THREE.Vector3();
     for (let i = 0; i < count; i++) {
-      v.randomDirection().multiplyScalar(2.2 + Math.pow(Math.random(), 0.6) * 4.6);
+      v.randomDirection().multiplyScalar(
+        2.2 + Math.pow(THREE.MathUtils.randFloat(0, 1), 0.6) * 4.6
+      );
       arr[i * 3] = v.x;
       arr[i * 3 + 1] = v.y * 0.75;
       arr[i * 3 + 2] = v.z;

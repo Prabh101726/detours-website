@@ -54,6 +54,8 @@ function keyPose(p: number, outPos: THREE.Vector3, outLook: THREE.Vector3) {
 function CameraRig({ reduced }: { reduced: boolean }) {
   const { camera } = useThree();
   const target = useRef(new THREE.Vector3(0, 1.6, 0));
+  const cameraPos = useRef(new THREE.Vector3());
+  const drift = useRef(new THREE.Vector3());
   const pose = useMemo(
     () => ({
       pos: new THREE.Vector3(),
@@ -81,16 +83,22 @@ function CameraRig({ reduced }: { reduced: boolean }) {
       pose.look.lerp(pose.followLook, w);
     }
 
+    cameraPos.current.copy(pose.pos);
+
     // Idle drift in the hero so the opening frame breathes
     if (p < 0.15 && !reduced) {
       const fade = 1 - p / 0.15;
       const t = state.clock.elapsedTime;
-      pose.pos.x += Math.sin(t * 0.22) * 0.5 * fade;
-      pose.pos.y += Math.sin(t * 0.3) * 0.22 * fade;
+      drift.current.set(
+        Math.sin(t * 0.22) * 0.5 * fade,
+        Math.sin(t * 0.3) * 0.22 * fade,
+        0
+      );
+      cameraPos.current.add(drift.current);
     }
 
     // Damped approach for cinematic weight
-    camera.position.lerp(pose.pos, reduced ? 1 : 0.11);
+    camera.position.lerp(cameraPos.current, reduced ? 1 : 0.11);
     target.current.lerp(pose.look, reduced ? 1 : 0.11);
     camera.lookAt(target.current);
   });

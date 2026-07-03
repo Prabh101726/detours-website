@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,38 +13,62 @@ const SceneCanvas = dynamic(() => import("@/components/three/SceneCanvas"), {
 
 export const HOME_STORY_ID = "home-story";
 
+type ClientEnv = {
+  reduced: boolean;
+  lowPower: boolean;
+  webglOk: boolean;
+};
+
+function readClientEnv(): ClientEnv {
+  let webglOk = true;
+  try {
+    const c = document.createElement("canvas");
+    webglOk = !!(c.getContext("webgl2") || c.getContext("webgl"));
+  } catch {
+    webglOk = false;
+  }
+  return {
+    reduced: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    lowPower: window.innerWidth < 768,
+    webglOk,
+  };
+}
+
+const SERVER_ENV: ClientEnv = {
+  reduced: false,
+  lowPower: false,
+  webglOk: true,
+};
+
+function useClientEnv() {
+  return useSyncExternalStore(
+    () => () => {},
+    readClientEnv,
+    () => SERVER_ENV
+  );
+}
+
+function useIsClient() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+}
+
 /**
  * Client-only layer: WebGL canvas + Lenis/GSAP scroll choreography.
  * Story copy lives in StorySections (server-rendered) for SEO and CLS.
  */
 export default function HomeEnhancer() {
-  const [mounted, setMounted] = useState(false);
-  const [reduced, setReduced] = useState(false);
-  const [webglOk, setWebglOk] = useState(true);
-  const [lowPower, setLowPower] = useState(false);
+  const isClient = useIsClient();
+  const { reduced, lowPower, webglOk } = useClientEnv();
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    setReduced(prefersReduced);
-    setLowPower(window.innerWidth < 768);
-    try {
-      const c = document.createElement("canvas");
-      setWebglOk(!!(c.getContext("webgl2") || c.getContext("webgl")));
-    } catch {
-      setWebglOk(false);
-    }
-    setMounted(true);
-
     const root = document.getElementById(HOME_STORY_ID);
-    if (!root) return;
+    if (!root || reduced) return;
 
     gsap.registerPlugin(ScrollTrigger);
-
-    if (prefersReduced) {
-      return;
-    }
 
     const lenis = new Lenis({ lerp: 0.09 });
     lenis.on("scroll", ScrollTrigger.update);
@@ -107,9 +131,9 @@ export default function HomeEnhancer() {
       lenis.destroy();
       scrollBus.p = 0;
     };
-  }, []);
+  }, [reduced]);
 
-  if (!mounted) return null;
+  if (!isClient) return null;
 
   return (
     <>
