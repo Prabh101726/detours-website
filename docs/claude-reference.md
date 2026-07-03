@@ -166,7 +166,7 @@ npm run dev            # local preview
 
 # SSR check (production server)
 npm run build && npm run start -- -p 3456
-curl -s http://localhost:3456/ | grep -c "OPERATING SYSTEM"  # expect ≥1 in visible HTML
+curl -s http://localhost:3456/ | grep -c "OPERATING"  # expect ≥1 (headline is per-word mask spans — "OPERATING SYSTEM" is never contiguous in HTML)
 curl -s http://localhost:3456/ | grep "Loading"                # expect no match in <main>
 ```
 
