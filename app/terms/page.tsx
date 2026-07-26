@@ -128,7 +128,7 @@ const termsHtml = `
 <p>
   <strong>Detours</strong><br>
   Barrie, Ontario, Canada<br>
-  <a href="mailto:preetjassgill11@gmail.com">preetjassgill11@gmail.com</a>
+  <a href="mailto:contact@detours-app.com">contact@detours-app.com</a>
 </p>
 
 </div>
