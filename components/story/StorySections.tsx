@@ -273,7 +273,7 @@ function ActPod() {
                 >
                   4%
                 </p>
-                <p className="hud-label mt-2">FUEL SURCHARGE</p>
+                <p className="hud-label mt-2">FUEL SURCH.</p>
               </div>
               <div>
                 <p
