@@ -65,7 +65,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="md:hidden cursor-pointer nav-link p-1 rounded-lg"
+          className="md:hidden cursor-pointer nav-link h-11 w-11 -mr-2.5 inline-flex items-center justify-center rounded-lg"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           aria-expanded={open}
