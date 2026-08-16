@@ -20,27 +20,34 @@ export function StaggerHeading({
       {lines.map((line, li) => {
         const words = line.split(" ");
         return (
-          <span key={li} className="block">
-            {words.map((word, wi) => {
-              const accent = word.startsWith("^");
-              const clean = accent ? word.slice(1) : word;
-              return (
-                <Fragment key={wi}>
-                  <span className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]">
-                    <span
-                      className={`sw inline-block will-change-transform ${
-                        accent ? "text-brand-orange" : ""
-                      }`}
-                    >
-                      {clean}
+          <Fragment key={li}>
+            <span className="block">
+              {words.map((word, wi) => {
+                const accent = word.startsWith("^");
+                const clean = accent ? word.slice(1) : word;
+                return (
+                  <Fragment key={wi}>
+                    <span className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]">
+                      <span
+                        className={`sw inline-block will-change-transform ${
+                          accent ? "text-brand-orange" : ""
+                        }`}
+                      >
+                        {clean}
+                      </span>
                     </span>
-                  </span>
-                  {/* real space BETWEEN mask spans so long lines can wrap on mobile */}
-                  {wi < words.length - 1 ? " " : null}
-                </Fragment>
-              );
-            })}
-          </span>
+                    {/* real space BETWEEN mask spans so long lines can wrap on mobile */}
+                    {wi < words.length - 1 ? " " : null}
+                  </Fragment>
+                );
+              })}
+            </span>
+            {/* real space BETWEEN line spans: the spans are `block`, so this text
+                node is discarded in block layout (no visual change) but keeps
+                textContent readable — screen readers and SERP snippets would
+                otherwise get "SYSTEMFOR". */}
+            {li < lines.length - 1 ? " " : null}
+          </Fragment>
         );
       })}
     </Tag>
