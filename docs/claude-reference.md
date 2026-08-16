@@ -73,6 +73,35 @@ HUD kickers use `flex-wrap` + normal spaces (not `&nbsp;//&nbsp;`).
 
 Verify: 390px viewport, `doc.scrollWidth === 390`, `overflowing elements: 0`.
 
+### Line-level spaces too (a11y + SEO)
+
+`StaggerHeading` needs a space between **line** spans as well as between word
+masks. Without it `textContent` collapses across the line break:
+
+```
+"THE OPERATING SYSTEMFOR AGGREGATE FLEETS"   // before
+"THE OPERATING SYSTEM FOR AGGREGATE FLEETS"  // after
+```
+
+`innerText` is layout-aware so the bug is invisible in the browser, but
+`textContent` is what screen readers and SERP/social snippet scrapers consume.
+The line spans are `block`, so the extra text node is discarded in block layout —
+**zero visual change**. Fixed Aug 15 2026; applies to every `StaggerHeading`
+site-wide, not just the homepage `h1`.
+
+```tsx
+// Stagger.tsx — wrap the line span in a Fragment keyed by li, then:
+{li < lines.length - 1 ? " " : null}
+```
+
+Verify with the DOM, not curl — words live in separate mask spans, so
+`"SYSTEM FOR"` is **never** contiguous in raw HTML (same reason
+`"OPERATING SYSTEM"` isn't; see Verification commands):
+
+```js
+document.querySelector("h1").textContent.includes("SYSTEM FOR")  // true
+```
+
 ---
 
 ## Hydration crash — `useSyncExternalStore` snapshot rule (critical)
@@ -136,6 +165,20 @@ gsap  lenis  lucide-react
 
 ---
 
+## Skip link (app/layout.tsx)
+
+First focusable element in `<body>`, targeting `<main id="main">`. Uses Tailwind's
+`sr-only` / `focus:not-sr-only` — do **not** hand-roll a clip-path class or add
+anything to `globals.css` for it.
+
+**Gotcha:** it must outrank the navbar. `Navbar` is `sticky top-0 z-50` and comes
+*after* the link in DOM order, so at an equal `z-50` the header paints over the
+focused link and hides it inside its 64px band. Verified with
+`document.elementFromPoint` at the link's center returning `HEADER`. Use
+`focus:z-[60]`.
+
+---
+
 ## Other pages
 
 - Inner pages use `AnimatedSection` (IntersectionObserver + CSS `.reveal`) — not GSAP.
@@ -149,6 +192,8 @@ gsap  lenis  lucide-react
 
 | Commit | Date | Summary |
 |--------|------|---------|
+| `3a7f412` | Aug 15 | Mobile menu collapses to 0px — killed the phantom click strip |
+| *(this branch)* | Aug 15 | QA fixes: heading line spaces, fuel surcharge cell, 44px tap target, skip link |
 | `41b6391` | Jul 3 | Hydration crash fix: cache `useSyncExternalStore` snapshot |
 | `5c6a9a2` | Jul 3 | react-hooks lint cleanup (introduced the `useSyncExternalStore` switch) |
 | `c8719a7` | Jul 3 | Cinematic 3D scroll homepage rewrite |
