@@ -237,7 +237,7 @@ function ActPod() {
           </Reveal>
 
           <Reveal delay={0.35} className="mt-10">
-            <div className="glass-cosmic mx-auto grid max-w-2xl grid-cols-2 gap-y-8 p-8 md:grid-cols-4">
+            <div className="glass-cosmic mx-auto grid max-w-2xl grid-cols-2 gap-y-8 p-8 md:grid-cols-5">
               <div>
                 <p
                   className="font-mono text-2xl font-semibold text-text-primary"
@@ -262,6 +262,18 @@ function ActPod() {
                   $12.00/T
                 </p>
                 <p className="hud-label mt-2">ROUTE RATE</p>
+              </div>
+              <div>
+                <p
+                  className="font-mono text-2xl font-semibold text-text-primary"
+                  data-ticker
+                  data-value="4"
+                  data-decimals="0"
+                  data-suffix="%"
+                >
+                  4%
+                </p>
+                <p className="hud-label mt-2">FUEL SURCHARGE</p>
               </div>
               <div>
                 <p
