@@ -326,7 +326,7 @@ const AGENTS = [
   {
     icon: <CalendarClock size={17} />,
     name: "DISPATCH",
-    blurb: "Plans tomorrow's loads every evening and suggests assignments.",
+    blurb: "Plans tomorrow’s loads every evening and suggests assignments.",
   },
   {
     icon: <Activity size={17} />,
