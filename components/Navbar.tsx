@@ -94,34 +94,38 @@ export default function Navbar() {
         className={`md:hidden mobile-menu ${open ? "mobile-menu-open" : ""}`}
         aria-hidden={!open}
       >
-        <div
-          className="border-t px-6 py-5 flex flex-col gap-5"
-          style={{
-            borderColor: "rgba(20,18,14,0.06)",
-            background: "#ffffff",
-          }}
-        >
-          {links.map((l) => (
+        {/* Plain wrapper: the grid child must stay padding/border-free so the
+            collapsed row can reach zero height. Styling goes inside it. */}
+        <div>
+          <div
+            className="border-t px-6 py-5 flex flex-col gap-5"
+            style={{
+              borderColor: "rgba(20,18,14,0.06)",
+              background: "#ffffff",
+            }}
+          >
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                tabIndex={open ? 0 : -1}
+                className={`nav-link text-sm font-medium ${
+                  pathname === l.href ? "active" : ""
+                }`}
+              >
+                {l.label}
+              </Link>
+            ))}
             <Link
-              key={l.href}
-              href={l.href}
+              href="/contact"
               onClick={() => setOpen(false)}
               tabIndex={open ? 0 : -1}
-              className={`nav-link text-sm font-medium ${
-                pathname === l.href ? "active" : ""
-              }`}
+              className="btn-primary text-sm px-5 py-2.5 text-center"
             >
-              {l.label}
+              Book a Demo →
             </Link>
-          ))}
-          <Link
-            href="/contact"
-            onClick={() => setOpen(false)}
-            tabIndex={open ? 0 : -1}
-            className="btn-primary text-sm px-5 py-2.5 text-center"
-          >
-            Book a Demo →
-          </Link>
+          </div>
         </div>
       </div>
     </header>

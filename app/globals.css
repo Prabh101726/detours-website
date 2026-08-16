@@ -426,27 +426,42 @@ body::before {
   }
 }
 
-/* ─── Mobile menu ─── */
-.mobile-menu {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  overflow: hidden;
-  transition: grid-template-rows 180ms ease-out, opacity 150ms ease-out;
-}
-
-.mobile-menu > * {
-  min-height: 0;
-}
-
-.mobile-menu-open {
-  grid-template-rows: 1fr;
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
+/* ─── Mobile menu ───
+   Layered so Tailwind's `md:hidden` (in @layer utilities) wins at ≥768px.
+   Unlayered rules beat every layered one regardless of order or specificity,
+   so leaving these outside a layer left the menu displayed on desktop. */
+@layer components {
   .mobile-menu {
-    transition: none;
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+    transition: grid-template-rows 180ms ease-out, opacity 150ms ease-out;
+  }
+
+  /* The direct child must carry no padding or border. A `0fr` row still floors
+     at the child's min-content height, and min-height:0 does not discount
+     padding/border — py-5 + border-t kept the collapsed menu 41px tall. All
+     spacing lives one level deeper, inside this wrapper. */
+  .mobile-menu > * {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Belt and braces: a closed menu never takes clicks, even mid-transition. */
+  .mobile-menu:not(.mobile-menu-open) {
+    pointer-events: none;
+  }
+
+  .mobile-menu-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu {
+      transition: none;
+    }
   }
 }
 
