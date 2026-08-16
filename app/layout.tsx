@@ -137,9 +137,17 @@ export default function RootLayout({
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-text-primary focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <Navbar />
         <div className="overflow-x-hidden">
-          <main className="relative z-10">{children}</main>
+          <main id="main" className="relative z-10">
+            {children}
+          </main>
           <Footer />
         </div>
         <Analytics mode="production" />
