@@ -207,13 +207,26 @@ focused link and hides it inside its 64px band. Verified with
 
 ```bash
 npm run build          # must pass; no Big Shoulders font override warning
+npm run test:e2e       # build + Playwright regressions (SSR, click-strip, overflow, a11y)
+npm run storybook      # isolate Navbar / Footer / GlassCard / FeatureCard / StaggerHeading
+npm run build-storybook
 npm run dev            # local preview
 
-# SSR check (production server)
+# Manual SSR check still valid (production server):
 npm run build && npm run start -- -p 3456
 curl -s http://localhost:3456/ | grep -c "OPERATING"  # expect ≥1 (headline is per-word mask spans — "OPERATING SYSTEM" is never contiguous in HTML)
 curl -s http://localhost:3456/ | grep "Loading"                # expect no match in <main>
 ```
+
+### 2026 design infra (no redesign)
+
+| Tool | Role |
+|------|------|
+| Playwright (`e2e/`) | Encodes AGENTS.md gates: SSR story copy, mobile-menu click-strip at 390/768/1440/1920, 390px overflow, skip link + 44×44 toggle |
+| Storybook (`.storybook/`) | Same `globals.css` + brand fonts; stories for `Navbar`, `Footer`, `GlassCard`, `FeatureCard`, `StaggerHeading` only — **not** WebGL/`HomeEnhancer` |
+| Tailwind v4 | Every custom rule in `globals.css` lives in `@layer base` or `@layer components` (keyframes may stay unlayered) |
+
+After homepage / CSS / Navbar changes: `npm run build && npm run test:e2e`.
 
 ---
 
@@ -224,4 +237,4 @@ curl -s http://localhost:3456/ | grep "Loading"                # expect no match
 
 ---
 
-*Last updated: Jul 3, 2026 — after `41b6391` hydration-crash fix (verified live).*
+*Last updated: Sep 13, 2026 — Playwright + Storybook design infra (no visual redesign).*

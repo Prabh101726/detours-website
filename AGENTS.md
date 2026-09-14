@@ -32,7 +32,10 @@ Run these; all must pass (evidence, not assumption):
 npm run build   # must pass — this is the TS gate; no font-override warnings
                 # do NOT block on eslint — it hangs in this repo
 
-# SSR check (build once, then):
+# Preferred: Playwright encodes the SSR / click-strip / overflow / a11y gates
+npm run test:e2e
+
+# Manual SSR check (if not using Playwright):
 npm run start -- -p 3456
 curl -s http://localhost:3456/ | grep -c "OPERATING"   # ≥1 → story copy is server-rendered
 curl -s http://localhost:3456/ | grep "Loading"        # must NOT match inside <main>
