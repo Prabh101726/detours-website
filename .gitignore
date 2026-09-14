@@ -12,6 +12,11 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/storybook-static/
 
 # next.js
 /.next/
@@ -56,3 +61,5 @@ next-env.d.ts
 # gstack project-local skills (symlinks into ~/dev/gstack, machine-specific)
 .claude/skills/
 .gstack/
+
+*storybook.log

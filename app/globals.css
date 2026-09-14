@@ -46,256 +46,39 @@
   --background-image-hero-glow: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 106, 0, 0.10) 0%, transparent 70%);
 }
 
-/* Reset lives in @layer base so Tailwind's utilities (mx-auto, px-*, py-*)
-   still win — an UNLAYERED `* { margin:0; padding:0 }` beats every layered
-   utility regardless of specificity and silently kills centering/padding. */
-@layer base {
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* Lenis smooth-scroll owns scrolling on the homepage; native smooth would fight it */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-/* Kill any horizontal overflow at the root so every page stays centered.
-   overflow-x: clip (vs hidden) does not break the sticky navbar and does
-   not create a scroll container. */
-html,
-body {
-  overflow-x: clip;
-  max-width: 100%;
-}
-
-body {
-  position: relative;
-  width: 100%;
-  background-color: #fcfbf9;
-  /* soft orange-tinted gradient backdrop so the glass reads on white */
-  background-image:
-    radial-gradient(38% 42% at 8% 12%, rgba(255, 106, 0, 0.10), transparent 70%),
-    radial-gradient(44% 46% at 92% 6%, rgba(255, 168, 72, 0.14), transparent 72%),
-    radial-gradient(52% 52% at 82% 84%, rgba(255, 106, 0, 0.07), transparent 70%),
-    radial-gradient(42% 44% at 12% 92%, rgba(255, 138, 43, 0.05), transparent 72%);
-  background-attachment: fixed;
-  color: #16161a;
-  font-family: var(--font-archivo), system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Noise texture overlay — sits above background, below content */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 220px 220px;
-  opacity: 0.03;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ─── Display heading helper — condensed industrial signage ─── */
-.display-heading {
-  font-family: var(--font-bigshoulders), system-ui, sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 0.92;
-}
-
-/* ─── HUD label — mono, tracked-out, machine voice ─── */
-.hud-label {
-  font-family: var(--font-jetbrains), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: #6f6f78;
-}
-
-.hud-label--orange {
-  color: #d35400;
-}
-
-/* ─── Glass utilities (light, frosted) ─── */
-.glass {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  border-radius: 16px;
-  box-shadow: 0 12px 34px rgba(60, 45, 20, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-}
-
-.glass-sm {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(12px) saturate(1.3);
-  -webkit-backdrop-filter: blur(12px) saturate(1.3);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(60, 45, 20, 0.05);
-}
-
-/* Deeper glass with warm tint — for hero widgets and featured cards */
-.glass-cosmic {
-  background: rgba(255, 255, 255, 0.62);
-  backdrop-filter: blur(26px) saturate(1.5);
-  -webkit-backdrop-filter: blur(26px) saturate(1.5);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  box-shadow: 0 18px 46px rgba(60, 45, 20, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-/* ─── Sparkle field — faint warm specks on white ─── */
-.star-field {
-  background-image:
-    radial-gradient(circle, rgba(255, 106, 0, 0.18) 1px, transparent 1px),
-    radial-gradient(circle, rgba(20, 18, 14, 0.10) 1px, transparent 1px),
-    radial-gradient(circle, rgba(255, 168, 72, 0.16) 1.5px, transparent 1.5px);
-  background-size: 120px 120px, 200px 200px, 320px 320px;
-  background-position: 0 0, 60px 80px, 140px 40px;
-}
-
-/* ─── Dot grid background helper ─── */
-.dot-grid {
-  background-image: var(--background-image-dot-grid);
-  background-size: 28px 28px;
-}
-
-/* ─── Blueprint grid — faint engineering paper lines ─── */
-.blueprint-grid {
-  background-image:
-    linear-gradient(rgba(20, 18, 14, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 18, 14, 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
-}
-
-/* ─── Data flow animation (driver -> owner) ─── */
-.data-flow-rail {
-  position: relative;
-  width: 160px;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 106, 0, 0.25), rgba(20, 18, 14, 0.15));
-}
-
-.data-flow-packet {
-  position: absolute;
-  top: 50%;
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  transform: translateY(-50%);
-  background: #ff6a00;
-  box-shadow: 0 0 16px rgba(255, 106, 0, 0.5);
-}
-
-.data-flow-packet--one {
-  animation: data-flow 2s linear infinite;
-}
-
-.data-flow-packet--two {
-  animation: data-flow 2s linear infinite;
-  animation-delay: 1s;
-}
-
-.data-flow-icon {
-  position: absolute;
-  right: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(255, 106, 0, 0.7);
-}
-
-/* ─── Orange glow utility ─── */
-.glow-orange {
-  box-shadow: 0 0 20px rgba(255, 106, 0, 0.22), 0 0 60px rgba(255, 106, 0, 0.10);
-}
-
-/* ─── Nav link utility ─── */
-.nav-link {
-  color: #6f6f78;
-  transition: color 150ms ease;
-  cursor: pointer;
-}
-.nav-link:hover {
-  color: #16161a;
-}
-.nav-link.active {
-  color: #ff6a00;
-}
-
-/* ─── Marquee animation ─── */
+/* Keyframes are not cascade competitors for utilities — keep unlayered. */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-
-.marquee-track {
-  display: flex;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-/* ─── Floating orb bob ─── */
 @keyframes float-orb {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-22px); }
 }
-
-/* ─── Slow spin for orb rings / tesseract ─── */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
-
 @keyframes spin-slow-reverse {
   from { transform: rotate(0deg); }
   to   { transform: rotate(-360deg); }
 }
-
-/* ─── Tesseract rotation ─── */
 @keyframes tesseract-rotateX {
   from { transform: rotateX(0deg) rotateY(0deg); }
   to   { transform: rotateX(360deg) rotateY(180deg); }
 }
-
 @keyframes tesseract-rotateY {
   from { transform: rotateY(0deg) rotateX(0deg); }
   to   { transform: rotateY(360deg) rotateX(90deg); }
 }
-
-/* ─── Sparkle pulse ─── */
 @keyframes star-pulse {
   0%, 100% { opacity: 0.25; }
   50%       { opacity: 0.45; }
 }
-
-/* ─── Grid lines fade in ─── */
 @keyframes lines-in {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-
 @keyframes data-flow {
   from {
     left: -6px;
@@ -312,125 +95,322 @@ body::before {
     opacity: 0;
   }
 }
-
-/* ─── Status dot pulse (HUD chips) ─── */
 @keyframes status-ping {
   0%   { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.5); }
   70%  { box-shadow: 0 0 0 9px rgba(255, 106, 0, 0); }
   100% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0); }
 }
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #ff6a00;
-}
-
-/* ─── Entrance animations ─── */
 @keyframes rise-in {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes slide-in-right {
   from { opacity: 0; transform: translateX(28px); }
   to   { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes pulse-soft {
   0%, 100% { transform: scale(1); }
   50%       { transform: scale(1.04); }
 }
 
-/* IntersectionObserver-driven reveal (AnimatedSection). Uses transition rather
- * than keyframes so we can stagger via inline transition-delay. */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 550ms ease-out, transform 550ms ease-out;
-  will-change: opacity, transform;
+/* Reset + document chrome in @layer base so Tailwind utilities still win —
+   an UNLAYERED `* { margin:0; padding:0 }` beats every layered utility. */
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Lenis smooth-scroll owns scrolling on the homepage; native smooth would fight it */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  /* Kill any horizontal overflow at the root so every page stays centered.
+     overflow-x: clip (vs hidden) does not break the sticky navbar and does
+     not create a scroll container. */
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  body {
+    position: relative;
+    width: 100%;
+    background-color: var(--color-brand-bg);
+    /* soft orange-tinted gradient backdrop so the glass reads on white */
+    background-image:
+      radial-gradient(38% 42% at 8% 12%, rgba(255, 106, 0, 0.10), transparent 70%),
+      radial-gradient(44% 46% at 92% 6%, rgba(255, 168, 72, 0.14), transparent 72%),
+      radial-gradient(52% 52% at 82% 84%, rgba(255, 106, 0, 0.07), transparent 70%),
+      radial-gradient(42% 44% at 12% 92%, rgba(255, 138, 43, 0.05), transparent 72%);
+    background-attachment: fixed;
+    color: var(--color-text-primary);
+    font-family: var(--font-archivo), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Noise texture overlay — sits above background, below content */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 220px 220px;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
-.reveal-in {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* All component classes must live in @layer components. Unlayered rules beat
+   every layered utility (Aug 15 mobile-menu / md:hidden incident). */
+@layer components {
+  /* ─── Display heading helper — condensed industrial signage ─── */
+  .display-heading {
+    font-family: var(--font-bigshoulders), system-ui, sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.92;
+  }
 
-/* ─── All motion-sensitive animations fire only when motion is OK ─── */
-@media (prefers-reduced-motion: no-preference) {
+  /* ─── HUD label — mono, tracked-out, machine voice ─── */
+  .hud-label {
+    font-family: var(--font-jetbrains), ui-monospace, monospace;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-text-muted);
+  }
+
+  .hud-label--orange {
+    color: var(--color-brand-orange-ink);
+  }
+
+  /* ─── Glass utilities (light, frosted) ─── */
+  .glass {
+    background: var(--color-brand-card);
+    backdrop-filter: blur(var(--blur-glass)) saturate(1.4);
+    -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    box-shadow: 0 12px 34px rgba(60, 45, 20, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  .glass-sm {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px) saturate(1.3);
+    -webkit-backdrop-filter: blur(12px) saturate(1.3);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(60, 45, 20, 0.05);
+  }
+
+  /* Deeper glass with warm tint — for hero widgets and featured cards */
+  .glass-cosmic {
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(var(--blur-glass-cosmic)) saturate(1.5);
+    -webkit-backdrop-filter: blur(var(--blur-glass-cosmic)) saturate(1.5);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 18px 46px rgba(60, 45, 20, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  /* ─── Sparkle field — faint warm specks on white ─── */
+  .star-field {
+    background-image:
+      radial-gradient(circle, rgba(255, 106, 0, 0.18) 1px, transparent 1px),
+      radial-gradient(circle, rgba(20, 18, 14, 0.10) 1px, transparent 1px),
+      radial-gradient(circle, rgba(255, 168, 72, 0.16) 1.5px, transparent 1.5px);
+    background-size: 120px 120px, 200px 200px, 320px 320px;
+    background-position: 0 0, 60px 80px, 140px 40px;
+  }
+
+  /* ─── Dot grid background helper ─── */
+  .dot-grid {
+    background-image: var(--background-image-dot-grid);
+    background-size: 28px 28px;
+  }
+
+  /* ─── Blueprint grid — faint engineering paper lines ─── */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(20, 18, 14, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20, 18, 14, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* ─── Data flow animation (driver -> owner) ─── */
+  .data-flow-rail {
+    position: relative;
+    width: 160px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255, 106, 0, 0.25), rgba(20, 18, 14, 0.15));
+  }
+
+  .data-flow-packet {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    transform: translateY(-50%);
+    background: var(--color-brand-orange);
+    box-shadow: 0 0 16px rgba(255, 106, 0, 0.5);
+  }
+
+  .data-flow-packet--one {
+    animation: data-flow 2s linear infinite;
+  }
+
+  .data-flow-packet--two {
+    animation: data-flow 2s linear infinite;
+    animation-delay: 1s;
+  }
+
+  .data-flow-icon {
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 106, 0, 0.7);
+  }
+
+  /* ─── Orange glow utility ─── */
+  .glow-orange {
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.22), 0 0 60px rgba(255, 106, 0, 0.10);
+  }
+
+  /* ─── Nav link utility ─── */
+  .nav-link {
+    color: var(--color-text-muted);
+    transition: color 150ms ease;
+    cursor: pointer;
+  }
+  .nav-link:hover {
+    color: var(--color-text-primary);
+  }
+  .nav-link.active {
+    color: var(--color-brand-orange);
+  }
+
   .marquee-track {
-    animation: marquee 28s linear infinite;
+    display: flex;
   }
 
-  .grid-lines-fade {
-    animation: lines-in 1.8s ease-out 0.4s both;
-  }
-
-  .animate-float-orb {
-    animation: float-orb 7s ease-in-out infinite;
-  }
-
-  .animate-spin-slow {
-    animation: spin-slow 18s linear infinite;
-  }
-
-  .animate-spin-slow-reverse {
-    animation: spin-slow-reverse 24s linear infinite;
-  }
-
-  .animate-star-pulse {
-    animation: star-pulse 6s ease-in-out infinite;
-  }
-
-  .animate-pulse-soft {
-    animation: pulse-soft 3s ease-in-out infinite;
+  .marquee-track:hover {
+    animation-play-state: paused;
   }
 
   .status-dot {
-    animation: status-ping 2.2s ease-out infinite;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--color-brand-orange);
   }
 
-  .hero-rise {
-    opacity: 0;
-    animation: rise-in 0.55s ease-out forwards;
-  }
-
-  .hero-slide-in {
-    opacity: 0;
-    animation: slide-in-right 0.55s ease-out forwards;
-  }
-}
-
-/* ─── Reduce motion: stop all decorative animations + reveal with no transform ─── */
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track,
-  .grid-lines-fade,
-  .animate-float-orb,
-  .animate-spin-slow,
-  .animate-spin-slow-reverse,
-  .animate-star-pulse,
-  .animate-pulse-soft,
-  .status-dot,
-  .hero-rise,
-  .hero-slide-in,
-  .data-flow-packet--one,
-  .data-flow-packet--two {
-    animation: none !important;
-  }
-
+  /* IntersectionObserver-driven reveal (AnimatedSection). Uses transition rather
+   * than keyframes so we can stagger via inline transition-delay. */
   .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 550ms ease-out, transform 550ms ease-out;
+    will-change: opacity, transform;
   }
-}
 
-/* ─── Mobile menu ───
-   Layered so Tailwind's `md:hidden` (in @layer utilities) wins at ≥768px.
-   Unlayered rules beat every layered one regardless of order or specificity,
-   so leaving these outside a layer left the menu displayed on desktop. */
-@layer components {
+  .reveal-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── All motion-sensitive animations fire only when motion is OK ─── */
+  @media (prefers-reduced-motion: no-preference) {
+    .marquee-track {
+      animation: marquee 28s linear infinite;
+    }
+
+    .grid-lines-fade {
+      animation: lines-in 1.8s ease-out 0.4s both;
+    }
+
+    .animate-float-orb {
+      animation: float-orb 7s ease-in-out infinite;
+    }
+
+    .animate-spin-slow {
+      animation: spin-slow 18s linear infinite;
+    }
+
+    .animate-spin-slow-reverse {
+      animation: spin-slow-reverse 24s linear infinite;
+    }
+
+    .animate-star-pulse {
+      animation: star-pulse 6s ease-in-out infinite;
+    }
+
+    .animate-pulse-soft {
+      animation: pulse-soft 3s ease-in-out infinite;
+    }
+
+    .status-dot {
+      animation: status-ping 2.2s ease-out infinite;
+    }
+
+    .hero-rise {
+      opacity: 0;
+      animation: rise-in 0.55s ease-out forwards;
+    }
+
+    .hero-slide-in {
+      opacity: 0;
+      animation: slide-in-right 0.55s ease-out forwards;
+    }
+  }
+
+  /* ─── Reduce motion: stop all decorative animations + reveal with no transform ─── */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .grid-lines-fade,
+    .animate-float-orb,
+    .animate-spin-slow,
+    .animate-spin-slow-reverse,
+    .animate-star-pulse,
+    .animate-pulse-soft,
+    .status-dot,
+    .hero-rise,
+    .hero-slide-in,
+    .data-flow-packet--one,
+    .data-flow-packet--two {
+      animation: none !important;
+    }
+
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* ─── Mobile menu ───
+     Layered so Tailwind's `md:hidden` (in @layer utilities) wins at ≥768px. */
   .mobile-menu {
     display: grid;
     grid-template-rows: 0fr;
@@ -463,90 +443,90 @@ body::before {
       transition: none;
     }
   }
-}
 
-/* ─── CTA button — solid orange on white ─── */
-.btn-primary {
-  background: #d35400;
-  color: #ffffff;
-  font-weight: 700;
-  border: 1px solid #d35400;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 10px 26px rgba(211, 84, 0, 0.30);
-  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
-}
+  /* ─── CTA button — solid orange on white ─── */
+  .btn-primary {
+    background: var(--color-brand-orange-ink);
+    color: #ffffff;
+    font-weight: 700;
+    border: 1px solid var(--color-brand-orange-ink);
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(211, 84, 0, 0.30);
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
+  }
 
-.btn-primary:hover {
-  background: #e05a00;
-  border-color: #e05a00;
-  box-shadow: 0 14px 34px rgba(211, 84, 0, 0.38);
-  transform: translateY(-1px);
-}
+  .btn-primary:hover {
+    background: #e05a00;
+    border-color: #e05a00;
+    box-shadow: 0 14px 34px rgba(211, 84, 0, 0.38);
+    transform: translateY(-1px);
+  }
 
-.btn-primary:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.40);
-}
+  .btn-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.40);
+  }
 
-/* Secondary / ghost button on white */
-.btn-ghost {
-  background: transparent;
-  color: #16161a;
-  font-weight: 700;
-  border: 2px solid #16161a;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-}
-.btn-ghost:hover {
-  background: #16161a;
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-.btn-ghost:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(20, 18, 14, 0.25);
-}
+  /* Secondary / ghost button on white */
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-text-primary);
+    font-weight: 700;
+    border: 2px solid var(--color-text-primary);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .btn-ghost:hover {
+    background: var(--color-text-primary);
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+  .btn-ghost:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(20, 18, 14, 0.25);
+  }
 
-/* ─── Legal pages (privacy / terms) — dark text on white ─── */
-.privacy-body *,
-.terms-body * {
-  color: #2a2a30 !important;
-  background: transparent !important;
-}
-.privacy-body a,
-.privacy-body a *,
-.terms-body a,
-.terms-body a * {
-  color: #d35400 !important;
-  word-break: break-word;
-}
-.privacy-body h1,
-.terms-body h1 {
-  display: none !important;
-}
-.privacy-body h2,
-.terms-body h2 {
-  color: #16161a !important;
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 2rem 0 0.5rem;
-}
-.privacy-body h3,
-.terms-body h3 {
-  color: #33343a !important;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin: 1.5rem 0 0.25rem;
-}
-.privacy-body ul,
-.terms-body ul {
-  list-style-type: square;
-  padding-left: 1.5rem;
-  margin: 0.5rem 0;
-}
-.privacy-body li,
-.terms-body li {
-  margin-bottom: 0.25rem;
+  /* ─── Legal pages (privacy / terms) — dark text on white ─── */
+  .privacy-body *,
+  .terms-body * {
+    color: #2a2a30 !important;
+    background: transparent !important;
+  }
+  .privacy-body a,
+  .privacy-body a *,
+  .terms-body a,
+  .terms-body a * {
+    color: var(--color-brand-orange-ink) !important;
+    word-break: break-word;
+  }
+  .privacy-body h1,
+  .terms-body h1 {
+    display: none !important;
+  }
+  .privacy-body h2,
+  .terms-body h2 {
+    color: var(--color-text-primary) !important;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 2rem 0 0.5rem;
+  }
+  .privacy-body h3,
+  .terms-body h3 {
+    color: #33343a !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.25rem;
+  }
+  .privacy-body ul,
+  .terms-body ul {
+    list-style-type: square;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+  .privacy-body li,
+  .terms-body li {
+    margin-bottom: 0.25rem;
+  }
 }
