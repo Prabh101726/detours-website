@@ -37,29 +37,6 @@ Do **not** collapse the homepage into one `"use client"` file.
 
 Details and past incidents: `docs/claude-reference.md`.
 
-## Environment variables
-
-Copy into `.env.local` (gitignored) and into **Vercel → Settings → Environment Variables** for production.
-
-### Contact form (Gmail SMTP)
-
-| Variable | Description |
-|----------|-------------|
-| `GMAIL_USER` | Gmail address used for SMTP |
-| `GMAIL_APP_PASSWORD` | [Google App Password](https://support.google.com/accounts/answer/185833) (not your normal password) |
-| `GMAIL_PASSWORD` | Optional alias for `GMAIL_APP_PASSWORD` |
-| `CONTACT_TO_EMAIL` | Inbox that receives demo requests |
-
-The form also uses a honeypot + IP rate limit. Cloudflare Turnstile is wired but **optional** — enable only if spam becomes frequent (`NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY`).
-
-### Site URL
-
-| Variable | Description |
-|----------|-------------|
-| `NEXT_PUBLIC_SITE_URL` | Canonical origin (default `https://detours-app.com`) |
-
-Never commit credentials.
-
 ## Fonts
 
 Loaded via `next/font` in `app/layout.tsx`:
