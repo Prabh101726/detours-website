@@ -66,12 +66,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Detours" }],
   creator: "Detours",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
-    url: SITE_URL,
     siteName: "Detours",
     title: "Detours — Fleet Management for Growing Ontario Fleets",
     description:

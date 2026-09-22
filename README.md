@@ -1,49 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Detours Website
 
-## Getting Started
+Marketing site for **Detours** — fleet operations software for growing Ontario aggregate and dump fleets (SRV Freight Inc.).
 
-First, run the development server:
+| | |
+|---|---|
+| **Live** | https://detours-app.com |
+| **Product app** | https://app.detours-app.com |
+| **Repo** | `~/dev/detours-website` |
+| **Deploy** | Every push to `main` → Vercel production (no staging) |
+
+Agent / architecture source of truth: [`AGENTS.md`](./AGENTS.md) · [`docs/claude-reference.md`](./docs/claude-reference.md)
+
+---
+
+## 2026 stack
+
+This site is built on the **2026 default marketing-site stack**. Framework choices are intentional — gaps are configuration and homepage JS budget, not the platform.
+
+| Layer | What we use | Why it fits 2026 |
+|-------|-------------|------------------|
+| **Framework** | [Next.js](https://nextjs.org) **16.2** App Router | RSC by default, Metadata API, static prerender on Vercel |
+| **UI runtime** | [React](https://react.dev) **19.2** + TypeScript (strict) | Concurrent UI, server/client split without a second framework |
+| **CSS** | [Tailwind CSS](https://tailwindcss.com) **v4** (`@theme`, `@layer`) | Utility-first; all custom rules must live in `@layer base` / `@layer components` |
+| **Host / CDN** | [Vercel](https://vercel.com) | Edge HIT caching, HSTS, automatic `main` deploys |
+| **Fonts** | `next/font` — Big Shoulders, Archivo, JetBrains Mono | Self-hosted with metric-matched fallbacks (CLS hygiene) |
+| **Icons** | [Lucide React](https://lucide.dev) | Tree-shakeable; listed in `optimizePackageImports` |
+| **Homepage motion** | [GSAP](https://gsap.com) ScrollTrigger + [Lenis](https://lenis.darkroom.engineering) | Scroll-driven story; skipped under `prefers-reduced-motion` for Lenis/GSAP |
+| **3D (homepage only)** | [Three.js](https://threejs.org) + [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) + Drei | Fixed WebGL canvas; not on marketing subpages |
+| **Analytics / CWV** | Vercel Analytics + Speed Insights + `WebVitalsReporter` | Field LCP / INP / CLS — judge over 24–48h, not instantly after deploy |
+| **SEO** | Metadata API, `sitemap.ts`, `robots.ts`, OG image route, JSON-LD | Per-route `canonical` + `og:url` (never pin every page to `/`) |
+| **Legal** | Privacy, Cookie Notice, Terms, Account Agreement, Driver Disclosure | Cookie Notice at `/cookies` (linked from Privacy + footer) |
+| **Contact** | Server Action + Nodemailer (Gmail SMTP) | Honeypot + IP rate limit; Turnstile optional if spam rises |
+| **QA** | [Playwright](https://playwright.dev) CI + [Storybook](https://storybook.js.org) 10 | Encodes AGENTS regression gates; Storybook for stable UI only |
+| **Email (future)** | Prefer Resend / Postmark when convenient | Gmail SMTP is fine until volume or ops pain says otherwise |
+
+### Explicit non-goals
+
+- **Not** Astro, WordPress, or a CMS — until someone besides the founder edits copy weekly  
+- **Not** Turborepo — single marketing repo  
+- **Not** collapsing the homepage into one `"use client"` file — that already caused a production outage  
+
+---
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | Purpose |
+|---------|---------|
+| `npm run build` | Production build — TypeScript gate; must pass before push |
+| `npm run start` | Serve the production build locally |
+| `npm run test:e2e` | Build + Playwright (SSR story copy, mobile click-strip, 390px overflow, skip link, 44×44 toggle) |
+| `npm run test:e2e:ui` | Playwright UI mode |
+| `npm run storybook` | Isolate Navbar, Footer, GlassCard, FeatureCard, StaggerHeading against live tokens |
+| `npm run build-storybook` | Static Storybook build |
 
-## Contact form (Gmail SMTP)
+Do **not** block on `npm run lint` — ESLint hangs in this repo.
 
-The **Get in touch** form sends email via Gmail. Set these in `.env.local` (local) and in **Vercel → Project → Settings → Environment Variables** (production):
+---
 
-| Variable | Description |
-|----------|-------------|
-| `GMAIL_USER` | Gmail address used to sign in to SMTP (e.g. `you@gmail.com`). |
-| `GMAIL_APP_PASSWORD` | [Google App Password](https://support.google.com/accounts/answer/185833) (16 characters). **Not** your normal Gmail password—turn on 2-Step Verification, then create an app password for Mail. |
-| `GMAIL_PASSWORD` | Optional alias for `GMAIL_APP_PASSWORD` if you prefer that name. |
-| `CONTACT_TO_EMAIL` | Inbox that receives submissions (often the same as `GMAIL_USER`). |
+## Homepage architecture
 
-Never commit real credentials to git.
+The homepage is a **server + client split** for SEO and Core Web Vitals.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Piece | Role |
+|-------|------|
+| `app/page.tsx` | Server entry — `#home-story` wrapper |
+| `StorySections.tsx` | **Server** — all story acts and copy (must appear in SSR HTML) |
+| `HomeEnhancer.tsx` | **Client** — WebGL canvas, Lenis, GSAP ScrollTrigger |
+| `Stagger.tsx` | Server-safe heading masks (`data-stagger` / `data-reveal`) |
+| `SceneCanvas.tsx` | R3F canvas; camera driven by `scrollBus.p` |
 
-## Learn More
+**Story acts:** Hero → Dispatch → Live Tracking → POD/Invoice → AI Agents → Finale.
 
-To learn more about Next.js, take a look at the following resources:
+### Load-bearing rules
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Use `svh` (not `dvh`) for viewport heights  
+- Never re-add `app/loading.tsx` with a tall placeholder  
+- Never override `--font-*` in `globals.css` with plain system stacks  
+- Every custom CSS rule belongs in an `@layer` (unlayered CSS beats all Tailwind utilities)  
+- Interactive controls ≥ 44×44; skip link is first focusable in `<body>`  
+- `StaggerHeading` must emit real spaces between word/line spans so `textContent` stays readable  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Full incident timeline and verification notes: `docs/claude-reference.md`.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Site map (marketing)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Route | Purpose |
+|-------|---------|
+| `/` | Cinematic homepage story |
+| `/fleet-owners` | Owner-focused pitch |
+| `/features` | Product capabilities |
+| `/screens` | Driver ↔ owner flow |
+| `/ai-automation` | AI POD / invoice / maintenance |
+| `/pricing` | Plans |
+| `/about` | Company |
+| `/contact` | Demo / lead form |
+| `/privacy`, `/cookies`, `/terms`, … | Legal |
+
+---
+
+## Design tokens
+
+Brand system lives in `app/globals.css` `@theme`: orange accent (`#ff6a00` / ink `#d35400`), warm paper background (`#fcfbf9`), glass surfaces, display / body / mono font roles. Prefer tokens over new hard-coded hex when the value already exists.
+
+---
+
+## Quality bar (2026)
+
+Target field metrics (Speed Insights): **LCP ≤ 2.5s**, **INP ≤ 200ms**, **CLS ≤ 0.1**.
+
+Before push on homepage / CSS / nav work:
+
+```bash
+npm run build && npm run test:e2e
+```
+
+After push to `main`, confirm the live HTML contains a string unique to your change (not a guessed build hash).
+
+---
+
+## Deploy
+
+1. Merge to `main`  
+2. Vercel builds in ~1–2 minutes  
+3. Hard-refresh https://detours-app.com  
+4. Confirm story copy renders (not the “We hit a bump” error page)  
+
+Risky or multi-step work: use a branch and PR; `main` is production.

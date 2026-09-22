@@ -4,11 +4,12 @@ import Link from "next/link";
 import { MapPin, Smartphone, ShieldCheck } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import GlassCard from "@/components/GlassCard";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/about", {
   title: "About — Detours Fleet Management",
   description: "Built in Ontario for Ontario trucking fleets.",
-};
+});
 
 const iconProps = { className: "w-6 h-6", style: { color: "#ff6a00" }, "aria-hidden": true as const };
 

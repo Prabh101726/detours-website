@@ -9,12 +9,13 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import FeatureCard from "@/components/FeatureCard";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/features", {
   title: "Features — Detours Fleet Management",
   description:
     "Dispatch, POD, fuel tracking, driver payroll, HST invoicing, and MTO pre-trip inspections — all in one app.",
-};
+});
 
 const iconProps = { className: "w-5 h-5", style: { color: "#ff6a00" } };
 

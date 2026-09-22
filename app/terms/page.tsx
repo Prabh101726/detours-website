@@ -1,10 +1,11 @@
 // app/terms/page.tsx
 import type { Metadata } from "next";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/terms", {
   title: "Terms of Service — Detours Fleet Management",
   description: "Terms governing your use of the Detours fleet management platform.",
-};
+});
 
 const termsHtml = `
 <div style="color:#f1f5f9">

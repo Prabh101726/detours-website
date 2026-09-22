@@ -228,6 +228,21 @@ curl -s http://localhost:3456/ | grep "Loading"                # expect no match
 
 After homepage / CSS / Navbar changes: `npm run build && npm run test:e2e`.
 
+### Contact form abuse controls
+
+`sendContactEmail` already has:
+
+- Honeypot field (`website`) — bots that fill it get a fake success  
+- In-memory IP rate limit — 5 submissions / hour / IP  
+
+**Cloudflare Turnstile is optional and deferred.** The form is not being spammed yet. Do **not** push the owner to sign up at https://dash.cloudflare.com or add Turnstile keys unless spam volume becomes a problem. When that happens:
+
+1. Create a free Turnstile widget (hostname `detours-app.com`)  
+2. Set Vercel env: `NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY`  
+3. Redeploy — the widget and server verify path are already wired in `ContactForm` / `lib/turnstile.ts`
+
+Without keys, Turnstile is skipped (server warning in production only); honeypot + rate limit still run.
+
 ---
 
 ## Site URL

@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRightLeft, BellRing, FileCheck2, Route, Smartphone, Truck } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/screens", {
   title: "Screens — Detours Fleet Management",
   description:
     "See how driver updates flow to the owner dashboard in real time with the Detours screen interface.",
-};
+});
 
 const flowEvents = [
   {
