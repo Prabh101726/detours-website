@@ -2,11 +2,12 @@
 import type { Metadata } from "next";
 import AnimatedSection from "@/components/AnimatedSection";
 import GlassCard from "@/components/GlassCard";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/account-agreement", {
   title: "Account Agreement — Detours Fleet Management",
   description: "The service contract between Detours Fleet Management and your company.",
-};
+});
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

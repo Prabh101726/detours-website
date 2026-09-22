@@ -1,49 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Detours Website
 
-## Getting Started
+Marketing site for [Detours](https://detours-app.com) — fleet ops for growing Ontario aggregate / dump fleets (SRV Freight Inc.).
 
-First, run the development server:
+**Live:** https://detours-app.com  
+**Stack:** Next.js 16 · React 19 · Tailwind CSS v4 · Vercel  
+**Agents:** see [`AGENTS.md`](./AGENTS.md) and [`docs/claude-reference.md`](./docs/claude-reference.md)
+
+`main` deploys straight to production. There is no staging.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Useful scripts:
 
-## Contact form (Gmail SMTP)
+| Command | What it does |
+|---------|----------------|
+| `npm run build` | Production build (TypeScript gate) |
+| `npm run test:e2e` | Build + Playwright regressions (SSR, click-strip, overflow, a11y) |
+| `npm run storybook` | Component isolation for Navbar, Footer, cards, StaggerHeading |
+| `npm run start` | Serve a production build locally |
 
-The **Get in touch** form sends email via Gmail. Set these in `.env.local` (local) and in **Vercel → Project → Settings → Environment Variables** (production):
+Do not rely on `npm run lint` — ESLint hangs in this repo.
+
+## Homepage architecture
+
+Do **not** collapse the homepage into one `"use client"` file.
+
+- `components/story/StorySections.tsx` — server-rendered story copy  
+- `components/story/HomeEnhancer.tsx` — client canvas / scroll (R3F, GSAP, Lenis)
+
+Details and past incidents: `docs/claude-reference.md`.
+
+## Environment variables
+
+Copy into `.env.local` (gitignored) and into **Vercel → Settings → Environment Variables** for production.
+
+### Contact form (Gmail SMTP)
 
 | Variable | Description |
 |----------|-------------|
-| `GMAIL_USER` | Gmail address used to sign in to SMTP (e.g. `you@gmail.com`). |
-| `GMAIL_APP_PASSWORD` | [Google App Password](https://support.google.com/accounts/answer/185833) (16 characters). **Not** your normal Gmail password—turn on 2-Step Verification, then create an app password for Mail. |
-| `GMAIL_PASSWORD` | Optional alias for `GMAIL_APP_PASSWORD` if you prefer that name. |
-| `CONTACT_TO_EMAIL` | Inbox that receives submissions (often the same as `GMAIL_USER`). |
+| `GMAIL_USER` | Gmail address used for SMTP |
+| `GMAIL_APP_PASSWORD` | [Google App Password](https://support.google.com/accounts/answer/185833) (not your normal password) |
+| `GMAIL_PASSWORD` | Optional alias for `GMAIL_APP_PASSWORD` |
+| `CONTACT_TO_EMAIL` | Inbox that receives demo requests |
 
-Never commit real credentials to git.
+The form also uses a honeypot + IP rate limit. Cloudflare Turnstile is wired but **optional** — enable only if spam becomes frequent (`NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Site URL
 
-## Learn More
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin (default `https://detours-app.com`) |
 
-To learn more about Next.js, take a look at the following resources:
+Never commit credentials.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Fonts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Loaded via `next/font` in `app/layout.tsx`:
 
-## Deploy on Vercel
+- **Big Shoulders** — display  
+- **Archivo** — body  
+- **JetBrains Mono** — HUD / labels  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Do not override `--font-*` variables in `globals.css` (CLS).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy
+
+Push to `main`. Vercel builds and publishes automatically (~1–2 minutes). Confirm with a unique string in the live HTML, not a guessed build hash.

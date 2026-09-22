@@ -2,11 +2,12 @@
 import type { Metadata } from "next";
 import AnimatedSection from "@/components/AnimatedSection";
 import ContactForm from "@/components/ContactForm";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/contact", {
   title: "Contact — Detours Fleet Management",
   description: "Book a demo or send us a message. We reply within 1 business day.",
-};
+});
 
 export default function ContactPage() {
   return (

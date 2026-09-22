@@ -14,6 +14,7 @@ const navLinks = [
 
 const legalLinks = [
   { href: "/privacy", label: "Privacy Policy" },
+  { href: "/cookies", label: "Cookie Notice" },
   { href: "/terms", label: "Terms of Service" },
   { href: "/account-agreement", label: "Account Agreement" },
   { href: "/driver-disclosure", label: "Driver Disclosure" },

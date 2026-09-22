@@ -11,12 +11,13 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import GlassCard from "@/components/GlassCard";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/ai-automation", {
   title: "AI Automation — Detours Fleet Management",
   description:
     "AI-powered POD processing, invoice building, and maintenance reporting — live in Detours. Less manual work, clearer records, owner approval at every step.",
-};
+});
 
 const iconSm = { className: "w-5 h-5 flex-shrink-0", style: { color: "#ff6a00" } };
 

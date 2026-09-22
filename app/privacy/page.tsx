@@ -1,10 +1,11 @@
 // app/privacy/page.tsx
 import type { Metadata } from "next";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/privacy", {
   title: "Privacy Policy — Detours Fleet Management",
   description: "How Detours collects, uses, and protects your data. PIPEDA compliant. Ontario, Canada.",
-};
+});
 
 const privacyHtml = `
 <div style="color:#f1f5f9">
@@ -125,7 +126,7 @@ const privacyHtml = `
 <h2 id="cookies">5. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h2>
 <p><em>We may use cookies and other tracking technologies to collect and store your information.</em></p>
 <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to gather information when you interact with our Services. These help maintain security, prevent crashes, save preferences, and support basic site functions.</p>
-<p>We also permit third parties and service providers to use tracking technologies on our Services for analytics purposes. Specific information about how to refuse certain cookies is set out in our Cookie Notice.</p>
+<p>We also permit third parties and service providers to use tracking technologies on our Services for analytics purposes. Specific information about how to refuse certain cookies is set out in our <a href="https://detours-app.com/cookies">Cookie Notice</a>.</p>
 
 <h2 id="inforetain">6. HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
 <p><em>We keep your information for as long as necessary to fulfill the purposes outlined in this Privacy Policy unless otherwise required by law.</em></p>

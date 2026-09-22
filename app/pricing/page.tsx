@@ -3,11 +3,12 @@ import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import GlassCard from "@/components/GlassCard";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/pricing", {
   title: "Pricing — Detours Fleet Management",
   description: "Simple, transparent pricing for growing Ontario fleets.",
-};
+});
 
 const stripeLink = process.env.NEXT_PUBLIC_STRIPE_PRO_LINK || "";
 

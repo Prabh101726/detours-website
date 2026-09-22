@@ -2,11 +2,12 @@
 import type { Metadata } from "next";
 import AnimatedSection from "@/components/AnimatedSection";
 import GlassCard from "@/components/GlassCard";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/driver-disclosure", {
   title: "Driver Disclosure Statement — Detours Fleet Management",
   description: "What personal data is collected about drivers using the Detours platform, and how it is used.",
-};
+});
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

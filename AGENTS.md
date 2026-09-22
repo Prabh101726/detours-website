@@ -89,3 +89,4 @@ If a change alters homepage architecture, adds a gotcha, or fixes an incident, u
 - Repo lives at `~/dev/detours-website` (moved off iCloud Desktop Jul 3 2026 — keep it out of `~/Desktop`/`~/Documents`).
 - `.env.local` and `.vercel/` are local-only and gitignored — never commit them.
 - Site URL constants come from `NEXT_PUBLIC_SITE_URL` / defaults in `app/layout.tsx`, `sitemap.ts`, `robots.ts` — canonical domain is `detours-app.com` (not detoursfleet.com).
+- **Contact spam:** honeypot + IP rate limit are enough for now. Cloudflare Turnstile is wired but optional — do not nag to create a dash.cloudflare.com account until spam becomes frequent (details in `docs/claude-reference.md`).

@@ -17,13 +17,13 @@ import {
   Check,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import { withCanonical } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical("/fleet-owners", {
   title: "For Fleet Owners — Run Your Whole Fleet From One App",
   description:
     "Detours replaces the whiteboard, paper tickets and the office admin. POD, invoicing, payroll, live tracking, compliance and AI agents — built for Ontario gravel and dump fleets.",
-  alternates: { canonical: "/fleet-owners" },
-};
+});
 
 const problems = [
   {
