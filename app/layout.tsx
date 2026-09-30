@@ -124,7 +124,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="en-CA"
       className={`${bigShoulders.variable} ${archivo.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-[#fcfbf9] text-text-primary antialiased">

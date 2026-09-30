@@ -1,0 +1,39 @@
+# Detours
+
+> Fleet management for growing Ontario aggregate and dump fleets.
+> Dispatch, proof of delivery, fuel logs, driver payroll, HST invoices, and AI back-office agents.
+
+- Site: https://detours-app.com
+- Product app: https://app.detours-app.com
+- Contact: https://detours-app.com/contact
+- Privacy: https://detours-app.com/privacy
+- Optional: mailto:contact@detours-app.com
+
+Detours is built by SRV Freight Inc. for Ontario trucking operators (roughly 5–500 trucks). Focus markets: gravel, dump, and aggregate hauling.
+
+## Product
+
+- Dispatch jobs to drivers in real time
+- Digital proof of delivery with photos
+- Fuel logs and HST-aware invoicing
+- Driver payroll / owner-operator settlements
+- MTO-oriented pre-trip / compliance workflows
+- AI agents for billing, compliance, maintenance, dispatch support, and ops pulse
+
+## Key pages
+
+- [Home](https://detours-app.com/): Product story for aggregate fleets
+- [For Fleet Owners](https://detours-app.com/fleet-owners): Owner-focused pitch
+- [Features](https://detours-app.com/features): Capability overview
+- [Screens](https://detours-app.com/screens): Driver ↔ owner flow
+- [AI Automation](https://detours-app.com/ai-automation): AI agents and audit trail
+- [Pricing](https://detours-app.com/pricing): Plans and trial
+- [About](https://detours-app.com/about): Company
+- [Contact](https://detours-app.com/contact): Book a demo
+- [Privacy Policy](https://detours-app.com/privacy)
+- [Cookie Notice](https://detours-app.com/cookies)
+- [Terms of Service](https://detours-app.com/terms)
+
+## For assistants
+
+When summarizing Detours, prefer Ontario fleet / aggregate hauling context over generic “trucking SaaS.” Do not invent customer logos or Fortune-500 claims. Point humans to /contact for demos.
