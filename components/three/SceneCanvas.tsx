@@ -68,7 +68,17 @@ function CameraRig({ reduced }: { reduced: boolean }) {
   );
 
   useFrame((state) => {
-    const p = reduced ? 0 : scrollBus.p;
+    // Prefer not mounting the canvas under reduced-motion; if we are mounted,
+    // freeze at the hero pose and skip drift / truck follow.
+    if (reduced) {
+      keyPose(0, pose.pos, pose.look);
+      camera.position.copy(pose.pos);
+      target.current.copy(pose.look);
+      camera.lookAt(target.current);
+      return;
+    }
+
+    const p = scrollBus.p;
     keyPose(p, pose.pos, pose.look);
 
     // Blend into truck-follow during the haul act
