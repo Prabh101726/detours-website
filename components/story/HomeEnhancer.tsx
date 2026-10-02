@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -49,7 +49,7 @@ function useClientEnv() {
   return useSyncExternalStore(
     () => () => {},
     readClientEnv,
-    () => SERVER_ENV
+    () => SERVER_ENV,
   );
 }
 
@@ -57,8 +57,70 @@ function useIsClient() {
   return useSyncExternalStore(
     () => () => {},
     () => true,
-    () => false
+    () => false,
   );
+}
+
+/** Defer WebGL until after LCP (or idle) so the story copy paints first. */
+function useSceneAfterLcp(enabled: boolean) {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (!enabled) {
+      setReady(false);
+      return;
+    }
+
+    let cancelled = false;
+    let idleId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    let po: PerformanceObserver | undefined;
+
+    const arm = () => {
+      if (cancelled) return;
+      setReady(true);
+    };
+
+    const schedule = () => {
+      if (cancelled) return;
+      if (typeof window.requestIdleCallback === "function") {
+        idleId = window.requestIdleCallback(() => arm(), { timeout: 2000 });
+      } else {
+        timeoutId = setTimeout(arm, 250);
+      }
+    };
+
+    try {
+      if (typeof PerformanceObserver !== "undefined") {
+        po = new PerformanceObserver((list) => {
+          if (list.getEntries().length > 0) {
+            po?.disconnect();
+            schedule();
+          }
+        });
+        po.observe({ type: "largest-contentful-paint", buffered: true });
+      }
+    } catch {
+      // fall through to idle / timeout
+    }
+
+    // Safety: LCP may already have fired, or never fire on some pages
+    timeoutId = setTimeout(() => {
+      po?.disconnect();
+      schedule();
+    }, 3500);
+
+    return () => {
+      cancelled = true;
+      po?.disconnect();
+      if (idleId !== undefined && typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [enabled]);
+
+  return ready;
 }
 
 /**
@@ -68,6 +130,8 @@ function useIsClient() {
 export default function HomeEnhancer() {
   const isClient = useIsClient();
   const { reduced, lowPower, webglOk } = useClientEnv();
+  const wantsScene = isClient && webglOk && !reduced;
+  const sceneReady = useSceneAfterLcp(wantsScene);
 
   useEffect(() => {
     const root = document.getElementById(HOME_STORY_ID);
@@ -140,10 +204,13 @@ export default function HomeEnhancer() {
 
   if (!isClient) return null;
 
+  const showScene = wantsScene && sceneReady;
+  const showFallback = reduced || !webglOk || !showScene;
+
   return (
     <>
-      {webglOk && <SceneCanvas reduced={reduced} lowPower={lowPower} />}
-      {!webglOk && (
+      {showScene && <SceneCanvas reduced={false} lowPower={lowPower} />}
+      {showFallback && (
         <div
           className="blueprint-grid fixed inset-0 z-0 opacity-60"
           aria-hidden="true"

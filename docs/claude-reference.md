@@ -228,6 +228,14 @@ curl -s http://localhost:3456/ | grep "Loading"                # expect no match
 
 After homepage / CSS / Navbar changes: `npm run build && npm run test:e2e`.
 
+### Homepage WebGL load (P1)
+
+`HomeEnhancer` does **not** mount `SceneCanvas` until after LCP (then `requestIdleCallback`). Under `prefers-reduced-motion: reduce`, WebGL is skipped entirely (blueprint fallback only) — Lenis/GSAP already no-op.
+
+### CSP (report-only)
+
+`next.config.ts` sends `Content-Security-Policy-Report-Only` with `frame-ancestors 'self'`. Check browser console for violations for ~1 week before flipping to enforcing `Content-Security-Policy`.
+
 ### Contact form abuse controls
 
 `sendContactEmail` already has:
