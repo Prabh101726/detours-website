@@ -2,16 +2,17 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 /**
- * Report-Only CSP. Violations show in DevTools; nothing is blocked yet.
- * Tighten and switch to Content-Security-Policy after a week of clean reports.
+ * Enforcing CSP. Keep Next/Vercel/Turnstile allowances.
+ * If something breaks in production, check DevTools console for blocked URIs
+ * and widen the matching directive — do not remove frame-ancestors.
  */
-const cspReportOnly = [
+const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
   "object-src 'none'",
   "frame-ancestors 'self'",
   "form-action 'self'",
-  // Next hydration + Vercel Analytics / Speed Insights / live preview
+  // Next hydration + Vercel Analytics / Speed Insights / live preview + Turnstile
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://vercel.live https://challenges.cloudflare.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
@@ -65,13 +66,14 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
           {
-            key: "Content-Security-Policy-Report-Only",
-            value: cspReportOnly,
+            key: "Content-Security-Policy",
+            value: contentSecurityPolicy,
           },
         ],
       },

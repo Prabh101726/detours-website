@@ -4,6 +4,11 @@
 import { headers } from "next/headers";
 import { getGmailTransport } from "@/lib/gmail";
 import { rateLimit } from "@/lib/rateLimit";
+import {
+  isPlausibleEmail,
+  sanitizeBodyText,
+  sanitizeHeaderValue,
+} from "@/lib/sanitize";
 import { verifyTurnstile } from "@/lib/turnstile";
 
 interface ContactFormData {
@@ -26,20 +31,29 @@ function clientIp(h: Headers): string {
 export async function sendContactEmail(
   data: ContactFormData,
 ): Promise<{ success: boolean; error?: string }> {
-  const { name, company, email, phone, message, website, turnstileToken } =
-    data;
+  const { website, turnstileToken } = data;
 
   // Bots that fill every field trip the honeypot — fail closed silently.
   if (website && website.trim() !== "") {
     return { success: true };
   }
 
+  const name = sanitizeHeaderValue(data.name ?? "", 80);
+  const company = sanitizeHeaderValue(data.company ?? "", 120);
+  const email = sanitizeHeaderValue(data.email ?? "", 254);
+  const phone = sanitizeHeaderValue(data.phone ?? "", 40);
+  const message = sanitizeBodyText(data.message ?? "", 5000);
+
   if (!name || !company || !email || !phone || !message) {
     return { success: false, error: "All fields are required." };
   }
 
+  if (!isPlausibleEmail(email)) {
+    return { success: false, error: "Please enter a valid email address." };
+  }
+
   const h = await headers();
-  const ip = clientIp(h);
+  const ip = sanitizeHeaderValue(clientIp(h), 64);
 
   const limited = rateLimit(`contact:${ip}`, { limit: 5, windowMs: 60 * 60 * 1000 });
   if (!limited.ok) {
@@ -69,17 +83,18 @@ export async function sendContactEmail(
     await transport.sendMail({
       from: fromEmail,
       to: toEmail,
+      replyTo: email,
       subject: `Demo request from ${name} — ${company}`,
-      text: `
-Name: ${name}
-Company: ${company}
-Email: ${email}
-Phone: ${phone}
-IP: ${ip}
-
-Message:
-${message}
-      `.trim(),
+      text: [
+        `Name: ${name}`,
+        `Company: ${company}`,
+        `Email: ${email}`,
+        `Phone: ${phone}`,
+        `IP: ${ip}`,
+        "",
+        "Message:",
+        message,
+      ].join("\n"),
     });
     return { success: true };
   } catch {

@@ -232,9 +232,9 @@ After homepage / CSS / Navbar changes: `npm run build && npm run test:e2e`.
 
 `HomeEnhancer` does **not** mount `SceneCanvas` until after LCP (then `requestIdleCallback`). Under `prefers-reduced-motion: reduce`, WebGL is skipped entirely (blueprint fallback only) — Lenis/GSAP already no-op.
 
-### CSP (report-only)
+### CSP (enforcing)
 
-`next.config.ts` sends `Content-Security-Policy-Report-Only` with `frame-ancestors 'self'`. Check browser console for violations for ~1 week before flipping to enforcing `Content-Security-Policy`.
+`next.config.ts` sends `Content-Security-Policy` (enforcing) with `frame-ancestors 'self'` and `X-Frame-Options: SAMEORIGIN`. If a third-party script breaks, widen the matching directive — do not drop `frame-ancestors`.
 
 ### Contact form abuse controls
 
@@ -242,6 +242,7 @@ After homepage / CSS / Navbar changes: `npm run build && npm run test:e2e`.
 
 - Honeypot field (`website`) — bots that fill it get a fake success  
 - In-memory IP rate limit — 5 submissions / hour / IP  
+- Header/body sanitization — strips CR/LF/control chars; `replyTo` set to the submitter email  
 
 **Cloudflare Turnstile is optional and deferred.** The form is not being spammed yet. Do **not** push the owner to sign up at https://dash.cloudflare.com or add Turnstile keys unless spam volume becomes a problem. When that happens:
 
