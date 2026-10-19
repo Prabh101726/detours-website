@@ -9,9 +9,9 @@ export const metadata: Metadata = withCanonical("/privacy", {
 
 const privacyHtml = `
 <div style="color:#f1f5f9">
-<p><strong>Last updated: September 13, 2026</strong></p>
+<p><strong>Last updated: October 18, 2026</strong></p>
 
-<p>This Privacy Policy describes how Detours (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects, uses, and protects your personal information when you use our services (&ldquo;Services&rdquo;), including when you:</p>
+<p>Detours Fleet Ops is a registered business name of SRV Freight Inc. This Privacy Policy describes how SRV Freight Inc., operating as Detours Fleet Ops (&ldquo;Detours,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;), collects, uses, and protects your personal information when you use our services (&ldquo;Services&rdquo;), including when you:</p>
 <ul>
   <li>Visit our website at <a href="https://detours-app.com" target="_blank">https://detours-app.com</a></li>
   <li>Use the Detours web or mobile application at <a href="https://app.detours-app.com" target="_blank">https://app.detours-app.com</a></li>
@@ -180,7 +180,7 @@ const privacyHtml = `
 <h2 id="contact">13. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
 <p>If you have questions or comments about this notice, you may email us at <a href="mailto:contact@detours-app.com">contact@detours-app.com</a> or contact us by post at:</p>
 <p>
-  Detours<br>
+  SRV Freight Inc. o/a Detours Fleet Ops<br>
   Barrie, Ontario<br>
   Canada
 </p>
@@ -208,7 +208,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
         <p style={{ color: "#64748b", fontSize: 14 }}>
-          Last updated: September 13, 2026 &middot; Governing law: Ontario, Canada (PIPEDA)
+          Last updated: October 18, 2026 &middot; Governing law: Ontario, Canada (PIPEDA)
         </p>
       </div>
 

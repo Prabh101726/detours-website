@@ -11,7 +11,8 @@ const termsHtml = `
 <div style="color:#f1f5f9">
 
 <h2>ACCEPTANCE OF TERMS</h2>
-<p>Detours (&ldquo;we,&rdquo; &ldquo;us,&rdquo; &ldquo;our&rdquo;) operates a fleet management platform and related services. By accessing or using our Services, you confirm that you have read, understood, and accept these terms in full. If you disagree with any part of these terms, you must stop using the Services immediately.</p>
+<p><strong>Last updated: October 18, 2026</strong></p>
+<p>Detours Fleet Ops is a registered business name of SRV Freight Inc. SRV Freight Inc., operating as Detours Fleet Ops (&ldquo;Detours,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; &ldquo;our&rdquo;), operates a fleet management platform and related services. By accessing or using our Services, you confirm that you have read, understood, and accept these terms in full. If you disagree with any part of these terms, you must stop using the Services immediately.</p>
 <p>We may update these terms at any time. The &ldquo;Last Updated&rdquo; date will reflect any changes. Continued use of the Services after updates means you accept the revised terms.</p>
 
 <h2>TABLE OF CONTENTS</h2>
@@ -127,7 +128,7 @@ const termsHtml = `
 <h2 id="contact">19. CONTACT US</h2>
 <p>For questions or concerns, reach us at:</p>
 <p>
-  <strong>Detours</strong><br>
+  <strong>SRV Freight Inc. o/a Detours Fleet Ops</strong><br>
   Barrie, Ontario, Canada<br>
   <a href="mailto:contact@detours-app.com">contact@detours-app.com</a>
 </p>
@@ -152,7 +153,7 @@ export default function TermsPage() {
           Terms of Service
         </h1>
         <p style={{ color: "#64748b", fontSize: 14 }}>
-          Last updated: April 22, 2026 &middot; Governing law: Ontario, Canada
+          Last updated: October 18, 2026 &middot; Governing law: Ontario, Canada
         </p>
       </div>
 

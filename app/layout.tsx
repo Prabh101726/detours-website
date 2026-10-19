@@ -115,6 +115,11 @@ const jsonLd = {
     description: "30-day free trial. No credit card required.",
   },
   areaServed: { "@type": "AdministrativeArea", name: "Ontario, Canada" },
+  publisher: {
+    "@type": "Organization",
+    name: "SRV Freight Inc.",
+    alternateName: "Detours Fleet Ops",
+  },
 };
 
 export default function RootLayout({

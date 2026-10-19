@@ -40,7 +40,7 @@ export default function DriverDisclosurePage() {
           Driver Disclosure Statement
         </h1>
         <p className="text-text-muted text-sm">
-          Effective April 22, 2026 · Issued by Detours Fleet Management · PIPEDA compliant
+          Effective April 22, 2026 · Issued by SRV Freight Inc. o/a Detours Fleet Ops · PIPEDA compliant
         </p>
       </AnimatedSection>
 
@@ -103,7 +103,7 @@ export default function DriverDisclosurePage() {
                 (dispatch, PODs, haul records); no access to your payroll figures
               </li>
               <li>
-                <strong className="text-text-primary">Detours Fleet Management</strong> — access for
+                <strong className="text-text-primary">SRV Freight Inc. (Detours Fleet Ops)</strong> — access for
                 technical support only; never sold to third parties
               </li>
             </ul>

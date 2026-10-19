@@ -94,9 +94,9 @@ export default function Footer() {
             Book a demo →
           </Link>
           <p className="text-sm text-text-muted mt-6 leading-relaxed">
-            © {new Date().getFullYear()} Detours.
+            © {new Date().getFullYear()} SRV Freight Inc.
             <br />
-            All rights reserved.
+            Detours Fleet Ops is a registered business name of SRV Freight Inc.
           </p>
         </div>
       </div>

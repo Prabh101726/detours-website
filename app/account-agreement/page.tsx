@@ -6,7 +6,7 @@ import { withCanonical } from "@/lib/seo";
 
 export const metadata: Metadata = withCanonical("/account-agreement", {
   title: "Account Agreement — Detours Fleet Management",
-  description: "The service contract between Detours Fleet Management and your company.",
+  description: "The service contract between SRV Freight Inc., operating as Detours Fleet Ops, and your company.",
 });
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -35,7 +35,7 @@ export default function AccountAgreementPage() {
           Account Agreement
         </h1>
         <p className="text-text-muted text-sm">
-          Last updated: July 2, 2026 · Governing law: Ontario, Canada
+          Last updated: October 18, 2026 · Governing law: Ontario, Canada
         </p>
       </AnimatedSection>
 
@@ -43,8 +43,10 @@ export default function AccountAgreementPage() {
         <GlassCard hover={false} className="p-8">
           <Section title="1. Parties and Services">
             <p>
-              This Account Agreement (&quot;Agreement&quot;) is entered into between Detours Fleet Management
-              (&quot;Provider&quot;) and the company or individual creating the account (&quot;Customer&quot;).
+              This Account Agreement (&quot;Agreement&quot;) is entered into between SRV Freight Inc.,
+              operating as Detours Fleet Ops (&quot;Provider&quot;), and the company or individual
+              creating the account (&quot;Customer&quot;). Detours Fleet Ops is a registered business
+              name of SRV Freight Inc.
               The Provider will make the Detours fleet management platform available to the Customer
               during the term of this Agreement.
             </p>

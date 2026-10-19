@@ -25,7 +25,7 @@ export default function CookiesPage() {
           Cookie Notice
         </h1>
         <p style={{ color: "#64748b", fontSize: 14 }}>
-          Last updated: September 21, 2026 &middot; Governing law: Ontario /
+          Last updated: October 18, 2026 &middot; Governing law: Ontario /
           Quebec, Canada
         </p>
       </div>
@@ -35,8 +35,10 @@ export default function CookiesPage() {
         style={{ color: "#2a2a30", lineHeight: 1.7, fontSize: 14 }}
       >
         <p>
-          This Cookie Notice explains how Detours (&ldquo;we,&rdquo;
-          &ldquo;us,&rdquo; or &ldquo;our&rdquo;) uses cookies and similar
+          Detours Fleet Ops is a registered business name of SRV Freight Inc.
+          This Cookie Notice explains how SRV Freight Inc., operating as
+          Detours Fleet Ops (&ldquo;Detours,&rdquo; &ldquo;we,&rdquo;
+          &ldquo;us,&rdquo; or &ldquo;our&rdquo;), uses cookies and similar
           technologies on{" "}
           <a href="https://detours-app.com" className="text-brand-orange-ink">
             detours-app.com

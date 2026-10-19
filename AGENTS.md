@@ -1,6 +1,6 @@
 # Detours Website — Agent Guide (Claude Code + Cursor)
 
-Marketing site for Detours (fleet ops SaaS by SRV Freight Inc.).
+Marketing site for Detours Fleet Ops, a registered business name of SRV Freight Inc. (Ontario, valid until October 17, 2031). Public legal lines use “SRV Freight Inc. o/a Detours Fleet Ops.” Do not publish the BIN. Do not stamp this name on fleet customer invoice PDFs.
 **Stack:** Next.js 16 · React 19 · Tailwind v4 · Vercel.
 **Live:** https://detours-app.com — Vercel auto-deploys every push to `main`. There is no staging: `main` = production.
 
